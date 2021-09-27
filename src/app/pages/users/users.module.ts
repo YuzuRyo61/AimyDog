@@ -12,7 +12,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
-import {MatExpansionModule} from "@angular/material/expansion";
+import {VirtualScrollerModule} from "ngx-virtual-scroller";
 
 
 
@@ -21,24 +21,24 @@ import {MatExpansionModule} from "@angular/material/expansion";
     UsersComponent,
     UserCardComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([{
-      path: '',
-      component: UsersComponent,
-    }]),
+    imports: [
+        CommonModule,
+        RouterModule.forChild([{
+            path: '',
+            component: UsersComponent,
+        }]),
 
-    FlexLayoutModule,
-    MatCardModule,
-    MatBadgeModule,
-    MatChipsModule,
-    MatGridListModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatExpansionModule,
-  ],
+        FlexLayoutModule,
+        MatCardModule,
+        MatBadgeModule,
+        MatChipsModule,
+        MatGridListModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatSnackBarModule,
+        VirtualScrollerModule,
+    ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}}
   ],

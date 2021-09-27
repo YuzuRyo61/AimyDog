@@ -1,0 +1,50 @@
+$breakpoints: (
+  'xs': (min-width: 0),
+  'sm': (min-width: 576px),
+  'md': (min-width: 768px),
+  'lg': (min-width: 992px),
+  'xl': (min-width: 1200px),
+) !default;
+
+@mixin responsive($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  @else {
+    @error "unknown breakpoint";
+  }
+}
+
+.users-scroll {
+  width: 100vm;
+  height: 92.3vh;
+}
+
+.users-scroll-item {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+
+  @include responsive(md) {
+    width: 50%;
+  }
+
+  @include responsive(lg) {
+    width: 33.3%;
+  }
+
+  @include responsive(xl) {
+    width: 25%;
+  }
+}
+
+.search-button {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 100;
+}

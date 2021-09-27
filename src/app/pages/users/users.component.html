@@ -1,43 +1,17 @@
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <mat-icon>search</mat-icon> Search Options
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
-  </mat-expansion-panel>
-</mat-accordion>
+<virtual-scroller
+  #scroll
+  [enableUnequalChildrenSizes]="true"
+  [items]="items"
+  class="users-scroll"
+>
+  <div
+    class="users-scroll-item"
+    *ngFor="let item of scroll.viewPortItems;"
+  >
+    <app-user-card></app-user-card>
+  </div>
+</virtual-scroller>
 
-<div fxLayout="row wrap" fxLayoutAlign="start space-between">
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-  <div fxFlex.gt-lg="20" fxFlex.gt-md="25" fxFlex.gt-sm="33.3" fxFlex.sm="50" fxFlex.xs="100">
-    <app-user-card></app-user-card>
-  </div>
-</div>
+<button mat-fab color="primary" class="search-button">
+  <mat-icon>search</mat-icon>
+</button>
