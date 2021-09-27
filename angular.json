@@ -20,6 +20,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "semver"
+            ],
             "outputPath": "dist/Mikan",
             "index": "src/index.html",
             "main": "src/main.ts",
