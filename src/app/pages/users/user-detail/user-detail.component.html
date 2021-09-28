@@ -1,0 +1,42 @@
+<ng-container *ngIf="user">
+  <mat-card class="user-detail-card">
+    <img mat-card-image
+         class="user-detail-card-header"
+         *ngIf="user.bannerUrl !== null"
+         [src]="user.bannerUrl"
+         [alt]="user.bannerUrl"
+    >
+    <mat-card-header>
+      <img mat-card-avatar
+           [src]="user.avatarUrl"
+           [alt]="user.username"
+      >
+      <mat-card-title>
+        <ng-container *ngIf="user.name !== null; else noDisplayName">{{ user.name }}</ng-container>
+        <ng-template #noDisplayName>{{ user.username }}</ng-template>
+      </mat-card-title>
+      <mat-card-subtitle>
+        @{{ user.username }}<ng-container *ngIf="user.host !== null">@{{ user.host }}</ng-container>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <div mat-subheader>Basic information</div>
+        <mat-list-item>
+          <mat-icon mat-list-icon>person_add_alt_1</mat-icon>
+          <div mat-line>Created at</div>
+          <div mat-line>{{ user.createdAt | date : 'medium' }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>record_voice_over</mat-icon>
+          <div mat-line>Updated at</div>
+          <div mat-line>
+            <ng-container *ngIf="user.updatedAt !== null; else noUpdate">{{ user.updatedAt | date : 'medium' }}</ng-container>
+            <ng-template #noUpdate>(None)</ng-template>
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

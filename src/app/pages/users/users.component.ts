@@ -6,6 +6,8 @@ import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MkApiService} from "../../service/mk-api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {User} from "../../interface/user";
+import {UserSearchOption} from "../../interface/user-search-option";
 
 @Component({
   selector: 'app-users',
@@ -13,7 +15,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  items: number[] = [];
+  items: User[] = [];
   searchOptionsForm = new FormGroup({
     sort: new FormControl('+createdAt', [
       Validators.required,
@@ -32,22 +34,23 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.fetchData();
   }
 
   vsEvent(event: IPageInfo): void {
-    if (event.endIndex === this.items.length - 1 && !this.isFailed && !this.allLoaded) {
-      console.log('fetch');
+    if (this.items.length !== 0 && event.endIndex === this.items.length - 1 && !this.isFailed && !this.allLoaded) {
       this.fetchData();
     }
   }
 
   private fetchData(): void {
-    this.mas.fetchUserData().subscribe(
+    this.mas.fetchUserList(this.items.length, this.searchOptionsForm.value as UserSearchOption).subscribe(
       val => {
-        const vna = val as number[];
-        this.items = this.items.concat(vna);
-        if (vna.length === 0) this.allLoaded = true;
+        this.items = this.items.concat(val);
+        if (val.length === 0) {
+          this.allLoaded = true
+          return
+        }
       },
       err => {
         console.error(err);
@@ -69,7 +72,12 @@ export class UsersComponent implements OnInit {
       disableClose: true,
     });
     dialogRes.afterClosed().subscribe(result => {
-      if (result !== undefined) this.searchOptionsForm = result;
+      if (result !== undefined) {
+        this.searchOptionsForm = result;
+        this.items = [];
+        this.allLoaded = false;
+        this.fetchData();
+      }
     });
   }
 }

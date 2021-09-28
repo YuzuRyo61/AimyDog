@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {User} from "../../interface/user";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-user-card',
@@ -7,9 +9,11 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent implements OnInit {
+  @Input() user?: User;
 
   constructor(
-    private sb: MatSnackBar
+    private sb: MatSnackBar,
+    private aus: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -20,7 +24,9 @@ export class UserCardComponent implements OnInit {
   }
 
   copyUserId(): void {
-    navigator.clipboard.writeText('userid').then(
+    if (this.user === undefined) return;
+
+    navigator.clipboard.writeText(this.user.id).then(
       () => {
         this.sb.open('Copied to clipboard');
       },
@@ -30,4 +36,8 @@ export class UserCardComponent implements OnInit {
     )
   }
 
+  genOpenUrl(): string | undefined {
+    if (this.user === undefined) return undefined;
+    return `${this.aus.protocol}://${this.aus.address}/@${this.user.username}`;
+  }
 }

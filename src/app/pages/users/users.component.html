@@ -9,7 +9,7 @@
     class="users-scroll-item"
     *ngFor="let item of scroll.viewPortItems;"
   >
-    <app-user-card></app-user-card>
+    <app-user-card [user]="item"></app-user-card>
   </div>
 </virtual-scroller>
 

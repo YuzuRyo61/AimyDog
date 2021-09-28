@@ -1,26 +1,33 @@
-<mat-card>
+<mat-card *ngIf="user">
   <mat-card-header>
     <img
       mat-card-avatar
-      src="https://material.angular.io/assets/img/examples/shiba1.jpg"
-      alt="@example@example.com"
+      [src]="user.avatarUrl"
+      [alt]="user.username"
       matBadge
       matBadgeSize="small"
     >
-    <mat-card-title>Display name</mat-card-title>
-    <mat-card-subtitle>@example@example.com</mat-card-subtitle>
+    <mat-card-title>
+      <ng-container *ngIf="user.name !== null; else noDisplayName">{{ user.name }}</ng-container>
+      <ng-template #noDisplayName>{{ user.username }}</ng-template>
+    </mat-card-title>
+    <mat-card-subtitle>@{{ user.username }}<ng-container *ngIf="user.host !== null">@{{ user.host }}</ng-container></mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="non-bottom-margin">
     <mat-chip-list>
-      <mat-chip selected color="primary" matTooltip="Admin" matTooltipPosition="above"><mat-icon>local_police</mat-icon></mat-chip>
-      <mat-chip selected color="primary" matTooltip="Moderator" matTooltipPosition="above"><mat-icon>shield</mat-icon></mat-chip>
-      <mat-chip selected color="accent" matTooltip="Silence" matTooltipPosition="above"><mat-icon>mic_off</mat-icon></mat-chip>
-      <mat-chip selected color="warn" matTooltip="Suspend" matTooltipPosition="above"><mat-icon>ac_unit</mat-icon></mat-chip>
+      <mat-chip selected color="primary" matTooltip="Admin" matTooltipPosition="above" *ngIf="user.isAdmin"><mat-icon>local_police</mat-icon></mat-chip>
+      <mat-chip selected color="primary" matTooltip="Moderator" matTooltipPosition="above" *ngIf="user.isModerator"><mat-icon>shield</mat-icon></mat-chip>
+      <mat-chip selected color="accent" matTooltip="Silence" matTooltipPosition="above" *ngIf="user.isSilenced"><mat-icon>mic_off</mat-icon></mat-chip>
+      <mat-chip selected color="warn" matTooltip="Suspend" matTooltipPosition="above" *ngIf="user.isSuspended"><mat-icon>ac_unit</mat-icon></mat-chip>
     </mat-chip-list>
     <mat-list>
       <mat-list-item>
         <mat-icon mat-list-icon matTooltip="Created at" matTooltipPosition="above">person_add_alt_1</mat-icon>
-        <time>2021-06-11 12:34:56</time>
+        <time>{{ user.createdAt | date : 'medium' }}</time>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon matTooltip="Updated at" matTooltipPosition="above">record_voice_over</mat-icon>
+        <time *ngIf="user.updatedAt !== null">{{ user.updatedAt | date : 'medium' }}</time>
       </mat-list-item>
     </mat-list>
   </mat-card-content>
@@ -29,9 +36,18 @@
       mat-icon-button
       matTooltip="Detail"
       matTooltipPosition="above"
-      [routerLink]="['/users', 'userid']"
+      [routerLink]="['/users', user.id]"
     >
       <mat-icon>info</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      matTooltip="Open user page in instance"
+      matTooltipPosition="above"
+      target="_blank"
+      [href]="genOpenUrl()"
+    >
+      <mat-icon>open_in_new</mat-icon>
     </a>
     <button
       mat-icon-button
@@ -42,15 +58,5 @@
     >
       <mat-icon>content_copy</mat-icon>
     </button>
-    <a
-      mat-icon-button
-      matTooltip="Open user page in instance"
-      matTooltipPosition="above"
-      target="_blank"
-      href="#"
-      (click)="$event.preventDefault()"
-    >
-      <mat-icon>open_in_new</mat-icon>
-    </a>
   </mat-card-actions>
 </mat-card>
