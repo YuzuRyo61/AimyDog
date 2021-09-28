@@ -47,4 +47,14 @@ $breakpoints: (
   bottom: 16px;
   right: 16px;
   z-index: auto;
+
+  @include responsive(lg) {
+    bottom: 48px;
+    right: 48px;
+  }
+
+  @include responsive(xl) {
+    bottom: 48px;
+    right: 48px;
+  }
 }

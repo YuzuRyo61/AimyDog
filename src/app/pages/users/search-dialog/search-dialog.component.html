@@ -1,19 +1,27 @@
 <h2 mat-dialog-title>User search</h2>
 <div mat-dialog-content>
-    <form>
-        <mat-form-field appearance="fill" color="primary">
-            <mat-label>Status</mat-label>
-            <mat-select>
-              <mat-option value="">All</mat-option>
-              <mat-option value="normal">Normal</mat-option>
-              <mat-option value="admin">Admin or Moderator</mat-option>
-              <mat-option value="silence">Silence</mat-option>
-              <mat-option value="suspend">Suspend</mat-option>
-            </mat-select>
-          </mat-form-field>
-    </form>
+  <form [formGroup]="data">
+    <mat-form-field appearance="fill" color="primary">
+      <mat-label>State</mat-label>
+      <mat-select formControlName="state">
+        <mat-option value="all">All</mat-option>
+        <mat-option value="available">Available</mat-option>
+        <mat-option value="adminOrModerator">Admin or Moderator</mat-option>
+        <mat-option value="silenced">Silence</mat-option>
+        <mat-option value="suspended">Suspend</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary">
+      <mat-label>Sort</mat-label>
+      <mat-select formControlName="sort">
+        <mat-option value="+createdAt">Created at (desc)</mat-option>
+        <mat-option value="-createdAt">Created at (asc)</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="ref.close()">Close</button>
-    <button mat-button [mat-dialog-close]="1" cdkFocusInitial>Apply</button>
+<!--suppress HtmlDeprecatedAttribute -->
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="ref.close()">Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="data.invalid">Apply</button>
 </div>

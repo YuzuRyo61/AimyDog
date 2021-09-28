@@ -16,8 +16,10 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {VirtualScrollerModule} from "ngx-virtual-scroller";
-import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import {MatListModule} from "@angular/material/list";
+import {ReactiveFormsModule} from "@angular/forms";
+import { SearchDialogComponent } from './search-dialog/search-dialog.component';
+import {MkApiService} from "../../service/mk-api.service";
 
 
 
@@ -33,6 +35,7 @@ import {MatListModule} from "@angular/material/list";
       path: '',
       component: UsersComponent,
     }]),
+    ReactiveFormsModule,
 
     FlexLayoutModule,
     MatCardModule,
@@ -50,7 +53,8 @@ import {MatListModule} from "@angular/material/list";
     MatListModule,
   ],
   providers: [
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}},
+    MkApiService,
   ],
   exports: [
     RouterModule,

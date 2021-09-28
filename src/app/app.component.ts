@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NetworkService } from './service/network.service';
+import {AuthService} from "./service/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,11 @@ import { NetworkService } from './service/network.service';
 export class AppComponent implements OnInit {
   constructor(
     private ns: NetworkService,
+    private aus: AuthService,
   ) {}
 
   ngOnInit(): void {
+    this.aus.onInit();
     this.ns.status().subscribe(
       status => {
         if (!status) {

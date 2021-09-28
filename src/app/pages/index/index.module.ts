@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {IndexComponent} from "./index.component";
+import {MatCardModule} from "@angular/material/card";
 
 
 
@@ -9,13 +10,14 @@ import {IndexComponent} from "./index.component";
   declarations: [
     IndexComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([{
-      path: '',
-      component: IndexComponent
-    }]),
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([{
+            path: '',
+            component: IndexComponent
+        }]),
+        MatCardModule,
+    ],
   exports: [
     RouterModule,
   ]

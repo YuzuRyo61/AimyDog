@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { NetworkService } from './service/network.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {NeedLoginGuard} from "./guard/need-login.guard";
+import {NotLoginGuard} from "./guard/not-login.guard";
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     CookieService,
     AuthService,
     NetworkService,
+    NeedLoginGuard,
+    NotLoginGuard,
   ],
   bootstrap: [AppComponent]
 })

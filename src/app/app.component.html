@@ -1,4 +1,4 @@
-<ng-container *ngIf="true; else landing">
+<ng-container *ngIf="false; else landing">
   <mat-drawer-container class="main" autosize>
     <mat-drawer mode="side" #drawer>
       <mat-nav-list>
@@ -38,5 +38,5 @@
 </ng-container>
 
 <ng-template #landing>
-
+  <router-outlet></router-outlet>
 </ng-template>
