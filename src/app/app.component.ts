@@ -10,7 +10,7 @@ import {AuthService} from "./service/auth.service";
 export class AppComponent implements OnInit {
   constructor(
     private ns: NetworkService,
-    private aus: AuthService,
+    public aus: AuthService,
   ) {}
 
   ngOnInit(): void {

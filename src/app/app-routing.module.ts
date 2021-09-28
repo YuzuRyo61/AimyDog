@@ -15,6 +15,11 @@ const routes: Routes = [
     canActivate: [NeedLoginGuard],
   },
   {
+    path: 'callback/:instance',
+    loadChildren: () => import('./pages/callback/callback.module').then(m => m.CallbackModule),
+    canActivate: [NotLoginGuard],
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule),
   }
