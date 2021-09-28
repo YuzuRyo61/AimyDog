@@ -15,6 +15,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatListModule } from "@angular/material/list";
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
+import { NetworkService } from './service/network.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,12 @@ import { AuthService } from './service/auth.service';
     MatToolbarModule,
     MatButtonModule,
     MatListModule,
+    MatSnackBarModule,
   ],
   providers: [
     CookieService,
     AuthService,
+    NetworkService,
   ],
   bootstrap: [AppComponent]
 })

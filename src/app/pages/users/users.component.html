@@ -3,6 +3,7 @@
   [enableUnequalChildrenSizes]="true"
   [items]="items"
   class="users-scroll"
+  (vsEnd)="vsEvent($event)"
 >
   <div
     class="users-scroll-item"
@@ -12,6 +13,6 @@
   </div>
 </virtual-scroller>
 
-<button mat-fab color="primary" class="search-button">
+<button mat-fab color="primary" class="search-button" (click)="openSearchDialog()">
   <mat-icon>search</mat-icon>
 </button>

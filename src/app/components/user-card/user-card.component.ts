@@ -22,10 +22,10 @@ export class UserCardComponent implements OnInit {
   copyUserId(): void {
     navigator.clipboard.writeText('userid').then(
       () => {
-        this.sb.open('Copied to clipboard', 'Dismiss');
+        this.sb.open('Copied to clipboard');
       },
       () => {
-        this.sb.open('Failed copy to clipboard', 'Dismiss');
+        this.sb.open('Failed copy to clipboard');
       }
     )
   }

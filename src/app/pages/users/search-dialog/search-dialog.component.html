@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>User search</h2>
+<div mat-dialog-content>
+    <form>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label>Status</mat-label>
+            <mat-select>
+              <mat-option value="">All</mat-option>
+              <mat-option value="normal">Normal</mat-option>
+              <mat-option value="admin">Admin or Moderator</mat-option>
+              <mat-option value="silence">Silence</mat-option>
+              <mat-option value="suspend">Suspend</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="ref.close()">Close</button>
+    <button mat-button [mat-dialog-close]="1" cdkFocusInitial>Apply</button>
+</div>
