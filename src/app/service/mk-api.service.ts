@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../interface/user";
 import {UserSearchOption} from "../interface/user-search-option";
+import {DriveFile} from "../interface/drive-file";
 
 @Injectable({
   providedIn: 'root'
@@ -74,5 +75,14 @@ export class MkApiService {
       i: this.aus.token,
       userId: userId,
     }) as Observable<object>;
+  }
+
+  fetchFileList(untilId?: string, searchOption?: any): Observable<DriveFile[]> {
+    return this.hc.post(`${this.baseUrl}/admin/drive/files`, {
+      i: this.aus.token,
+      limit: 100,
+      untilId,
+      ...searchOption,
+    }) as Observable<DriveFile[]>;
   }
 }

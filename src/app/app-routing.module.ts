@@ -20,6 +20,10 @@ const routes: Routes = [
     canActivate: [NeedLoginGuard],
   },
   {
+    path: 'files',
+    loadChildren: () => import('./pages/files/files.module').then(m => m.FilesModule),
+  },
+  {
     path: 'callback/:instance',
     loadChildren: () => import('./pages/callback/callback.module').then(m => m.CallbackModule),
     canActivate: [NotLoginGuard],

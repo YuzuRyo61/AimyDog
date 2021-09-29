@@ -1,11 +1,11 @@
 @use "src/responsive-mixin" as rm;
 
-.users-scroll {
+.files-scroll {
   width: 100vm;
   height: 90vh;
 }
 
-.users-scroll-item {
+.files-scroll-item {
   width: 100%;
   display: inline-block;
   vertical-align: top;

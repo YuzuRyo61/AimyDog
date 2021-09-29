@@ -20,36 +20,40 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {NeedLoginGuard} from "./guard/need-login.guard";
 import {NotLoginGuard} from "./guard/not-login.guard";
 import {MatMenuModule} from "@angular/material/menu";
+import {LoadingService} from "./service/loading.service";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {
-            enabled: environment.production,
-            // Register the ServiceWorker as soon as the app is stable
-            // or after 30 seconds (whichever comes first).
-            registrationStrategy: 'registerWhenStable:30000'
-        }),
-        HttpClientModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatListModule,
-        MatSnackBarModule,
-        MatMenuModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    HttpClientModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatMenuModule,
+    MatProgressBarModule,
+  ],
   providers: [
     CookieService,
     AuthService,
     NetworkService,
     NeedLoginGuard,
     NotLoginGuard,
+    LoadingService,
   ],
   bootstrap: [AppComponent]
 })

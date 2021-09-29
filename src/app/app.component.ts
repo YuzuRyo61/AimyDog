@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NetworkService } from './service/network.service';
 import {AuthService} from "./service/auth.service";
+import {LoadingService} from "./service/loading.service";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ export class AppComponent implements OnInit {
   constructor(
     private ns: NetworkService,
     public aus: AuthService,
+    public ls: LoadingService,
   ) {}
 
   ngOnInit(): void {

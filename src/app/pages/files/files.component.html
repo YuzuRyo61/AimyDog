@@ -2,17 +2,17 @@
   #scroll
   [enableUnequalChildrenSizes]="true"
   [items]="items"
-  class="users-scroll"
+  class="files-scroll"
   (vsEnd)="vsEvent($event)"
 >
   <div
-    class="users-scroll-item"
+    class="files-scroll-item"
     *ngFor="let item of scroll.viewPortItems"
   >
-    <app-user-card [user]="item"></app-user-card>
+    <app-file-card [file]="item"></app-file-card>
   </div>
 </virtual-scroller>
 
-<button mat-fab color="primary" class="fab-button" (click)="openSearchDialog()">
+<button mat-fab color="primary" class="fab-button">
   <mat-icon>search</mat-icon>
 </button>

@@ -1,0 +1,62 @@
+<mat-card class="file-card" *ngIf="file">
+  <img mat-card-image
+     class="file-card-image"
+     *ngIf="file.thumbnailUrl !== null"
+     [src]="file.thumbnailUrl"
+     [alt]="file.thumbnailUrl"
+  >
+  <mat-card-header>
+    <img
+      mat-card-avatar
+      [src]="file.user?.avatarUrl"
+      [alt]="file.user?.username"
+    >
+    <mat-card-title class="text-overflow">
+      <ng-container *ngIf="file.user?.name !== null; else noDisplayName">{{ file.user?.name }}</ng-container>
+      <ng-template #noDisplayName>{{ file.user?.username }}</ng-template>
+    </mat-card-title>
+    <mat-card-subtitle>@{{ file.user?.username }}<ng-container *ngIf="file.user?.host !== null">@{{ file.user?.host }}</ng-container></mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-chip-list>
+      <mat-chip selected color="accent" matTooltip="Sensitive" matTooltipPosition="above" *ngIf="file.isSensitive"><mat-icon>visibility_off</mat-icon></mat-chip>
+    </mat-chip-list>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon matTooltip="File type" matTooltipPosition="above">insert_drive_file</mat-icon>
+        <div>{{ file.type }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon matTooltip="Created at" matTooltipPosition="above">upload_file</mat-icon>
+        <div>{{ file.createdAt | date : 'medium' }}</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-icon-button
+      matTooltip="Detail"
+      matTooltipPosition="above"
+    >
+      <mat-icon>info</mat-icon>
+    </button>
+    <a
+      mat-icon-button
+      matTooltip="Show owner detail"
+      matTooltipPosition="above"
+      *ngIf="file.user"
+      [routerLink]="['/users', file.user.id]"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </a>
+    <button
+      mat-icon-button
+      matTooltip="Copy FileID"
+      matTooltipPosition="above"
+      *ngIf="isAvailableCopy()"
+      (click)="copyUserId()"
+    >
+      <mat-icon>content_copy</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

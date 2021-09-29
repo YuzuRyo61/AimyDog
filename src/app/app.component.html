@@ -5,7 +5,7 @@
         <mat-list-item [matMenuTriggerFor]="accountMenu">
           <img mat-list-avatar [src]="aus.credentials?.avatarUrl" [alt]="aus.credentials?.username">
           <div mat-line>@{{ aus.credentials?.username }}</div>
-          <div mat-line>@{{ aus.address }}</div>
+          <div mat-line>{{ aus.address }}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item routerLink="/dashboard" (click)="drawer.close()">
@@ -21,7 +21,7 @@
           <mat-icon mat-list-icon>people</mat-icon>
           <div>Users</div>
         </mat-list-item>
-        <mat-list-item routerLink="/file" (click)="drawer.close()">
+        <mat-list-item routerLink="/files" (click)="drawer.close()">
           <mat-icon mat-list-icon>cloud</mat-icon>
           <div>Files</div>
         </mat-list-item>
@@ -40,13 +40,18 @@
       </mat-nav-list>
     </mat-drawer>
     <div>
-      <mat-toolbar color="primary">
-        <button mat-icon-button (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span>Mikan</span>
-      </mat-toolbar>
+      <div class="toolbar">
+        <mat-toolbar color="primary">
+          <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Mikan</span>
+        </mat-toolbar>
 
+        <div [hidden]="!ls.loading">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+      </div>
       <div class="main-container">
         <router-outlet></router-outlet>
       </div>

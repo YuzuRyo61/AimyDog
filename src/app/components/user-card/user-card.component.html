@@ -4,8 +4,6 @@
       mat-card-avatar
       [src]="user.avatarUrl"
       [alt]="user.username"
-      matBadge
-      matBadgeSize="small"
     >
     <mat-card-title class="text-overflow">
       <ng-container *ngIf="user.name !== null; else noDisplayName">{{ user.name }}</ng-container>
