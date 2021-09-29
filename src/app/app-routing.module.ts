@@ -10,6 +10,11 @@ const routes: Routes = [
     canActivate: [NotLoginGuard],
   },
   {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [NeedLoginGuard],
+  },
+  {
     path: 'users',
     loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
     canActivate: [NeedLoginGuard],

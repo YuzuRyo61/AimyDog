@@ -2,11 +2,17 @@
   <mat-drawer-container class="main" autosize [hasBackdrop]="true">
     <mat-drawer mode="over" #drawer>
       <mat-nav-list class="nav-list">
+        <mat-list-item [matMenuTriggerFor]="accountMenu">
+          <img mat-list-avatar [src]="aus.credentials?.avatarUrl" [alt]="aus.credentials?.username">
+          <div mat-line>@{{ aus.credentials?.username }}</div>
+          <div mat-line>@{{ aus.address }}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
         <mat-list-item routerLink="/dashboard" (click)="drawer.close()">
           <mat-icon mat-list-icon>dashboard</mat-icon>
           <div>Dashboard</div>
         </mat-list-item>
-        <mat-list-item routerLink="/core" (click)="drawer.close()">
+        <mat-list-item routerLink="/core" (click)="drawer.close()" *ngIf="aus.credentials?.isAdmin">
           <mat-icon mat-list-icon>settings</mat-icon>
           <div>Core</div>
         </mat-list-item>
@@ -18,6 +24,10 @@
         <mat-list-item routerLink="/file" (click)="drawer.close()">
           <mat-icon mat-list-icon>cloud</mat-icon>
           <div>Files</div>
+        </mat-list-item>
+        <mat-list-item routerLink="/federation" (click)="drawer.close()">
+          <mat-icon mat-list-icon>language</mat-icon>
+          <div>Federation</div>
         </mat-list-item>
         <mat-list-item routerLink="/report" (click)="drawer.close()">
           <mat-icon mat-list-icon>flag</mat-icon>
@@ -42,6 +52,17 @@
       </div>
     </div>
   </mat-drawer-container>
+
+  <mat-menu #accountMenu="matMenu">
+    <a mat-menu-item [href]="aus.protocol + '://' + aus.address + '/'" target="_blank">
+      <mat-icon>home</mat-icon>
+      <span>Go to instance</span>
+    </a>
+    <button mat-menu-item (click)="aus.destroySession()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
 </ng-container>
 
 <ng-template #landing>

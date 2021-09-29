@@ -6,12 +6,14 @@ import { v4 as uuidv4 } from 'uuid';
 import {MiAuthResponse} from "../interface/mi-auth-response";
 import {environment} from "../../environments/environment";
 import {User} from "../interface/user";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private _protocol = 'https';
+  private _protocol = 'http';
   private _address?: string;
   private _token?: string;
   private _credentials?: User;
@@ -19,6 +21,8 @@ export class AuthService {
   constructor(
     private cs: CookieService,
     private hc: HttpClient,
+    private router: Router,
+    private sb: MatSnackBar,
   ) { }
 
   get protocol(): string {
@@ -49,13 +53,14 @@ export class AuthService {
     if (this._token !== undefined) this.getCredentials();
   }
 
-  getCredentials(): void {
+  private getCredentials(): void {
     this.hc.post(`${this._protocol}://${this._address}/api/i`, {i: this._token}).toPromise().then(res => {
       this._credentials = res as User;
     }).catch(err => {
       console.error(err);
-      this.cs.deleteAll();
-      window.location.reload();
+      this.sb.open('Cannot fetch your credentials.', undefined, {
+        duration: 5000,
+      })
     });
   }
 
@@ -82,7 +87,10 @@ export class AuthService {
     return `${this._protocol}://${address}/miauth/${sessionId}?${authQuery.toString()}`;
   }
 
-  async callbackProcess(address: string, sessionId: string): Promise<boolean> {
+  async callbackProcess(address: string, sessionId: string): Promise<boolean | undefined> {
+    if (this._token !== undefined || this._address !== undefined) {
+      return undefined;
+    }
     return this.hc.post(`${this._protocol}://${address}/api/miauth/${sessionId}/check`, {}).toPromise().then(dataRaw => {
       const data = dataRaw as MiAuthResponse;
       if (!data.ok || data.token === undefined || !(data.user?.isAdmin || data.user?.isModerator)) {
@@ -101,8 +109,24 @@ export class AuthService {
         sameSite: 'Strict',
       });
       this._address = address;
+      this.getCredentials();
 
       return true;
+    }).catch(err => {
+      console.error(err);
+      return false;
+    });
+  }
+
+  destroySession(): void {
+    this.cs.deleteAll();
+    this._token = undefined;
+    this._address = undefined;
+    this._credentials = undefined;
+    this.router.navigate(['/']).then(() => {
+      this.sb.open('You have been logout.', undefined, {
+        duration: 5000,
+      })
     });
   }
 }

@@ -19,29 +19,31 @@ import { NetworkService } from './service/network.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {NeedLoginGuard} from "./guard/need-login.guard";
 import {NotLoginGuard} from "./guard/not-login.guard";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
-    HttpClientModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatListModule,
-    MatSnackBarModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the app is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        HttpClientModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatListModule,
+        MatSnackBarModule,
+        MatMenuModule,
+    ],
   providers: [
     CookieService,
     AuthService,

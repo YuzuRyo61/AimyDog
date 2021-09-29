@@ -1,6 +1,6 @@
 <h1>Mikan</h1>
 
-<form (submit)="$event.preventDefault(); submitForm()">
+<form (submit)="$event.preventDefault(); submitForm()" *ngIf="isCookieEnabled(); else requiredCookie">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Login</mat-card-title>
@@ -24,3 +24,7 @@
     </mat-card-actions>
   </mat-card>
 </form>
+
+<ng-template #requiredCookie>
+  <p>This web application is required using Cookie. Please enable Cookie.</p>
+</ng-template>

@@ -13,7 +13,7 @@ export class UserCardComponent implements OnInit {
 
   constructor(
     private sb: MatSnackBar,
-    private aus: AuthService,
+    public aus: AuthService,
   ) { }
 
   ngOnInit(): void {

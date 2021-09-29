@@ -18,6 +18,14 @@
         <mat-option value="-createdAt">Created at (asc)</mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field appearance="fill" color="primary">
+      <mat-label>Origin</mat-label>
+      <mat-select formControlName="origin">
+        <mat-option value="combined">Combined</mat-option>
+        <mat-option value="local">Local</mat-option>
+        <mat-option value="remote">Remote</mat-option>
+      </mat-select>
+    </mat-form-field>
   </form>
 </div>
 <!--suppress HtmlDeprecatedAttribute -->

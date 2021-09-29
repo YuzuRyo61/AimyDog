@@ -7,7 +7,7 @@
       matBadge
       matBadgeSize="small"
     >
-    <mat-card-title>
+    <mat-card-title class="text-overflow">
       <ng-container *ngIf="user.name !== null; else noDisplayName">{{ user.name }}</ng-container>
       <ng-template #noDisplayName>{{ user.username }}</ng-template>
     </mat-card-title>
@@ -37,6 +37,7 @@
       matTooltip="Detail"
       matTooltipPosition="above"
       [routerLink]="['/users', user.id]"
+      *ngIf="!(aus.credentials?.isModerator && user.isAdmin)"
     >
       <mat-icon>info</mat-icon>
     </a>

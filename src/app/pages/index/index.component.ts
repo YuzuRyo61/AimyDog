@@ -19,6 +19,10 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isCookieEnabled(): boolean {
+    return navigator.cookieEnabled;
+  }
+
   async submitForm(): Promise<void> {
     this.loginAddressForm.disable();
     const isAvailable = await this.aus.isAvailableInstance(this.loginAddressForm.value as string);

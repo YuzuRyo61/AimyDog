@@ -9,9 +9,6 @@ import {AuthService} from "../../service/auth.service";
   styleUrls: ['./callback.component.scss']
 })
 export class CallbackComponent implements OnInit {
-  instance: string | null = null;
-  sessionId: string = '';
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -19,43 +16,41 @@ export class CallbackComponent implements OnInit {
     private aus: AuthService,
   ) { }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.instance = params.get('instance');
-    });
+  async ngOnInit(): Promise<void> {
+    const instance = this.route.snapshot.paramMap.get('instance');
 
-    if (this.instance === null) {
-      this.onError();
+    if (instance === null) {
+      await this.onError();
       return;
     }
 
-    const query = new URLSearchParams(window.location.search);
-    if (!query.has('session')) {
-      this.onError();
+    const query = this.route.snapshot.queryParamMap.get('session');
+    if (query === null) {
+      await this.onError();
       return;
     }
 
-    this.sessionId = query.get('session') as string;
+    const res = await this.aus.callbackProcess(instance, query);
 
-    this.aus.callbackProcess(this.instance, this.sessionId).then(res => {
-      if (!res) this.onError();
-      this.ns.open('Welcome back!', undefined, {
-        duration: 5000,
-      });
-      // noinspection JSIgnoredPromiseFromCall
-      this.router.navigate(['/dashboard']);
-    }).catch(() => {
-      this.onError();
-    });
+    if (res === false) {
+      await this.onError();
+      return;
+    } else if (res === undefined) {
+      await this.router.navigate(['/dashboard']);
+      return;
+    }
 
-  }
-
-  onError(): void {
-    this.ns.open('Authentication failed or you do not have administrator or moderator privileges. Please try again.', undefined, {
+    this.ns.open('Welcome back!', undefined, {
       duration: 5000,
     });
-    // noinspection JSIgnoredPromiseFromCall
-    this.router.navigate(['/']);
+    await this.router.navigate(['/dashboard']);
+  }
+
+  async onError(): Promise<void> {
+    this.ns.open('Authentication failed. Please try again.', undefined, {
+      duration: 5000,
+    });
+    await this.router.navigate(['/']);
   }
 
 }

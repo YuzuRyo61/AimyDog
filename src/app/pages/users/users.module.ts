@@ -21,6 +21,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SearchDialogComponent} from './search-dialog/search-dialog.component';
 import {MkApiService} from "../../service/mk-api.service";
 import {UserDetailComponent} from "./user-detail/user-detail.component";
+import {MatMenuModule} from '@angular/material/menu';
+import {YnDialogComponent} from "../../components/yn-dialog/yn-dialog.component";
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import {UserDetailComponent} from "./user-detail/user-detail.component";
     SearchDialogComponent,
     UserDetailComponent,
     UserCardComponent,
+    YnDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +61,7 @@ import {UserDetailComponent} from "./user-detail/user-detail.component";
     MatSelectModule,
     VirtualScrollerModule,
     MatListModule,
+    MatMenuModule,
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}},

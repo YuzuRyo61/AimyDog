@@ -23,6 +23,9 @@ export class UsersComponent implements OnInit {
     state: new FormControl('all', [
       Validators.required,
     ]),
+    origin: new FormControl('local', [
+      Validators.required,
+    ]),
   });
   isFailed = false;
   allLoaded = false;

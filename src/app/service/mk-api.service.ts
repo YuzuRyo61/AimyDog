@@ -33,4 +33,46 @@ export class MkApiService {
       ...searchOption,
     }) as Observable<User[]>;
   }
+
+  addModUser(userId: string): Observable<object> {
+    return this.hc.post(`${this.baseUrl}/admin/moderators/add`, {
+      i: this.aus.token,
+      userId: userId,
+    }) as Observable<object>;
+  }
+
+  removeModUser(userId: string): Observable<object> {
+    return this.hc.post(`${this.baseUrl}/admin/moderators/remove`, {
+      i: this.aus.token,
+      userId: userId,
+    }) as Observable<object>;
+  }
+
+  silenceUser(userId: string): Observable<object> {
+    return this.hc.post(`${this.baseUrl}/admin/silence-user`, {
+      i: this.aus.token,
+      userId: userId,
+    }) as Observable<object>;
+  }
+
+  unSilenceUser(userId: string): Observable<object> {
+    return this.hc.post(`${this.baseUrl}/admin/unsilence-user`, {
+      i: this.aus.token,
+      userId: userId,
+    }) as Observable<object>;
+  }
+
+  suspendUser(userId: string): Observable<object> {
+    return this.hc.post(`${this.baseUrl}/admin/suspend-user`, {
+      i: this.aus.token,
+      userId: userId,
+    }) as Observable<object>;
+  }
+
+  unSuspendUser(userId: string): Observable<object> {
+    return this.hc.post(`${this.baseUrl}/admin/unsuspend-user`, {
+      i: this.aus.token,
+      userId: userId,
+    }) as Observable<object>;
+  }
 }
