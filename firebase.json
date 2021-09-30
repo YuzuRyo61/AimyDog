@@ -1,0 +1,23 @@
+{
+  "hosting": {
+    "public": "./dist/AimyDog",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/ja/**",
+        "destination": "/ja/index.html"
+      },
+      {
+        "source": "/en/**",
+        "destination": "/en/index.html"
+      }
+    ],
+    "i18n": {
+      "root": "/"
+    }
+  }
+}
