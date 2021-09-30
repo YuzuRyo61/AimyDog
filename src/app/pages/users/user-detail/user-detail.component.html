@@ -9,8 +9,9 @@
     >
     <mat-card-header>
       <img mat-card-avatar
-           [src]="user.avatarUrl"
-           [alt]="user.username"
+          *ngIf="user.avatarUrl !== null"
+          [src]="user.avatarUrl"
+          [alt]="user.username"
       >
       <mat-card-title>
         <ng-container *ngIf="user.name !== null; else noDisplayName">{{ user.name }}</ng-container>

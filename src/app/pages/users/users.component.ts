@@ -8,7 +8,6 @@ import {MkApiService} from "../../service/mk-api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {User} from "../../interface/user";
 import {UserSearchOption} from "../../interface/user-search-option";
-import {LoadingService} from "../../service/loading.service";
 
 @Component({
   selector: 'app-users',
@@ -35,7 +34,6 @@ export class UsersComponent implements OnInit {
     private sb: MatSnackBar,
     private md: MatDialog,
     private mas: MkApiService,
-    private ls: LoadingService,
   ) { }
 
   ngOnInit(): void {
@@ -49,11 +47,9 @@ export class UsersComponent implements OnInit {
   }
 
   private fetchData(): void {
-    this.ls.loading = true;
     this.mas.fetchUserList(this.items.length, this.searchOptionsForm.value as UserSearchOption).subscribe(
       val => {
         this.items = this.items.concat(val);
-        this.ls.loading = false;
         if (val.length === 0) {
           this.allLoaded = true;
           return;
@@ -61,7 +57,6 @@ export class UsersComponent implements OnInit {
       },
       err => {
         console.error(err);
-        this.ls.loading = false;
         this.isFailed = true;
         const errSnack = this.sb.open('Fetch failed.', 'Retry', {
           duration: 0,

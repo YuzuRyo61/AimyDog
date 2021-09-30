@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {IPageInfo} from "ngx-virtual-scroller";
 import {DriveFile} from "../../interface/drive-file";
 import {MkApiService} from "../../service/mk-api.service";
-import {LoadingService} from "../../service/loading.service";
 
 @Component({
   selector: 'app-files',
@@ -16,7 +15,6 @@ export class FilesComponent implements OnInit {
 
   constructor(
     private mas: MkApiService,
-    private ls: LoadingService,
   ) { }
 
   ngOnInit(): void {
@@ -30,12 +28,10 @@ export class FilesComponent implements OnInit {
   }
 
   private fetchData(): void {
-    this.ls.loading = true;
     const latestId = (this.items.length === 0) ? undefined : this.items.slice(-1)[0].id;
     this.mas.fetchFileList(latestId, undefined).subscribe(
       val => {
         this.items = this.items.concat(val);
-        this.ls.loading = false;
         if (val.length === 0) {
           this.allLoaded = true;
           return;
@@ -43,7 +39,6 @@ export class FilesComponent implements OnInit {
       },
       err => {
         console.error(err);
-        this.ls.loading = false;
       },
     );
   }

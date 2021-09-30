@@ -18,11 +18,9 @@ export class NeedLoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const isLogin = this.aus.isLogin;
+    const isLogin = this.aus.isLogin();
     if (!isLogin) {
-      this.sb.open('You must login to Misskey instance', undefined, {
-        duration: 5000,
-      });
+      this.sb.open('You must login to Misskey instance');
       // noinspection JSIgnoredPromiseFromCall
       this.router.navigate(['/']);
     }

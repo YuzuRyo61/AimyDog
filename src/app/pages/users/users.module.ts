@@ -12,7 +12,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from '@angular/material/dialog';
-import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {VirtualScrollerModule} from "ngx-virtual-scroller";
@@ -64,7 +64,6 @@ import {YnDialogComponent} from "../../components/yn-dialog/yn-dialog.component"
     MatMenuModule,
   ],
   providers: [
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}},
     MkApiService,
   ],
   exports: [

@@ -16,7 +16,7 @@ export class NotLoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const isLogin = this.aus.isLogin;
+    const isLogin = this.aus.isLogin();
     if (isLogin) {
       // noinspection JSIgnoredPromiseFromCall
       this.router.navigate(['/dashboard']);

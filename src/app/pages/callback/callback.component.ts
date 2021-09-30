@@ -12,7 +12,7 @@ export class CallbackComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private ns: MatSnackBar,
+    private sb: MatSnackBar,
     private aus: AuthService,
   ) { }
 
@@ -40,16 +40,12 @@ export class CallbackComponent implements OnInit {
       return;
     }
 
-    this.ns.open('Welcome back!', undefined, {
-      duration: 5000,
-    });
+    this.sb.open('Welcome back!');
     await this.router.navigate(['/dashboard']);
   }
 
   async onError(): Promise<void> {
-    this.ns.open('Authentication failed. Please try again.', undefined, {
-      duration: 5000,
-    });
+    this.sb.open('Authentication failed. Please try again.');
     await this.router.navigate(['/']);
   }
 

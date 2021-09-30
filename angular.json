@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Mikan": {
+    "AimyDog": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
             "allowedCommonJsDependencies": [
               "semver"
             ],
-            "outputPath": "dist/Mikan",
+            "outputPath": "dist/AimyDog",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -40,7 +40,8 @@
             ],
             "scripts": [],
             "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "ngswConfigPath": "ngsw-config.json",
+            "localize": true
           },
           "configurations": {
             "production": {
@@ -70,7 +71,8 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "localize": ["ja"]
             }
           },
           "defaultConfiguration": "production"
@@ -79,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Mikan:build:production"
+              "browserTarget": "AimyDog:build:production"
             },
             "development": {
-              "browserTarget": "Mikan:build:development"
+              "browserTarget": "AimyDog:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -90,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Mikan:build"
+            "browserTarget": "AimyDog:build"
           }
         },
         "test": {
@@ -113,8 +115,14 @@
             "scripts": []
           }
         }
+      },
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "ja": "src/locale/messages.ja.xlf"
+        }
       }
     }
   },
-  "defaultProject": "Mikan"
+  "defaultProject": "AimyDog"
 }

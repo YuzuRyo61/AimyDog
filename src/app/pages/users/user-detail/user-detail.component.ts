@@ -73,7 +73,7 @@ export class UserDetailComponent implements OnInit {
     return `${this.aus.protocol}://${this.aus.address}/@${this.user.username}`;
   }
 
-  get acct(): string {
+  acct(): string {
     if (this.user === undefined) return '';
 
     if (this.user.host === null) {
@@ -90,7 +90,7 @@ export class UserDetailComponent implements OnInit {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
           title: 'Demote moderator',
-          message: `Are you sure demote moderator to ${this.acct}?`
+          message: `Are you sure demote moderator to ${this.acct()}?`
         },
       });
 
@@ -100,15 +100,11 @@ export class UserDetailComponent implements OnInit {
         this.ma.removeModUser(this.user.id).subscribe(
           () => {
             if (this.user !== undefined) this.user.isModerator = false;
-            this.sb.open('User demoted from moderator.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open('User demoted from moderator.');
           },
           err => {
             console.error(err);
-            this.sb.open('Operation failed.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open('Operation failed.');
           }
         )
       });
@@ -116,7 +112,7 @@ export class UserDetailComponent implements OnInit {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
           title: 'Promote to moderator',
-          message: `Are you sure promote moderator to ${this.acct}?`
+          message: `Are you sure promote moderator to ${this.acct()}?`
         },
       });
 
@@ -148,7 +144,7 @@ export class UserDetailComponent implements OnInit {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
           title: 'Un-Silence',
-          message: `Are you sure un-silence to ${this.acct}?`
+          message: `Are you sure un-silence to ${this.acct()}?`
         },
       });
 
@@ -174,7 +170,7 @@ export class UserDetailComponent implements OnInit {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
           title: 'Silence',
-          message: `Are you sure silence to ${this.acct}?`
+          message: `Are you sure silence to ${this.acct()}?`
         },
       });
 
@@ -206,7 +202,7 @@ export class UserDetailComponent implements OnInit {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
           title: 'Unsuspend',
-          message: `Are you sure unsuspend to ${this.acct}?`
+          message: `Are you sure unsuspend to ${this.acct()}?`
         },
       });
 
@@ -232,7 +228,7 @@ export class UserDetailComponent implements OnInit {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
           title: 'Suspend',
-          message: `Are you sure suspend to ${this.acct}?`
+          message: `Are you sure suspend to ${this.acct()}?`
         },
       });
 

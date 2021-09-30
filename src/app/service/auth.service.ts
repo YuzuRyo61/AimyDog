@@ -37,7 +37,7 @@ export class AuthService {
     return this._token;
   }
 
-  get isLogin(): boolean {
+  isLogin(): boolean {
     return this._token !== undefined && this._address !== undefined;
   }
 
@@ -79,7 +79,7 @@ export class AuthService {
 
   generateMiAuthUrl(address: string): string {
     const authQuery = new URLSearchParams({
-      name: 'Mikan',
+      name: 'AimyDog',
       callback: `${window.location.protocol}//${window.location.host}/callback/${address}`,
     });
     const sessionId = uuidv4();
@@ -124,9 +124,7 @@ export class AuthService {
     this._address = undefined;
     this._credentials = undefined;
     this.router.navigate(['/']).then(() => {
-      this.sb.open('You have been logout.', undefined, {
-        duration: 5000,
-      })
+      this.sb.open('You have been logout.');
     });
   }
 }

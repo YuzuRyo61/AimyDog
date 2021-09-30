@@ -1,14 +1,28 @@
 {
-  "name": "mikan",
-  "version": "0.0.0",
+  "name": "aimy-dog",
+  "version": "0.0.0-alpha",
+  "description": "Administration tool for Misskey instance",
+  "private": true,
+  "author": {
+    "name": "YuzuRyo61",
+    "url": "https://yuzulia.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/YuzuRyo61/AimyDog/issues"
+  },
+  "repository": {
+    "url": "https://github.com/YuzuRyo61/AimyDog.git",
+    "type": "git"
+  },
+  "license": "AGPL-3.0-or-later",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:production": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~12.2.0",
     "@angular/cdk": "^12.2.7",
@@ -30,6 +44,7 @@
     "@angular/cli": "~12.2.7",
     "@angular/compiler-cli": "~12.2.0",
     "@angular/flex-layout": "^12.0.0-beta.35",
+    "@angular/localize": "^12.2.7",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "@types/semver": "^7.3.8",
