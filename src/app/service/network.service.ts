@@ -5,9 +5,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NetworkService {
-
-  constructor() { }
-
   status(): Observable<boolean> {
     return new Observable<boolean>((observer => {
       window.addEventListener('online', () => {

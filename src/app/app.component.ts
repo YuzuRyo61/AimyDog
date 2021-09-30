@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     this.aus.onInit();
     this.ns.status().subscribe(
       status => {
-
+        console.log(status);
       }
     );
   }

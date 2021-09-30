@@ -23,6 +23,7 @@ export class NeedLoginGuard implements CanActivate {
       this.sb.open('You must login to Misskey instance');
       // noinspection JSIgnoredPromiseFromCall
       this.router.navigate(['/']);
+
     }
     return isLogin;
   }

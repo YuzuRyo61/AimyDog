@@ -1,14 +1,19 @@
 {
   "root": true,
-  "extends": "eslint:recommended",
   "ignorePatterns": [
     "projects/**/*"
   ],
   "rules": {
     "semi": ["error", "always"],
     "object-curly-spacing": ["error", "always"],
-    "no-unused-vars": "warn"
+    "no-unused-vars": ["warn", {"args": "none"}],
+    "@typescript-eslint/no-unused-vars": ["warn", {"args": "none"}]
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "env": {
     "mocha": true,
     "serviceworker": true,

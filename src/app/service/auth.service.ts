@@ -8,6 +8,7 @@ import { environment } from "../../environments/environment";
 import { User } from "../interface/user";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MkMeta } from "../interface/mk-meta";
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +68,7 @@ export class AuthService {
   isAvailableInstance(address: string) : Promise<boolean> {
     return this.hc.post(`${this._protocol}://${address}/api/meta`, {}).toPromise().then(
       (valObj) => {
-        const val = valObj as any;
+        const val = valObj as MkMeta;
         return semver.satisfies(val.version, '>=12.39.1');
       },
       (reason) => {
