@@ -70,7 +70,9 @@ export class UserDetailComponent implements OnInit {
 
   genOpenUrl(): string | undefined {
     if (this.user === undefined) return undefined;
-    return `${this.aus.protocol}://${this.aus.address}/@${this.user.username}`;
+    let baseUrl = `${this.aus.protocol}://${this.aus.address}/@${this.user.username}`;
+    if (this.user.host !== null) baseUrl += `@${this.user.host}`;
+    return baseUrl;
   }
 
   acct(): string {

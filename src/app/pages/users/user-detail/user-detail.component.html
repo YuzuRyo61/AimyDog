@@ -18,8 +18,7 @@
         <ng-template #noDisplayName>{{ user.username }}</ng-template>
       </mat-card-title>
       <mat-card-subtitle>
-        @{{ user.username }}
-        <ng-container *ngIf="user.host !== null">@{{ user.host }}</ng-container>
+        @{{ user.username }}<ng-container *ngIf="user.host !== null">@{{ user.host }}</ng-container>
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
