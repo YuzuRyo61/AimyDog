@@ -10,32 +10,32 @@
         <mat-divider></mat-divider>
         <mat-list-item routerLink="/dashboard" (click)="drawer.close()">
           <mat-icon mat-list-icon>dashboard</mat-icon>
-          <div i18n="Navigation - Dashboard">Dashboard</div>
+          <div i18n="@@nav.dashboard">Dashboard</div>
         </mat-list-item>
         <mat-list-item routerLink="/core" (click)="drawer.close()" *ngIf="aus.credentials?.isAdmin">
           <mat-icon mat-list-icon>settings</mat-icon>
-          <div i18n="Navigation - Meta">Meta</div>
+          <div i18n="@@nav.meta">Meta</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item routerLink="/users" (click)="drawer.close()">
           <mat-icon mat-list-icon>people</mat-icon>
-          <div i18n="Navigation - Users">Users</div>
+          <div i18n="@@nav.users">Users</div>
         </mat-list-item>
         <mat-list-item routerLink="/files" (click)="drawer.close()">
           <mat-icon mat-list-icon>cloud</mat-icon>
-          <div i18n="Navigation - Files">Files</div>
+          <div i18n="@@nav.files">Files</div>
         </mat-list-item>
         <mat-list-item routerLink="/federation" (click)="drawer.close()">
           <mat-icon mat-list-icon>language</mat-icon>
-          <div i18n="Navigation - Federation">Federation</div>
+          <div i18n="@@nav.federation">Federation</div>
         </mat-list-item>
         <mat-list-item routerLink="/report" (click)="drawer.close()">
           <mat-icon mat-list-icon>flag</mat-icon>
-          <div i18n="Navigation - Reports">Reports</div>
+          <div i18n="@@nav.reports">Reports</div>
         </mat-list-item>
         <mat-list-item routerLink="/emoji" (click)="drawer.close()">
           <mat-icon mat-list-icon>emoji_emotions</mat-icon>
-          <div i18n="Navigation - Emoji">Emoji</div>
+          <div i18n="@@nav.emojis">Emojis</div>
         </mat-list-item>
       </mat-nav-list>
     </mat-drawer>
@@ -57,11 +57,11 @@
   <mat-menu #accountMenu="matMenu">
     <a mat-menu-item [href]="aus.protocol + '://' + aus.address + '/'" target="_blank">
       <mat-icon>home</mat-icon>
-      <span i18n="Account Menu - Go to instance">Go to instance</span>
+      <span i18n="@@nav.go_to_instance">Go to instance</span>
     </a>
     <button mat-menu-item (click)="aus.destroySession()">
       <mat-icon>logout</mat-icon>
-      <span i18n="Account Menu - Logout">Logout</span>
+      <span i18n="@@nav.logout">Logout</span>
     </button>
   </mat-menu>
 </ng-container>

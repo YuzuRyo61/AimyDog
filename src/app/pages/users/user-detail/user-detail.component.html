@@ -24,74 +24,104 @@
     </mat-card-header>
     <mat-card-content>
       <mat-chip-list>
-        <mat-chip selected color="primary" matTooltip="Admin" matTooltipPosition="above" *ngIf="user.isAdmin">
+        <mat-chip
+          selected
+          color="primary"
+          i18n-matTooltip="@@common.tooltip.admin"
+          matTooltip="Admin"
+          matTooltipPosition="above" *ngIf="user.isAdmin"
+        >
           <mat-icon>local_police</mat-icon>
         </mat-chip>
-        <mat-chip selected color="primary" matTooltip="Moderator" matTooltipPosition="above" *ngIf="user.isModerator">
+        <mat-chip
+          selected
+          color="primary"
+          i18n-matTooltip="@@common.tooltip.moderator"
+          matTooltip="Moderator"
+          matTooltipPosition="above"
+          *ngIf="user.isModerator"
+        >
           <mat-icon>shield</mat-icon>
         </mat-chip>
-        <mat-chip selected color="accent" matTooltip="Silence" matTooltipPosition="above" *ngIf="user.isSilenced">
+        <mat-chip
+          selected
+          color="accent"
+          i18n-matTooltip="@@common.tooltip.silence"
+          matTooltip="Silence"
+          matTooltipPosition="above"
+          *ngIf="user.isSilenced"
+        >
           <mat-icon>mic_off</mat-icon>
         </mat-chip>
-        <mat-chip selected color="warn" matTooltip="Suspend" matTooltipPosition="above" *ngIf="user.isSuspended">
+        <mat-chip
+          selected
+          color="warn"
+          i18n-matTooltip="@@common.tooltip.suspend"
+          matTooltip="Suspend"
+          matTooltipPosition="above"
+          *ngIf="user.isSuspended"
+        >
           <mat-icon>ac_unit</mat-icon>
         </mat-chip>
       </mat-chip-list>
       <mat-action-list>
-        <div mat-subheader>Basic information</div>
+        <div mat-subheader i18n="@@user.detail.basic_info">Basic information</div>
         <mat-list-item>
           <mat-icon mat-list-icon>perm_identity</mat-icon>
-          <div mat-line>ID</div>
+          <div mat-line i18n="@@user.detail.basic_info.id">ID</div>
           <div mat-line>{{ user.id }}</div>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>person_add_alt_1</mat-icon>
-          <div mat-line>Created at</div>
+          <div mat-line i18n="@@user.detail.basic_info.created_at">Created at</div>
           <div mat-line>{{ user.createdAt | date : 'medium' }}</div>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>record_voice_over</mat-icon>
-          <div mat-line>Updated at</div>
+          <div mat-line i18n="@@user.detail.basic_info.updated_at">Updated at</div>
           <div mat-line>
-            <ng-container
-              *ngIf="user.updatedAt !== null; else noUpdate">{{ user.updatedAt | date : 'medium' }}</ng-container>
-            <ng-template #noUpdate>(None)</ng-template>
+            <ng-container *ngIf="user.updatedAt !== null; else noUpdate">
+              {{ user.updatedAt | date : 'medium' }}
+            </ng-container>
+            <ng-template #noUpdate>
+              <ng-container i18n="@@user.detail.basic_info.none_update">(None)</ng-container>
+            </ng-template>
           </div>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>people_alt</mat-icon>
-          <div mat-line>Following</div>
+          <div mat-line i18n="@@user.detail.basic_info.following">Following</div>
           <div mat-line>
             {{ user.followingCount }}
           </div>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>people_alt</mat-icon>
-          <div mat-line>Follower</div>
+          <div mat-line i18n="@@user.detail.basic_info.follower">Follower</div>
           <div mat-line>
             {{ user.followersCount }}
           </div>
         </mat-list-item>
         <ng-container *ngIf="user.host !== null">
-          <div mat-subheader>Fediverse Information</div>
+          <div mat-subheader i18n="@@user.detail.federation_info">Federation information</div>
           <mat-list-item>
             <mat-icon mat-list-icon>language</mat-icon>
-            <div mat-line>Host</div>
+            <div mat-line i18n="@@user.detail.federation_info.host">Host</div>
             <div mat-line>{{ user.host }}</div>
           </mat-list-item>
           <mat-list-item>
             <mat-icon mat-list-icon>inbox</mat-icon>
-            <div mat-line>Inbox</div>
+            <div mat-line i18n="@@user.detail.federation_info.inbox">Inbox</div>
             <div mat-line>{{ user.inbox }}</div>
           </mat-list-item>
           <mat-list-item>
             <mat-icon mat-list-icon>all_inbox</mat-icon>
-            <div mat-line>Shared inbox</div>
+            <div mat-line i18n="@@user.detail.federation_info.shared_inbox">Shared inbox</div>
             <div mat-line>{{ user.sharedInbox }}</div>
           </mat-list-item>
           <mat-list-item>
             <mat-icon mat-list-icon>link</mat-icon>
-            <div mat-line>URI</div>
+            <div mat-line i18n="@@user.detail.federation_info.uri">URI</div>
             <div mat-line>{{ user.uri }}</div>
           </mat-list-item>
         </ng-container>
@@ -100,6 +130,7 @@
     <mat-card-actions align="end">
       <button
         mat-icon-button
+        i18n-matTooltip="@@user.detail.copy_userid"
         matTooltip="Copy UserID"
         matTooltipPosition="above"
         *ngIf="isAvailableCopy()"
@@ -109,6 +140,7 @@
       </button>
       <a
         mat-icon-button
+        i18n-matTooltip="@@user.detail.open_user_page_in_instance"
         matTooltip="Open user page in instance"
         matTooltipPosition="above"
         target="_blank"
@@ -135,8 +167,15 @@
       <ng-template #notModeratorIcon>add_moderator</ng-template>
     </mat-icon>
     <span>
-      <ng-container *ngIf="user?.isModerator; else notModerator">Demote from Moderator</ng-container>
-      <ng-template #notModerator>Promote to Moderator</ng-template>
+      <ng-container
+        *ngIf="user?.isModerator; else notModerator"
+        i18n="@@user.detail.menu.demote_mod"
+      >
+        Demote from Moderator
+      </ng-container>
+      <ng-template #notModerator>
+        <ng-container i18n="@@user.detail.menu.promote_mod">Promote to Moderator</ng-container>
+      </ng-template>
     </span>
   </button>
   <ng-container *ngIf="!(user?.isModerator || user?.isAdmin)">
@@ -146,8 +185,15 @@
         <ng-template #notSilenceIcon>mic_off</ng-template>
       </mat-icon>
       <span>
-      <ng-container *ngIf="user?.isSilenced; else notSilence">Unsilence</ng-container>
-      <ng-template #notSilence>Silence</ng-template>
+      <ng-container
+        *ngIf="user?.isSilenced; else notSilence"
+        i18n="@@user.detail.menu.un_silence"
+      >
+        Un-silence
+      </ng-container>
+      <ng-template #notSilence>
+        <ng-container i18n="@@user.detail.menu.silence">Silence</ng-container>
+      </ng-template>
     </span>
     </button>
     <button mat-menu-item (click)="openSuspendDialog()">
@@ -156,8 +202,15 @@
         <ng-template #notSuspendIcon>ac_unit</ng-template>
       </mat-icon>
       <span>
-        <ng-container *ngIf="user?.isSuspended; else notSuspend">Unsuspend</ng-container>
-        <ng-template #notSuspend>Suspend</ng-template>
+        <ng-container
+          *ngIf="user?.isSuspended; else notSuspend"
+          i18n="@@user.detail.menu.un_suspend"
+        >
+          Unsuspend
+        </ng-container>
+        <ng-template #notSuspend>
+          <ng-container i18n="@@user.detail.menu.suspend">Suspend</ng-container>
+        </ng-template>
       </span>
     </button>
     <!--

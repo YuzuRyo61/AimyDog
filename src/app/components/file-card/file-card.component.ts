@@ -24,10 +24,10 @@ export class FileCardComponent {
 
     navigator.clipboard.writeText(this.file.id).then(
       () => {
-        this.sb.open('Copied to clipboard');
+        this.sb.open($localize`:@@common.copy.success:Copied to clipboard`);
       },
       () => {
-        this.sb.open('Failed copy to clipboard');
+        this.sb.open($localize`:@@common.copy.failed:Failed copy to clipboard`);
       }
     );
   }

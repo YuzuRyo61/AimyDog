@@ -13,18 +13,64 @@
   </mat-card-header>
   <mat-card-content class="non-bottom-margin">
     <mat-chip-list>
-      <mat-chip selected color="primary" matTooltip="Admin" matTooltipPosition="above" *ngIf="user.isAdmin"><mat-icon>local_police</mat-icon></mat-chip>
-      <mat-chip selected color="primary" matTooltip="Moderator" matTooltipPosition="above" *ngIf="user.isModerator"><mat-icon>shield</mat-icon></mat-chip>
-      <mat-chip selected color="accent" matTooltip="Silence" matTooltipPosition="above" *ngIf="user.isSilenced"><mat-icon>mic_off</mat-icon></mat-chip>
-      <mat-chip selected color="warn" matTooltip="Suspend" matTooltipPosition="above" *ngIf="user.isSuspended"><mat-icon>ac_unit</mat-icon></mat-chip>
+      <mat-chip
+        selected
+        color="primary"
+        i18n-matTooltip="@@common.tooltip.admin"
+        matTooltip="Admin"
+        matTooltipPosition="above"
+        *ngIf="user.isAdmin"
+      >
+        <mat-icon>local_police</mat-icon>
+      </mat-chip>
+      <mat-chip
+        selected
+        color="primary"
+        i18n-matTooltip="@@common.tooltip.moderator"
+        matTooltip="Moderator"
+        matTooltipPosition="above"
+        *ngIf="user.isModerator"
+      >
+        <mat-icon>shield</mat-icon>
+      </mat-chip>
+      <mat-chip
+        selected
+        color="accent"
+        i18n-matTooltip="@@common.tooltip.silence"
+        matTooltip="Silence"
+        matTooltipPosition="above"
+        *ngIf="user.isSilenced"
+      >
+        <mat-icon>mic_off</mat-icon>
+      </mat-chip>
+      <mat-chip
+        selected
+        color="warn"
+        i18n-matTooltip="@@common.tooltip.suspend"
+        matTooltip="Suspend"
+        matTooltipPosition="above"
+        *ngIf="user.isSuspended"
+      >
+        <mat-icon>ac_unit</mat-icon>
+      </mat-chip>
     </mat-chip-list>
     <mat-list>
       <mat-list-item>
-        <mat-icon mat-list-icon matTooltip="Created at" matTooltipPosition="above">person_add_alt_1</mat-icon>
+        <mat-icon
+          mat-list-icon
+          i18n-matTooltip="@@user.detail.basic_info.created_at"
+          matTooltip="Created at"
+          matTooltipPosition="above"
+        >person_add_alt_1</mat-icon>
         <time>{{ user.createdAt | date : 'medium' }}</time>
       </mat-list-item>
       <mat-list-item>
-        <mat-icon mat-list-icon matTooltip="Updated at" matTooltipPosition="above">record_voice_over</mat-icon>
+        <mat-icon
+          mat-list-icon
+          i18n-matTooltip="@@user.detail.basic_info.updated_at"
+          matTooltip="Updated at"
+          matTooltipPosition="above"
+        >record_voice_over</mat-icon>
         <time *ngIf="user.updatedAt !== null">{{ user.updatedAt | date : 'medium' }}</time>
       </mat-list-item>
     </mat-list>
@@ -32,6 +78,7 @@
   <mat-card-actions>
     <a
       mat-icon-button
+      i18n-matTooltip="@@common.detail"
       matTooltip="Detail"
       matTooltipPosition="above"
       [routerLink]="['/users', user.id]"
@@ -41,6 +88,7 @@
     </a>
     <a
       mat-icon-button
+      i18n-matTooltip="@@user.detail.open_user_page_in_instance"
       matTooltip="Open user page in instance"
       matTooltipPosition="above"
       target="_blank"
@@ -50,6 +98,7 @@
     </a>
     <button
       mat-icon-button
+      i18n-matTooltip="@@user.detail.copy_userid"
       matTooltip="Copy UserID"
       matTooltipPosition="above"
       *ngIf="isAvailableCopy()"

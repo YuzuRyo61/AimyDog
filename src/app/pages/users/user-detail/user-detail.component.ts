@@ -60,10 +60,10 @@ export class UserDetailComponent implements OnInit {
 
     navigator.clipboard.writeText(this.user.id).then(
       () => {
-        this.sb.open('Copied to clipboard');
+        this.sb.open($localize`:@@common.copy.success:Copied to clipboard`);
       },
       () => {
-        this.sb.open('Failed copy to clipboard');
+        this.sb.open($localize`:@@common.copy.failed:Failed copy to clipboard`);
       }
     );
   }
@@ -89,8 +89,8 @@ export class UserDetailComponent implements OnInit {
     if (this.user.isModerator) {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
-          title: 'Demote moderator',
-          message: `Are you sure demote moderator to ${this.acct()}?`
+          title: $localize`:@@user.detail.demote_mod.title:Demote moderator`,
+          message: $localize`:@@user.detail.demote_mod.message:Are you sure demote moderator?`
         },
       });
 
@@ -100,19 +100,19 @@ export class UserDetailComponent implements OnInit {
         this.ma.removeModUser(this.user.id).subscribe(
           () => {
             if (this.user !== undefined) this.user.isModerator = false;
-            this.sb.open('User demoted from moderator.');
+            this.sb.open($localize`:@@user.detail.demote_mod.success:User demoted from moderator.`);
           },
           err => {
             console.error(err);
-            this.sb.open('Operation failed.');
+            this.sb.open(`:@@user.detail.demote_mod.failed:Operation failed.`);
           }
         );
       });
     } else {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
-          title: 'Promote to moderator',
-          message: `Are you sure promote moderator to ${this.acct()}?`
+          title: $localize`:@@user.detail.promote_mod.title:Promote to moderator`,
+          message: $localize`:@@user.detail.promote_mod.message:Are you sure promote moderator?`
         },
       });
 
@@ -122,15 +122,11 @@ export class UserDetailComponent implements OnInit {
         this.ma.addModUser(this.user.id).subscribe(
           () => {
             if (this.user !== undefined) this.user.isModerator = true;
-            this.sb.open('User promoted to moderator.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.promote_mod.success:User promoted to moderator.`);
           },
           err => {
             console.error(err);
-            this.sb.open('Operation failed.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.promote_mod.failed:Operation failed.`);
           }
         );
       });
@@ -143,8 +139,8 @@ export class UserDetailComponent implements OnInit {
     if (this.user.isSilenced) {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
-          title: 'Un-Silence',
-          message: `Are you sure un-silence to ${this.acct()}?`
+          title: $localize`:@@user.detail.un_silence.title:Un-Silence`,
+          message: $localize`:@@user.detail.un_silence.message:Are you sure un-silence?`,
         },
       });
 
@@ -154,23 +150,19 @@ export class UserDetailComponent implements OnInit {
         this.ma.unSilenceUser(this.user.id).subscribe(
           () => {
             if (this.user !== undefined) this.user.isSilenced = false;
-            this.sb.open('User un-silenced.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.un_silence.success:User un-silenced.`);
           },
           err => {
             console.error(err);
-            this.sb.open('Operation failed.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.un_silence.failed:Operation failed.`);
           }
         );
       });
     } else {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
-          title: 'Silence',
-          message: `Are you sure silence to ${this.acct()}?`
+          title: $localize`:@@user.detail.silence.title:Silence`,
+          message: $localize`:@@user.detail.silence.message:Are you sure silence?`,
         },
       });
 
@@ -180,15 +172,11 @@ export class UserDetailComponent implements OnInit {
         this.ma.silenceUser(this.user.id).subscribe(
           () => {
             if (this.user !== undefined) this.user.isSilenced = true;
-            this.sb.open('User silenced.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.silence.success:User silenced.`);
           },
           err => {
             console.error(err);
-            this.sb.open('Operation failed.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.silence.failed:Operation failed.`);
           }
         );
       });
@@ -201,8 +189,8 @@ export class UserDetailComponent implements OnInit {
     if (this.user.isSuspended) {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
-          title: 'Unsuspend',
-          message: `Are you sure unsuspend to ${this.acct()}?`
+          title: $localize`:@@user.detail.unsuspend.title:Unsuspend`,
+          message: $localize`:@@user.detail.unsuspend.message:Are you sure unsuspend?`
         },
       });
 
@@ -212,23 +200,19 @@ export class UserDetailComponent implements OnInit {
         this.ma.unSuspendUser(this.user.id).subscribe(
           () => {
             if (this.user !== undefined) this.user.isSuspended = false;
-            this.sb.open('User unsuspended.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.unsuspend.success:User unsuspended.`);
           },
           err => {
             console.error(err);
-            this.sb.open('Operation failed.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.unsuspend.failed:Operation failed.`);
           }
         );
       });
     } else {
       const dialog = this.dl.open(YnDialogComponent, {
         data: {
-          title: 'Suspend',
-          message: `Are you sure suspend to ${this.acct()}?`
+          title: $localize`:@@user.detail.suspend.title:Suspend`,
+          message: $localize`:@@user.detail.suspend.message:Are you sure suspend?`
         },
       });
 
@@ -238,15 +222,11 @@ export class UserDetailComponent implements OnInit {
         this.ma.suspendUser(this.user.id).subscribe(
           () => {
             if (this.user !== undefined) this.user.isSuspended = true;
-            this.sb.open('User suspended.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.suspend.success:User suspended.`);
           },
           err => {
             console.error(err);
-            this.sb.open('Operation failed.', undefined, {
-              duration: 5000,
-            });
+            this.sb.open($localize`:@@user.detail.suspend.failed:Operation failed.`);
           }
         );
       });

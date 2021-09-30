@@ -133,7 +133,7 @@
       "i18n": {
         "sourceLocale": "en",
         "locales": {
-          "ja": "src/locale/messages.ja.xlf"
+          "ja": "src/locale/messages.ja.json"
         }
       }
     }
