@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {MkApiService} from "../../../service/mk-api.service";
-import {User} from "../../../interface/user";
+import { ActivatedRoute } from "@angular/router";
+import { MkApiService } from "../../../service/mk-api.service";
+import { User } from "../../../interface/user";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/service/auth.service';
-import {MatDialog} from "@angular/material/dialog";
-import {YnDialogComponent} from "../../../components/yn-dialog/yn-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
+import { YnDialogComponent } from "../../../components/yn-dialog/yn-dialog.component";
 
 @Component({
   selector: 'app-user-detail',
@@ -65,7 +65,7 @@ export class UserDetailComponent implements OnInit {
       () => {
         this.sb.open('Failed copy to clipboard');
       }
-    )
+    );
   }
 
   genOpenUrl(): string | undefined {
@@ -106,7 +106,7 @@ export class UserDetailComponent implements OnInit {
             console.error(err);
             this.sb.open('Operation failed.');
           }
-        )
+        );
       });
     } else {
       const dialog = this.dl.open(YnDialogComponent, {
@@ -132,7 +132,7 @@ export class UserDetailComponent implements OnInit {
               duration: 5000,
             });
           }
-        )
+        );
       });
     }
   }
@@ -164,7 +164,7 @@ export class UserDetailComponent implements OnInit {
               duration: 5000,
             });
           }
-        )
+        );
       });
     } else {
       const dialog = this.dl.open(YnDialogComponent, {
@@ -190,7 +190,7 @@ export class UserDetailComponent implements OnInit {
               duration: 5000,
             });
           }
-        )
+        );
       });
     }
   }
@@ -222,7 +222,7 @@ export class UserDetailComponent implements OnInit {
               duration: 5000,
             });
           }
-        )
+        );
       });
     } else {
       const dialog = this.dl.open(YnDialogComponent, {
@@ -248,7 +248,7 @@ export class UserDetailComponent implements OnInit {
               duration: 5000,
             });
           }
-        )
+        );
       });
     }
   }

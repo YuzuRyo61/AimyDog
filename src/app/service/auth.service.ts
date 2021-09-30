@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import * as semver from 'semver';
 import { v4 as uuidv4 } from 'uuid';
-import {MiAuthResponse} from "../interface/mi-auth-response";
-import {environment} from "../../environments/environment";
-import {User} from "../interface/user";
-import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { MiAuthResponse } from "../interface/mi-auth-response";
+import { environment } from "../../environments/environment";
+import { User } from "../interface/user";
+import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
@@ -54,13 +54,13 @@ export class AuthService {
   }
 
   private getCredentials(): void {
-    this.hc.post(`${this._protocol}://${this._address}/api/i`, {i: this._token}).toPromise().then(res => {
+    this.hc.post(`${this._protocol}://${this._address}/api/i`, { i: this._token }).toPromise().then(res => {
       this._credentials = res as User;
     }).catch(err => {
       console.error(err);
       this.sb.open('Cannot fetch your credentials.', undefined, {
         duration: 5000,
-      })
+      });
     });
   }
 

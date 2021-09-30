@@ -1,6 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {YnDialogData} from "../../interface/yn-dialog-data";
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { YnDialogData } from "../../interface/yn-dialog-data";
 
 @Component({
   selector: 'app-yn-dialog',

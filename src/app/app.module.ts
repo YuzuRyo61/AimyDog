@@ -17,10 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { NetworkService } from './service/network.service';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import {NeedLoginGuard} from "./guard/need-login.guard";
-import {NotLoginGuard} from "./guard/not-login.guard";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { NeedLoginGuard } from "./guard/need-login.guard";
+import { NotLoginGuard } from "./guard/not-login.guard";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -52,9 +52,9 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     NetworkService,
     NeedLoginGuard,
     NotLoginGuard,
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
       duration: 3500,
-    }},
+    } },
   ],
   bootstrap: [AppComponent]
 })

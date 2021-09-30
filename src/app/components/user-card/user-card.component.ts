@@ -1,23 +1,20 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {User} from "../../interface/user";
-import {AuthService} from "../../service/auth.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { User } from "../../interface/user";
+import { AuthService } from "../../service/auth.service";
 
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.scss']
 })
-export class UserCardComponent implements OnInit {
+export class UserCardComponent {
   @Input() user?: User;
 
   constructor(
     private sb: MatSnackBar,
     public aus: AuthService,
   ) { }
-
-  ngOnInit(): void {
-  }
 
   isAvailableCopy(): boolean {
     return navigator.clipboard !== undefined;
@@ -33,7 +30,7 @@ export class UserCardComponent implements OnInit {
       () => {
         this.sb.open('Failed copy to clipboard');
       }
-    )
+    );
   }
 
   genOpenUrl(): string | undefined {

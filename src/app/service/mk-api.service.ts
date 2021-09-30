@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {AuthService} from "./auth.service";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {User} from "../interface/user";
-import {UserSearchOption} from "../interface/user-search-option";
-import {DriveFile} from "../interface/drive-file";
+import { AuthService } from "./auth.service";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { User } from "../interface/user";
+import { UserSearchOption } from "../interface/user-search-option";
+import { DriveFile } from "../interface/drive-file";
 
 @Injectable({
   providedIn: 'root'

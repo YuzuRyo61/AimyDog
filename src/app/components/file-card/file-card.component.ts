@@ -1,20 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {DriveFile} from "../../interface/drive-file";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { Component, Input } from '@angular/core';
+import { DriveFile } from "../../interface/drive-file";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-file-card',
   templateUrl: './file-card.component.html',
   styleUrls: ['./file-card.component.scss']
 })
-export class FileCardComponent implements OnInit {
+export class FileCardComponent {
   @Input() file?: DriveFile;
 
   constructor(
     private sb: MatSnackBar,
-  ) { }
-
-  ngOnInit(): void {
+  ) {
   }
 
   isAvailableCopy(): boolean {
@@ -31,6 +29,6 @@ export class FileCardComponent implements OnInit {
       () => {
         this.sb.open('Failed copy to clipboard');
       }
-    )
+    );
   }
 }

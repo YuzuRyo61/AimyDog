@@ -12,10 +12,10 @@ export class NetworkService {
     return new Observable<boolean>((observer => {
       window.addEventListener('online', () => {
         observer.next(true);
-      })
+      });
       window.addEventListener('offline', () => {
         observer.next(false);
-      })
-    }))
+      });
+    }));
   }
 }
