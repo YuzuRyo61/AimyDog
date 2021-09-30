@@ -59,9 +59,7 @@ export class AuthService {
       this._credentials = res as User;
     }).catch(err => {
       console.error(err);
-      this.sb.open('Cannot fetch your credentials.', undefined, {
-        duration: 5000,
-      });
+      this.sb.open($localize`:@@common.bad_credentials:Cannot fetch your credentials.`);
     });
   }
 
@@ -125,7 +123,7 @@ export class AuthService {
     this._address = undefined;
     this._credentials = undefined;
     this.router.navigate(['/']).then(() => {
-      this.sb.open('You have been logout.');
+      this.sb.open($localize`:@@common.logout:You have been logout.`);
     });
   }
 }

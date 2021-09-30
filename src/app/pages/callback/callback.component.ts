@@ -40,12 +40,12 @@ export class CallbackComponent implements OnInit {
       return;
     }
 
-    this.sb.open('Welcome back!');
+    this.sb.open($localize`:@@common.welcome_back:Welcome back!`);
     await this.router.navigate(['/dashboard']);
   }
 
   async onError(): Promise<void> {
-    this.sb.open('Authentication failed. Please try again.');
+    this.sb.open($localize`:@@common.auth_failed:Authentication failed. Please try again.`);
     await this.router.navigate(['/']);
   }
 
