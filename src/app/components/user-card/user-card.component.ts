@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { User } from "../../interface/user";
 import { AuthService } from "../../service/auth.service";
