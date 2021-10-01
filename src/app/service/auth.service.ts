@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import * as semver from 'semver';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,6 +9,7 @@ import { User } from "../interface/user";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MkMeta } from "../interface/mk-meta";
+import { APP_BASE_HREF } from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class AuthService {
     private hc: HttpClient,
     private router: Router,
     private sb: MatSnackBar,
+    @Inject(APP_BASE_HREF) private abh: string,
   ) { }
 
   get protocol(): 'http:' | 'https:' {
@@ -99,7 +101,7 @@ export class AuthService {
   generateMiAuthUrl(address: string): string {
     const authQuery = new URLSearchParams({
       name: 'AimyDog',
-      callback: `${window.location.protocol}//${window.location.host}/callback/${address}`,
+      callback: `${window.location.protocol}//${window.location.host}${this.abh.replace(/\/$/i, '')}` + this.router.createUrlTree(['/callback', address]),
     });
     const sessionId = uuidv4();
 

@@ -21,6 +21,7 @@ import { NeedLoginGuard } from "./guard/need-login.guard";
 import { NotLoginGuard } from "./guard/not-login.guard";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { APP_BASE_HREF, PlatformLocation } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,11 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
       duration: 3500,
     } },
+    {
+      provide: APP_BASE_HREF,
+      useFactory: (s: PlatformLocation) => s.getBaseHrefFromDOM(),
+      deps: [PlatformLocation],
+    },
   ],
   bootstrap: [AppComponent]
 })
