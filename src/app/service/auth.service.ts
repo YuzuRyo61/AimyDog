@@ -1,19 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import * as semver from 'semver';
 import { v4 as uuidv4 } from 'uuid';
-import {MiAuthResponse} from "../interface/mi-auth-response";
-import {environment} from "../../environments/environment";
-import {User} from "../interface/user";
-import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { MiAuthResponse } from "../interface/mi-auth-response";
+import { environment } from "../../environments/environment";
+import { User } from "../interface/user";
+import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MkMeta } from "../interface/mk-meta";
+import { APP_BASE_HREF } from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private _protocol = 'http';
+  private _protocol: 'http:' | 'https:' = 'https:';
   private _address?: string;
   private _token?: string;
   private _credentials?: User;
@@ -23,10 +25,15 @@ export class AuthService {
     private hc: HttpClient,
     private router: Router,
     private sb: MatSnackBar,
+    @Inject(APP_BASE_HREF) private abh: string,
   ) { }
 
-  get protocol(): string {
+  get protocol(): 'http:' | 'https:' {
     return this._protocol;
+  }
+
+  set protocol(val: 'http:' | 'https:') {
+    this._protocol = val;
   }
 
   get address(): string | undefined {
@@ -46,6 +53,7 @@ export class AuthService {
   }
 
   onInit(): void {
+    this.getProtocolCookie();
     const cookieToken = this.cs.get('mk_token');
     this._token = cookieToken !== '' ? cookieToken : undefined;
     const address = this.cs.get('mk_address');
@@ -54,22 +62,21 @@ export class AuthService {
   }
 
   private getCredentials(): void {
-    this.hc.post(`${this._protocol}://${this._address}/api/i`, {i: this._token}).toPromise().then(res => {
+    this.hc.post(`${this._protocol}//${this._address}/api/i`, { i: this._token }).toPromise().then(res => {
       this._credentials = res as User;
     }).catch(err => {
       console.error(err);
-      this.sb.open('Cannot fetch your credentials.', undefined, {
-        duration: 5000,
-      })
+      this.sb.open($localize`:@@common.bad_credentials:Cannot fetch your credentials.`);
     });
   }
 
   isAvailableInstance(address: string) : Promise<boolean> {
-    return this.hc.post(`${this._protocol}://${address}/api/meta`, {}).toPromise().then(
+    return this.hc.post(`${this._protocol}//${address}/api/meta`, {}).toPromise().then(
       (valObj) => {
-        const val = valObj as any;
+        const val = valObj as MkMeta;
         return semver.satisfies(val.version, '>=12.39.1');
-      },
+      }
+    ).catch(
       (reason) => {
         console.error(reason);
         return false;
@@ -77,21 +84,35 @@ export class AuthService {
     );
   }
 
+  setProtocolCookie(): void {
+    this.cs.set('mk_protocol', this._protocol, {
+      secure: environment.production,
+      path: '/',
+      sameSite: 'Strict',
+    });
+  }
+
+  private getProtocolCookie(): void {
+    const protocol = this.cs.get('mk_protocol');
+    if (protocol !== 'http:' && protocol !== 'https:') return;
+    if (protocol !== this._protocol) this._protocol = protocol;
+  }
+
   generateMiAuthUrl(address: string): string {
     const authQuery = new URLSearchParams({
       name: 'AimyDog',
-      callback: `${window.location.protocol}//${window.location.host}/callback/${address}`,
+      callback: `${window.location.protocol}//${window.location.host}${this.abh.replace(/\/$/i, '')}` + this.router.createUrlTree(['/callback', address]),
     });
     const sessionId = uuidv4();
 
-    return `${this._protocol}://${address}/miauth/${sessionId}?${authQuery.toString()}`;
+    return `${this._protocol}//${address}/miauth/${sessionId}?${authQuery.toString()}`;
   }
 
   async callbackProcess(address: string, sessionId: string): Promise<boolean | undefined> {
     if (this._token !== undefined || this._address !== undefined) {
       return undefined;
     }
-    return this.hc.post(`${this._protocol}://${address}/api/miauth/${sessionId}/check`, {}).toPromise().then(dataRaw => {
+    return this.hc.post(`${this._protocol}//${address}/api/miauth/${sessionId}/check`, {}).toPromise().then(dataRaw => {
       const data = dataRaw as MiAuthResponse;
       if (!data.ok || data.token === undefined || !(data.user?.isAdmin || data.user?.isModerator)) {
         return false;
@@ -124,7 +145,7 @@ export class AuthService {
     this._address = undefined;
     this._credentials = undefined;
     this.router.navigate(['/']).then(() => {
-      this.sb.open('You have been logout.');
+      this.sb.open($localize`:@@common.logout:You have been logout.`);
     });
   }
 }

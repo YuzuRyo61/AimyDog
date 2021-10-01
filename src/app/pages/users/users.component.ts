@@ -3,11 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { IPageInfo } from 'ngx-virtual-scroller';
 
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {MkApiService} from "../../service/mk-api.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {User} from "../../interface/user";
-import {UserSearchOption} from "../../interface/user-search-option";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MkApiService } from "../../service/mk-api.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { User } from "../../interface/user";
+import { UserSearchOption } from "../../interface/user-search-option";
 
 @Component({
   selector: 'app-users',

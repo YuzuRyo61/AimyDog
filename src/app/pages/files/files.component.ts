@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {IPageInfo} from "ngx-virtual-scroller";
-import {DriveFile} from "../../interface/drive-file";
-import {MkApiService} from "../../service/mk-api.service";
+import { IPageInfo } from "ngx-virtual-scroller";
+import { DriveFile } from "../../interface/drive-file";
+import { MkApiService } from "../../service/mk-api.service";
 
 @Component({
   selector: 'app-files',

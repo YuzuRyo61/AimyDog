@@ -17,4 +17,5 @@ export interface User {
   inbox: string | null;
   sharedInbox: string | null;
   uri: string | null;
+  token: string | null;
 }

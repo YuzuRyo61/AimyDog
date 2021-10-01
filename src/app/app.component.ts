@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NetworkService } from './service/network.service';
-import {AuthService} from "./service/auth.service";
+import { AuthService } from "./service/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -17,12 +17,8 @@ export class AppComponent implements OnInit {
     this.aus.onInit();
     this.ns.status().subscribe(
       status => {
-        if (!status) {
-
-        } else {
-
-        }
+        console.log(status);
       }
-    )
+    );
   }
 }

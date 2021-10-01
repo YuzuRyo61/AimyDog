@@ -1,35 +1,35 @@
-<h2 mat-dialog-title>User search</h2>
+<h2 mat-dialog-title i18n="@@user.search_dialog.title">User search</h2>
 <div mat-dialog-content>
   <form [formGroup]="data">
     <mat-form-field appearance="fill" color="primary">
-      <mat-label>State</mat-label>
+      <mat-label i18n="@@user.search_dialog.state">State</mat-label>
       <mat-select formControlName="state">
-        <mat-option value="all">All</mat-option>
-        <mat-option value="available">Available</mat-option>
-        <mat-option value="adminOrModerator">Admin or Moderator</mat-option>
-        <mat-option value="silenced">Silence</mat-option>
-        <mat-option value="suspended">Suspend</mat-option>
+        <mat-option value="all" i18n="@@user.search_dialog.state.all">All</mat-option>
+        <mat-option value="available" i18n="@@user.search_dialog.state.available">Available</mat-option>
+        <mat-option value="adminOrModerator" i18n="@@user.search_dialog.state.admin_or_mod">Admin or Moderator</mat-option>
+        <mat-option value="silenced" i18n="@@user.search_dialog.state.silence">Silence</mat-option>
+        <mat-option value="suspended" i18n="@@user.search_dialog.state.suspend">Suspend</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill" color="primary">
-      <mat-label>Sort</mat-label>
+      <mat-label i18n="@@user.search_dialog.sort">Sort</mat-label>
       <mat-select formControlName="sort">
-        <mat-option value="+createdAt">Created at (desc)</mat-option>
-        <mat-option value="-createdAt">Created at (asc)</mat-option>
+        <mat-option value="+createdAt" i18n="@@user.search_dialog.sort.created_at_desc">Created at (desc)</mat-option>
+        <mat-option value="-createdAt" i18n="@@user.search_dialog.sort.created_at_asc">Created at (asc)</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill" color="primary">
-      <mat-label>Origin</mat-label>
+      <mat-label i18n="@@user.search_dialog.origin">Origin</mat-label>
       <mat-select formControlName="origin">
-        <mat-option value="combined">Combined</mat-option>
-        <mat-option value="local">Local</mat-option>
-        <mat-option value="remote">Remote</mat-option>
+        <mat-option value="combined" i18n="@@user.search_dialog.origin.combined">Combined</mat-option>
+        <mat-option value="local" i18n="@@user.search_dialog.origin.local">Local</mat-option>
+        <mat-option value="remote" i18n="@@user.search_dialog.origin.remote">Remote</mat-option>
       </mat-select>
     </mat-form-field>
   </form>
 </div>
 <!--suppress HtmlDeprecatedAttribute -->
 <div mat-dialog-actions align="end">
-  <button mat-button (click)="ref.close()">Close</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="data.invalid">Apply</button>
+  <button mat-button (click)="ref.close()" i18n="@@common.dialog.close">Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="data.invalid" i18n="@@common.dialog.apply">Apply</button>
 </div>

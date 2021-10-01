@@ -19,15 +19,32 @@
   </mat-card-header>
   <mat-card-content>
     <mat-chip-list>
-      <mat-chip selected color="accent" matTooltip="Sensitive" matTooltipPosition="above" *ngIf="file.isSensitive"><mat-icon>visibility_off</mat-icon></mat-chip>
+      <mat-chip
+        selected
+        color="accent"
+        i18n-matTooltip="@@common.tooltip.sensitive"
+        matTooltip="Sensitive"
+        matTooltipPosition="above"
+        *ngIf="file.isSensitive"
+      ><mat-icon>visibility_off</mat-icon></mat-chip>
     </mat-chip-list>
     <mat-list>
       <mat-list-item>
-        <mat-icon mat-list-icon matTooltip="File type" matTooltipPosition="above">insert_drive_file</mat-icon>
+        <mat-icon
+          mat-list-icon
+          i18n-matTooltip="@@common.tooltip.file_type"
+          matTooltip="File type"
+          matTooltipPosition="above"
+        >insert_drive_file</mat-icon>
         <div>{{ file.type }}</div>
       </mat-list-item>
       <mat-list-item>
-        <mat-icon mat-list-icon matTooltip="Created at" matTooltipPosition="above">upload_file</mat-icon>
+        <mat-icon
+          mat-list-icon
+          i18n-matTooltip="@@file.detail.created_at"
+          matTooltip="Created at"
+          matTooltipPosition="above"
+        >upload_file</mat-icon>
         <div>{{ file.createdAt | date : 'medium' }}</div>
       </mat-list-item>
     </mat-list>
@@ -35,6 +52,7 @@
   <mat-card-actions>
     <button
       mat-icon-button
+      i18n-matTooltip="@@common.detail"
       matTooltip="Detail"
       matTooltipPosition="above"
     >
@@ -42,6 +60,7 @@
     </button>
     <a
       mat-icon-button
+      i18n-matTooltip="@@file.show_owner_detail"
       matTooltip="Show owner detail"
       matTooltipPosition="above"
       *ngIf="file.user"
@@ -51,6 +70,7 @@
     </a>
     <button
       mat-icon-button
+      i18n-matTooltip="@@file.copy_fileid"
       matTooltip="Copy FileID"
       matTooltipPosition="above"
       *ngIf="isAvailableCopy()"

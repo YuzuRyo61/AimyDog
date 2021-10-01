@@ -2,6 +2,9 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  },
   "projects": {
     "AimyDog": {
       "projectType": "application",
@@ -72,7 +75,9 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
-              "localize": ["ja"]
+              "localize": [
+                "ja"
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -114,12 +119,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       },
       "i18n": {
         "sourceLocale": "en",
         "locales": {
-          "ja": "src/locale/messages.ja.xlf"
+          "ja": "src/locale/messages.ja.json"
         }
       }
     }
