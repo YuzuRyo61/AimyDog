@@ -12,6 +12,8 @@
           <mat-hint i18n="@@landing.support_hint">Supported Misskey version is more than 12.39.1</mat-hint>
         </ng-template>
         <mat-error *ngIf="loginAddressForm.hasError('required')" i18n="@@landing.required">Required.</mat-error>
+        <mat-error *ngIf="loginAddressForm.hasError('invalidProtocol')" i18n="@@landing.error_protocol">Illegal protocol.</mat-error>
+        <mat-error *ngIf="loginAddressForm.hasError('parse')" i18n="@@landing.error_parse">Could not parse URL.</mat-error>
         <mat-error *ngIf="loginAddressForm.hasError('fetch')" i18n="@@landing.error_fetch">Unable to connect to the specified instance or not supported Misskey version</mat-error>
       </mat-form-field>
     </mat-card-content>

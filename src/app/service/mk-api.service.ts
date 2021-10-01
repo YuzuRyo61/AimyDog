@@ -17,7 +17,7 @@ export class MkApiService {
   ) { }
 
   get baseUrl(): string {
-    return `${this.aus.protocol}://${this.aus.address}/api`;
+    return `${this.aus.protocol}//${this.aus.address}/api`;
   }
 
   fetchUser(userId: string): Observable<User> {

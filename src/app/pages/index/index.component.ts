@@ -23,13 +23,35 @@ export class IndexComponent {
 
   async submitForm(): Promise<void> {
     this.loginAddressForm.disable();
-    const isAvailable = await this.aus.isAvailableInstance(this.loginAddressForm.value as string);
+
+    const rawValue = this.loginAddressForm.value as string;
+
+    let formParse: URL;
+    try {
+      if (rawValue.match(/^(?!.*(.*\/\/)).+:[0-9]{1,5}$/) !== null) {
+        // noinspection ExceptionCaughtLocallyJS
+        throw TypeError;
+      }
+      formParse = new URL(rawValue);
+      if(formParse.protocol !== 'http:' && formParse.protocol !== 'https:') {
+        this.loginAddressForm.enable();
+        this.loginAddressForm.setErrors({ 'invalidProtocol': true });
+        return;
+      }
+      this.aus.protocol = formParse.protocol;
+    } catch(_) {
+      formParse = new URL(`https://${rawValue}`);
+    }
+    const address = formParse.host;
+
+    const isAvailable = await this.aus.isAvailableInstance(address);
     if (!isAvailable) {
       this.loginAddressForm.enable();
       this.loginAddressForm.setErrors({ 'fetch': true });
       return;
     }
 
-    location.href = this.aus.generateMiAuthUrl(this.loginAddressForm.value as string);
+    this.aus.setProtocolCookie();
+    location.href = this.aus.generateMiAuthUrl(address);
   }
 }

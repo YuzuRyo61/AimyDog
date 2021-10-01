@@ -89,6 +89,8 @@
     "landing.loading": "読み込み中 ...",
     "landing.login": "ログイン",
     "landing.required": "必須項目です",
+    "landing.error_protocol": "不正なプロトコルです",
+    "landing.error_parse": "URLをパースできませんでした",
     "landing.required_cookie": "このWebアプリケーションを使用するにはCookieを有効にする必要があります。Cookieを有効にしてください。",
     "landing.support_hint": "サポートされているMisskeyバージョンは12.39.1以降です。",
     "common.auth_failed": "認証できませんでした。もう一度お試しください。",
