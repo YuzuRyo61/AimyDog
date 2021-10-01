@@ -74,7 +74,7 @@ export class AuthService {
     return this.hc.post(`${this._protocol}//${address}/api/meta`, {}).toPromise().then(
       (valObj) => {
         const val = valObj as MkMeta;
-        return semver.satisfies(val.version, '>=12.39.1');
+        return semver.gte(val.version, '12.39.1');
       }
     ).catch(
       (reason) => {
