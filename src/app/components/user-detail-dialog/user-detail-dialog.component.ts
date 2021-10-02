@@ -16,6 +16,7 @@ import { UserRelationListDialogComponent } from "../user-relation-list-dialog/us
 export class UserDetailDialogComponent implements OnInit {
   user?: User;
   isError = false;
+  loading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class UserDetailDialogComponent implements OnInit {
       return;
     }
     this.isError = false;
+    this.loading = true;
 
     this.ma.fetchUser(this.userId).subscribe(
       data => {
@@ -44,6 +46,9 @@ export class UserDetailDialogComponent implements OnInit {
       error => {
         console.log(error);
         this.isError = true;
+      },
+      () => {
+        this.loading = false;
       }
     );
   }

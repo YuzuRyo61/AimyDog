@@ -1,6 +1,9 @@
-<h2 mat-dialog-title>Detail user: {{ userId }}</h2>
+<h2 mat-dialog-title i18n="@@user.detail.title">User detail</h2>
 
 <mat-dialog-content class="dialog-content">
+  <div *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" [diameter]="48"></mat-progress-spinner>
+  </div>
   <ng-container *ngIf="user">
     <mat-card>
       <img mat-card-image
