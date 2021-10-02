@@ -7,6 +7,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+import { FileDetailDialogModule } from "../file-detail-dialog/file-detail-dialog.module";
 
 
 
@@ -22,6 +24,8 @@ import { MatButtonModule } from "@angular/material/button";
     MatListModule,
     MatTooltipModule,
     MatButtonModule,
+    MatDialogModule,
+    FileDetailDialogModule,
   ],
   exports: [
     FileCardComponent,

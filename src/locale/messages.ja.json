@@ -14,7 +14,7 @@
     "common.tooltip.moderator": "モデレーター",
     "common.tooltip.silence": "サイレンス",
     "common.tooltip.suspend": "凍結",
-    "user.detail.basic_info": "基本情報",
+    "common.basic_info": "基本情報",
     "user.detail.basic_info.id": "ID",
     "user.detail.basic_info.created_at": "作成日",
     "user.detail.basic_info.updated_at": "更新日",
@@ -79,7 +79,7 @@
     "user.detail.suspend.success": "ユーザーを凍結しました",
     "user.detail.suspend.failed": "操作に失敗しました",
     "common.detail": "詳細",
-    "common.tooltip.file_type": "ファイルの種類",
+    "file.detail.file_type": "ファイルの種類",
     "common.tooltip.sensitive": "閲覧注意",
     "file.copy_fileid": "ファイルIDをコピー",
     "file.detail.created_at": "アップロード日",
@@ -103,6 +103,7 @@
     "user.detail.relation.following_title": "フォロー",
     "user.detail.relation.no_followers": "誰にもフォローされていません。",
     "user.detail.relation.no_following": "誰もフォローしていません。",
-    "user.detail.title": "ユーザー情報"
+    "user.detail.title": "ユーザー情報",
+    "file.detail.title": "ファイル情報"
   }
 }

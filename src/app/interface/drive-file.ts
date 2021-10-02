@@ -5,6 +5,7 @@ export interface DriveFile {
   createdAt: string;
   name: string;
   type: string;
+  md5: string;
   size: number;
   isSensitive: boolean;
   url: string | null;

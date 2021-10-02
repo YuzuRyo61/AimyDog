@@ -1,0 +1,69 @@
+<h2 mat-dialog-title i18n="@@file.detail.title">File Detail</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" [diameter]="48"></mat-progress-spinner>
+  </div>
+  <ng-container *ngIf="file">
+    <mat-list>
+      <div mat-subheader i18n="@@common.basic_info">Basic information</div>
+      <mat-list-item>
+        <mat-icon mat-list-icon>description</mat-icon>
+        <div mat-line i18n="@@file.detail.id">ID</div>
+        <div mat-line>{{ file.id }}</div>
+        <button
+          mat-icon-button
+          *ngIf="isAvailableCopy()"
+          (click)="copyUserId()"
+        >
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>upload_file</mat-icon>
+        <div mat-line i18n="@@file.detail.created_at">Created at</div>
+        <div mat-line>{{ file.createdAt | date : 'medium' }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+        <div mat-line i18n="@@file.detail.file_type">File type</div>
+        <div mat-line>{{ file.type }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>fingerprint</mat-icon>
+        <div mat-line i18n="@@file.detail.md5">md5</div>
+        <div mat-line>{{ file.md5 }}</div>
+        <button
+          mat-icon-button
+          *ngIf="isAvailableCopy()"
+          (click)="copyMd5()"
+        >
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-divider></mat-divider>
+    <mat-action-list>
+      <div mat-subheader i18n="@@file.detail.operation">File operation</div>
+      <mat-list-item>
+        <mat-icon mat-list-icon>visibility_off</mat-icon>
+        <div mat-line i18n="@@file.detail.sensitive">Sensitive</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>delete</mat-icon>
+        <div mat-line i18n="@@file.detail.delete">Delete</div>
+      </mat-list-item>
+    </mat-action-list>
+  </ng-container>
+</mat-dialog-content>
+
+<!--suppress HtmlDeprecatedAttribute -->
+<mat-dialog-actions align="end">
+  <button mat-button
+    i18n="@@common.close"
+    mat-dialog-close
+  >
+    Close
+  </button>
+</mat-dialog-actions>

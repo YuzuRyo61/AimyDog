@@ -32,20 +32,20 @@
       <mat-list-item>
         <mat-icon
           mat-list-icon
-          i18n-matTooltip="@@common.tooltip.file_type"
-          matTooltip="File type"
-          matTooltipPosition="above"
-        >insert_drive_file</mat-icon>
-        <div>{{ file.type }}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon
-          mat-list-icon
           i18n-matTooltip="@@file.detail.created_at"
           matTooltip="Created at"
           matTooltipPosition="above"
         >upload_file</mat-icon>
         <div>{{ file.createdAt | date : 'medium' }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon
+          mat-list-icon
+          i18n-matTooltip="@@file.detail.file_type"
+          matTooltip="File type"
+          matTooltipPosition="above"
+        >insert_drive_file</mat-icon>
+        <div>{{ file.type }}</div>
       </mat-list-item>
     </mat-list>
   </mat-card-content>
@@ -55,6 +55,7 @@
       i18n-matTooltip="@@common.detail"
       matTooltip="Detail"
       matTooltipPosition="above"
+      (click)="openFileDetailDialog()"
     >
       <mat-icon>info</mat-icon>
     </button>

@@ -24,18 +24,14 @@ export class UserDetailDialogComponent implements OnInit {
     private sb: MatSnackBar,
     private dl: MatDialog,
     public aus: AuthService,
-    @Inject(MAT_DIALOG_DATA) public userId: string,
+    @Inject(MAT_DIALOG_DATA) private userId: string,
   ) { }
 
   ngOnInit(): void {
     this.fetchData();
   }
 
-  fetchData(): void {
-    if (this.userId === undefined) {
-      this.isError = true;
-      return;
-    }
+  private fetchData(): void {
     this.isError = false;
     this.loading = true;
 
