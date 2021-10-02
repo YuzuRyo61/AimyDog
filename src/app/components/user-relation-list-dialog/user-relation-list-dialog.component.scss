@@ -1,6 +1,20 @@
+@use "src/responsive-mixin" as rm;
+
 .vs-scroll {
-  width: 20vw;
-  height: 50vh;
+  width: 70vw;
+  height: 60vh;
+
+  @include rm.responsive(md) {
+    width: 60vw;
+  }
+
+  @include rm.responsive(lg) {
+    width: 50vw;
+  }
+
+  @include rm.responsive(xl) {
+    width: 40vw;
+  }
 }
 
 .loading-section {

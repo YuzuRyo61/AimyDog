@@ -1,3 +1,5 @@
+@use "src/responsive-mixin" as rm;
+
 .mt {
   height: 8px;
 }
@@ -8,5 +10,18 @@
 }
 
 .dialog-content {
-  min-width: 35vw;
+  width: 70vw;
+
+  @include rm.responsive(md) {
+    width: 65vw;
+  }
+
+  @include rm.responsive(lg) {
+    width: 60vw;
+  }
+
+  @include rm.responsive(xl) {
+    width: 55vw;
+  }
+
 }
