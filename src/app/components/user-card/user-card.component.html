@@ -76,16 +76,16 @@
     </mat-list>
   </mat-card-content>
   <mat-card-actions>
-    <a
+    <button
       mat-icon-button
       i18n-matTooltip="@@common.detail"
       matTooltip="Detail"
       matTooltipPosition="above"
-      [routerLink]="['/users', user.id]"
-      *ngIf="!(aus.credentials?.isModerator && user.isAdmin)"
+      [disabled]="aus.credentials?.isModerator && user.isAdmin"
+      (click)="openDetailDialog()"
     >
       <mat-icon>info</mat-icon>
-    </a>
+    </button>
     <a
       mat-icon-button
       i18n-matTooltip="@@user.detail.open_user_page_in_instance"

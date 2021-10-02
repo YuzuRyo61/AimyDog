@@ -17,20 +17,13 @@ export class CallbackComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    const instance = this.route.snapshot.paramMap.get('instance');
-
-    if (instance === null) {
-      await this.onError();
-      return;
-    }
-
     const query = this.route.snapshot.queryParamMap.get('session');
     if (query === null) {
       await this.onError();
       return;
     }
 
-    const res = await this.aus.callbackProcess(instance, query);
+    const res = await this.aus.callbackProcess(query);
 
     if (res === false) {
       await this.onError();

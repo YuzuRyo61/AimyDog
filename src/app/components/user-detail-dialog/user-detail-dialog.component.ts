@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { MkApiService } from "../../../service/mk-api.service";
-import { User } from "../../../interface/user";
+import { MkApiService } from "../../service/mk-api.service";
+import { User } from "../../interface/user";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/service/auth.service';
-import { MatDialog } from "@angular/material/dialog";
-import { YnDialogComponent } from "../../../components/yn-dialog/yn-dialog.component";
+import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
+import { YnDialogComponent } from "../yn-dialog/yn-dialog.component";
 
 @Component({
   selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss']
+  templateUrl: './user-detail-dialog.component.html',
+  styleUrls: ['./user-detail-dialog.component.scss']
 })
-export class UserDetailComponent implements OnInit {
-  userId?: string;
+export class UserDetailDialogComponent implements OnInit {
   user?: User;
   isError = false;
 
@@ -23,14 +22,11 @@ export class UserDetailComponent implements OnInit {
     private sb: MatSnackBar,
     private dl: MatDialog,
     public aus: AuthService,
+    @Inject(MAT_DIALOG_DATA) public userId: string,
   ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const userId = params.get('userId');
-      if (userId !== null) this.userId = userId;
-      this.fetchData();
-    });
+    this.fetchData();
   }
 
   fetchData(): void {
@@ -70,7 +66,7 @@ export class UserDetailComponent implements OnInit {
 
   genOpenUrl(): string | undefined {
     if (this.user === undefined) return undefined;
-    let baseUrl = `${this.aus.protocol}://${this.aus.address}/@${this.user.username}`;
+    let baseUrl = `${this.aus.protocol}//${this.aus.address}/@${this.user.username}`;
     if (this.user.host !== null) baseUrl += `@${this.user.host}`;
     return baseUrl;
   }

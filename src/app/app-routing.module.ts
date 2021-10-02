@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/files/files.module').then(m => m.FilesModule),
   },
   {
-    path: 'callback/:instance',
+    path: 'callback',
     loadChildren: () => import('./pages/callback/callback.module').then(m => m.CallbackModule),
     canActivate: [NotLoginGuard],
   },

@@ -51,7 +51,7 @@ export class IndexComponent {
       return;
     }
 
-    this.aus.setProtocolCookie();
+    this.aus.address = address;
     location.href = this.aus.generateMiAuthUrl(address);
   }
 }
