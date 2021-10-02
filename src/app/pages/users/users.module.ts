@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users.component';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
-import { UserCardComponent } from 'src/app/components/user-card/user-card.component';
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatGridListModule } from "@angular/material/grid-list";
@@ -20,49 +19,44 @@ import { MatListModule } from "@angular/material/list";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { MkApiService } from "../../service/mk-api.service";
-import { UserDetailComponent } from "./user-detail/user-detail.component";
-import { MatMenuModule } from '@angular/material/menu';
-import { YnDialogComponent } from "../../components/yn-dialog/yn-dialog.component";
+import { UserDetailDialogModule } from "../../components/user-detail-dialog/user-detail-dialog.module";
+import { UserCardModule } from "../../components/user-card/user-card.module";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 
 @NgModule({
   declarations: [
     UsersComponent,
     SearchDialogComponent,
-    UserDetailComponent,
-    UserCardComponent,
-    YnDialogComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: UsersComponent,
-      },
-      {
-        path: ':userId',
-        component: UserDetailComponent,
-      }
-    ]),
-    ReactiveFormsModule,
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: UsersComponent,
+            },
+        ]),
+        ReactiveFormsModule,
+        FlexLayoutModule,
+        UserDetailDialogModule,
+        UserCardModule,
 
-    FlexLayoutModule,
-    MatCardModule,
-    MatBadgeModule,
-    MatChipsModule,
-    MatGridListModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    VirtualScrollerModule,
-    MatListModule,
-    MatMenuModule,
-  ],
+        MatCardModule,
+        MatBadgeModule,
+        MatChipsModule,
+        MatGridListModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        VirtualScrollerModule,
+        MatListModule,
+        MatProgressSpinnerModule,
+    ],
   providers: [
     MkApiService,
   ],

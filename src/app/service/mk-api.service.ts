@@ -6,6 +6,7 @@ import { User } from "../interface/user";
 import { UserSearchOption } from "../interface/user-search-option";
 import { DriveFile } from "../interface/drive-file";
 import { FileSearchOption } from "../interface/file-search-option";
+import { UserRelation } from "../interface/user-relation";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,22 @@ export class MkApiService {
       offset,
       ...searchOption,
     }) as Observable<User[]>;
+  }
+
+  fetchUserFollowingList(userId: string, untilId?: string): Observable<UserRelation[]> {
+    return this.hc.post(`${this.baseUrl}/users/following`, {
+      userId,
+      untilId,
+      limit: 100,
+    }) as Observable<UserRelation[]>;
+  }
+
+  fetchUserFollowerList(userId: string, untilId?: string): Observable<UserRelation[]> {
+    return this.hc.post(`${this.baseUrl}/users/followers`, {
+      userId,
+      untilId,
+      limit: 100,
+    }) as Observable<UserRelation[]>;
   }
 
   addModUser(userId: string): Observable<unknown> {

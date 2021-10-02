@@ -12,6 +12,7 @@ export class FilesComponent implements OnInit {
   items: DriveFile[] = [];
   isFailed = false;
   allLoaded = false;
+  loading = true;
 
   constructor(
     private mas: MkApiService,
@@ -28,6 +29,7 @@ export class FilesComponent implements OnInit {
   }
 
   private fetchData(): void {
+    this.loading = true;
     const latestId = (this.items.length === 0) ? undefined : this.items.slice(-1)[0].id;
     this.mas.fetchFileList(latestId, undefined).subscribe(
       val => {
@@ -38,8 +40,12 @@ export class FilesComponent implements OnInit {
         }
       },
       err => {
+        this.isFailed = true;
         console.error(err);
       },
+      () => {
+        this.loading = false;
+      }
     );
   }
 }

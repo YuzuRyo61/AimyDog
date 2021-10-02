@@ -96,6 +96,13 @@
     "common.auth_failed": "認証できませんでした。もう一度お試しください。",
     "common.welcome_back": "Welcome back!",
     "common.bad_credentials": "認証情報を取得できません",
-    "common.logout": "ログアウトしました"
+    "common.logout": "ログアウトしました",
+    "common.close": "閉じる",
+    "user.detail.operation": "ユーザー操作",
+    "user.detail.relation.follower_title": "フォロワー",
+    "user.detail.relation.following_title": "フォロー",
+    "user.detail.relation.no_followers": "誰にもフォローされていません。",
+    "user.detail.relation.no_following": "誰もフォローしていません。",
+    "user.detail.title": "ユーザー情報"
   }
 }

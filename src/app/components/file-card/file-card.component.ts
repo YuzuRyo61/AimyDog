@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { DriveFile } from "../../interface/drive-file";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatDialog } from "@angular/material/dialog";
+import { UserDetailDialogComponent } from "../user-detail-dialog/user-detail-dialog.component";
 
 @Component({
   selector: 'app-file-card',
@@ -12,8 +14,8 @@ export class FileCardComponent {
 
   constructor(
     private sb: MatSnackBar,
-  ) {
-  }
+    private dl: MatDialog,
+  ) {}
 
   isAvailableCopy(): boolean {
     return navigator.clipboard !== undefined;
@@ -30,5 +32,12 @@ export class FileCardComponent {
         this.sb.open($localize`:@@common.copy.failed:Failed copy to clipboard`);
       }
     );
+  }
+
+  openOwnerUserDialog(): void {
+    if (this.file === undefined || this.file?.userId === null) return;
+    this.dl.open(UserDetailDialogComponent, {
+      data: this.file.userId,
+    });
   }
 }

@@ -58,16 +58,16 @@
     >
       <mat-icon>info</mat-icon>
     </button>
-    <a
+    <button
       mat-icon-button
       i18n-matTooltip="@@file.show_owner_detail"
       matTooltip="Show owner detail"
       matTooltipPosition="above"
       *ngIf="file.user"
-      [routerLink]="['/users', file.user.id]"
+      (click)="openOwnerUserDialog()"
     >
       <mat-icon>account_circle</mat-icon>
-    </a>
+    </button>
     <button
       mat-icon-button
       i18n-matTooltip="@@file.copy_fileid"

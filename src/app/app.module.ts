@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { CookieService } from 'ngx-cookie-service';
 
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
@@ -25,7 +24,7 @@ import { APP_BASE_HREF, PlatformLocation } from "@angular/common";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +47,6 @@ import { APP_BASE_HREF, PlatformLocation } from "@angular/common";
     MatProgressBarModule,
   ],
   providers: [
-    CookieService,
     AuthService,
     NetworkService,
     NeedLoginGuard,

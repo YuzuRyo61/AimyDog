@@ -14,8 +14,8 @@ export interface User {
   followersCount: number;
   followingCount: number;
   notesCount: number;
-  inbox: string | null;
-  sharedInbox: string | null;
-  uri: string | null;
-  token: string | null;
+  inbox?: string | null;
+  sharedInbox?: string | null;
+  uri?: string | null;
+  token?: string | null;
 }

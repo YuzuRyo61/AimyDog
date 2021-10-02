@@ -5,5 +5,5 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <div mat-dialog-actions align="end">
   <button mat-button (click)="ref.close(false)" i18n="@@common.yn_dialog.cancel">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" i18n="@@common.yn_dialog.ok" cdkFocusInitial>OK</button>
+  <button mat-button (click)="ref.close(true)" i18n="@@common.yn_dialog.ok" cdkFocusInitial>OK</button>
 </div>
