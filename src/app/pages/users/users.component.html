@@ -11,6 +11,9 @@
   >
     <app-user-card [user]="item"></app-user-card>
   </div>
+  <div *ngIf="loading" class="users-scroll-loading">
+    <mat-progress-spinner mode="indeterminate" [diameter]="48" class="loading-spinner"></mat-progress-spinner>
+  </div>
 </virtual-scroller>
 
 <button mat-fab color="primary" class="fab-button" (click)="openSearchDialog()">

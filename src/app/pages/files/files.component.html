@@ -11,6 +11,9 @@
   >
     <app-file-card [file]="item"></app-file-card>
   </div>
+  <div *ngIf="loading" class="files-scroll-loading">
+    <mat-progress-spinner mode="indeterminate" [diameter]="48" class="loading-spinner"></mat-progress-spinner>
+  </div>
 </virtual-scroller>
 
 <button mat-fab color="primary" class="fab-button">

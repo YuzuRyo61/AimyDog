@@ -40,8 +40,6 @@ export class UserCardComponent {
     if (this.user === undefined) return;
     this.md.open(UserDetailDialogComponent, {
       data: this.user.id,
-      disableClose: false,
-      role: 'dialog',
       autoFocus: false,
     });
   }

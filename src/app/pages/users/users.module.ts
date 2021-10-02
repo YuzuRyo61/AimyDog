@@ -21,6 +21,7 @@ import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { MkApiService } from "../../service/mk-api.service";
 import { UserDetailDialogModule } from "../../components/user-detail-dialog/user-detail-dialog.module";
 import { UserCardModule } from "../../components/user-card/user-card.module";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -28,33 +29,34 @@ import { UserCardModule } from "../../components/user-card/user-card.module";
     UsersComponent,
     SearchDialogComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: UsersComponent,
-      },
-    ]),
-    ReactiveFormsModule,
-    FlexLayoutModule,
-    UserDetailDialogModule,
-    UserCardModule,
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: UsersComponent,
+            },
+        ]),
+        ReactiveFormsModule,
+        FlexLayoutModule,
+        UserDetailDialogModule,
+        UserCardModule,
 
-    MatCardModule,
-    MatBadgeModule,
-    MatChipsModule,
-    MatGridListModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    VirtualScrollerModule,
-    MatListModule,
-  ],
+        MatCardModule,
+        MatBadgeModule,
+        MatChipsModule,
+        MatGridListModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        VirtualScrollerModule,
+        MatListModule,
+        MatProgressSpinnerModule,
+    ],
   providers: [
     MkApiService,
   ],

@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>
+  Relation info
+</h2>
+
+<mat-dialog-content>
+  <virtual-scroller
+    #scroll
+    [items]="items"
+    class="vs-scroll"
+    (vsEnd)="vsEvent($event)"
+  >
+    <ng-container *ngIf="items.length === 0 && !loading" #noRelation>
+      No relation.
+    </ng-container>
+    <mat-action-list>
+      <ng-container *ngIf="data.type === 'following'; else follower">
+        <mat-list-item *ngFor="let item of scroll.viewPortItems" (click)="openUserDetailDialog(item.followeeId)" [disabled]="item.followee?.isAdmin" #container>
+          <img mat-list-avatar [src]="item.followee?.avatarUrl" [alt]="item.followee?.username">
+          <div mat-line>
+            <ng-container *ngIf="item.followee?.name !== null; else noName">{{ item.followee?.name }}</ng-container>
+            <ng-template #noName>{{ item.followee?.username }}</ng-template>
+          </div>
+          <div mat-line>@{{ item.followee?.username }}<ng-container *ngIf="item.followee?.host && item.followee?.host !== null">@{{ item.followee?.host }}</ng-container></div>
+        </mat-list-item>
+      </ng-container>
+      <ng-template #follower>
+        <mat-list-item *ngFor="let item of scroll.viewPortItems" (click)="openUserDetailDialog(item.followerId)" [disabled]="item.follower?.isAdmin" #container>
+          <img mat-list-avatar [src]="item.follower?.avatarUrl" [alt]="item.follower?.username">
+          <div mat-line>
+            <ng-container *ngIf="item.follower?.name !== null; else noName">{{ item.follower?.name }}</ng-container>
+            <ng-template #noName>{{ item.follower?.username }}</ng-template>
+          </div>
+          <div mat-line>@{{ item.follower?.username }}<ng-container *ngIf="item.follower?.host && item.follower?.host !== null">@{{ item.follower?.host }}</ng-container></div>
+        </mat-list-item>
+      </ng-template>
+    </mat-action-list>
+    <div *ngIf="loading">
+      <mat-progress-spinner mode="indeterminate" [diameter]="24"></mat-progress-spinner>
+    </div>
+  </virtual-scroller>
+</mat-dialog-content>
+
+<!--suppress HtmlDeprecatedAttribute -->
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close i18n="@@common.close">Close</button>
+</mat-dialog-actions>

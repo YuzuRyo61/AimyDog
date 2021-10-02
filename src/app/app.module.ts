@@ -24,7 +24,7 @@ import { APP_BASE_HREF, PlatformLocation } from "@angular/common";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ import { UserSearchOption } from "../../interface/user-search-option";
 })
 export class UsersComponent implements OnInit {
   items: User[] = [];
+  loading = true;
   searchOptionsForm = new FormGroup({
     sort: new FormControl('+createdAt', [
       Validators.required,
@@ -47,6 +48,7 @@ export class UsersComponent implements OnInit {
   }
 
   private fetchData(): void {
+    this.loading = true;
     this.mas.fetchUserList(this.items.length, this.searchOptionsForm.value as UserSearchOption).subscribe(
       val => {
         this.items = this.items.concat(val);
@@ -66,6 +68,9 @@ export class UsersComponent implements OnInit {
           this.fetchData();
         });
       },
+      () => {
+        this.loading = false;
+      }
     );
   }
 

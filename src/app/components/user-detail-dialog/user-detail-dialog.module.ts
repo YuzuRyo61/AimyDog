@@ -9,6 +9,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatButtonModule } from "@angular/material/button";
 import { YnDialogModule } from "../yn-dialog/yn-dialog.module";
+import { UserRelationListDialogModule } from "../user-relation-list-dialog/user-relation-list-dialog.module";
 
 
 
@@ -26,6 +27,7 @@ import { YnDialogModule } from "../yn-dialog/yn-dialog.module";
     MatListModule,
     MatButtonModule,
     YnDialogModule,
+    UserRelationListDialogModule,
   ],
   exports: [
     UserDetailDialogComponent,

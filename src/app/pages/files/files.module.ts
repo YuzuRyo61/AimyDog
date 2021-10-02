@@ -7,6 +7,7 @@ import { FileCardModule } from "../../components/file-card/file-card.module";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 
 
@@ -14,18 +15,19 @@ import { MatDialogModule } from "@angular/material/dialog";
   declarations: [
     FilesComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([{
-      path: '',
-      component: FilesComponent,
-    }]),
-    VirtualScrollerModule,
-    FileCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([{
+            path: '',
+            component: FilesComponent,
+        }]),
+        VirtualScrollerModule,
+        FileCardModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatProgressSpinnerModule,
+    ],
   exports: [
     RouterModule,
   ]

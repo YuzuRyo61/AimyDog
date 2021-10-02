@@ -24,6 +24,20 @@
   }
 }
 
+.users-scroll-loading {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+  display: inline-block;
+  vertical-align: central;
+  overflow: hidden;
+}
+
+.loading-spinner {
+  position: absolute;
+  left: 50%;
+}
+
 .fab-button {
   position: fixed;
   bottom: 16px;
