@@ -119,4 +119,11 @@ export class MkApiService {
     }) as Observable<DriveFile>;
   }
 
+  fileDelete(fileId: string): Observable<unknown> {
+    return this.hc.post(`${this.baseUrl}/drive/files/delete`, {
+      i: this.aus.token,
+      fileId: fileId,
+    }) as Observable<unknown>;
+  }
+
 }

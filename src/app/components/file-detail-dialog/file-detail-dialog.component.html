@@ -14,7 +14,7 @@
         <button
           mat-icon-button
           *ngIf="isAvailableCopy()"
-          (click)="copyUserId()"
+          (click)="copyToClipboard(file.id)"
         >
           <mat-icon>content_copy</mat-icon>
         </button>
@@ -36,21 +36,92 @@
         <button
           mat-icon-button
           *ngIf="isAvailableCopy()"
-          (click)="copyMd5()"
+          (click)="copyToClipboard(file.md5)"
         >
           <mat-icon>content_copy</mat-icon>
         </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="file.userId !== null">
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <div mat-line i18n="@@file.detail.owner">Owner</div>
+        <div mat-line>{{ file.userId }}</div>
+        <button
+          mat-icon-button
+          *ngIf="isAvailableCopy()"
+          (click)="copyToClipboard(file.userId)"
+        >
+          <mat-icon>content_copy</mat-icon>
+        </button>
+        <!-- ↓もつけようとしたけど、スキーマめちゃくちゃで無理...( ˘ω˘) -->
+        <!--
+        <button
+          mat-icon-button
+          (click)="openOwnerDetailDialog()"
+          [disabled]="aus.credentials?.isModerator && file.user?.isAdmin"
+        >
+          <mat-icon>person_search</mat-icon>
+        </button>
+        -->
+      </mat-list-item>
+      <div mat-subheader i18n="@@file.detail.file_link">File link</div>
+      <mat-list-item *ngIf="file.url !== null">
+        <mat-icon mat-list-icon>file_present</mat-icon>
+        <div mat-line i18n="@@file.detail.url">URL</div>
+        <div mat-line>{{ file.url }}</div>
+        <button
+          mat-icon-button
+          *ngIf="isAvailableCopy()"
+          (click)="copyToClipboard(file.url)"
+        >
+          <mat-icon>content_copy</mat-icon>
+        </button>
+        <a
+          mat-icon-button
+          [href]="file.url"
+          target="_blank"
+        >
+          <mat-icon>open_in_new</mat-icon>
+        </a>
+      </mat-list-item>
+      <mat-list-item *ngIf="file.thumbnailUrl !== null">
+        <mat-icon mat-list-icon>image</mat-icon>
+        <div mat-line i18n="@@file.detail.thumbnail_url">Thumbnail URL</div>
+        <div mat-line>{{ file.thumbnailUrl }}</div>
+        <button
+          mat-icon-button
+          *ngIf="isAvailableCopy()"
+          (click)="copyToClipboard(file.thumbnailUrl)"
+        >
+          <mat-icon>content_copy</mat-icon>
+        </button>
+        <a
+          mat-icon-button
+          [href]="file.thumbnailUrl"
+          target="_blank"
+        >
+          <mat-icon>open_in_new</mat-icon>
+        </a>
       </mat-list-item>
     </mat-list>
 
     <mat-divider></mat-divider>
     <mat-action-list>
       <div mat-subheader i18n="@@file.detail.operation">File operation</div>
-      <mat-list-item>
-        <mat-icon mat-list-icon>visibility_off</mat-icon>
-        <div mat-line i18n="@@file.detail.operation.sensitive">Sensitive</div>
+      <mat-list-item (click)="openSensitiveDialog()">
+        <mat-icon mat-list-icon>
+          <ng-container *ngIf="file.isSensitive; else sensitiveIcon">visibility</ng-container>
+          <ng-template #sensitiveIcon>
+            <ng-container>visibility_off</ng-container>
+          </ng-template>
+        </mat-icon>
+        <div mat-line>
+          <ng-container i18n="@@file.detail.operation.un_sensitive" *ngIf="file.isSensitive; else sensitive">Un-sensitive</ng-container>
+          <ng-template #sensitive>
+            <ng-container i18n="@@file.detail.operation.sensitive">Sensitive</ng-container>
+          </ng-template>
+        </div>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item (click)="openDeleteDialog()">
         <mat-icon mat-list-icon>delete</mat-icon>
         <div mat-line i18n="@@file.detail.operation.delete">Delete</div>
       </mat-list-item>

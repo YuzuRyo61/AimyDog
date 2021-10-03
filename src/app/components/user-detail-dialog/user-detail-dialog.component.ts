@@ -133,7 +133,7 @@ export class UserDetailDialogComponent implements OnInit, OnDestroy {
           },
           err => {
             console.error(err);
-            this.sb.open(`:@@user.detail.demote_mod.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -155,7 +155,7 @@ export class UserDetailDialogComponent implements OnInit, OnDestroy {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.promote_mod.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -183,7 +183,7 @@ export class UserDetailDialogComponent implements OnInit, OnDestroy {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.un_silence.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -205,7 +205,7 @@ export class UserDetailDialogComponent implements OnInit, OnDestroy {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.silence.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -233,7 +233,7 @@ export class UserDetailDialogComponent implements OnInit, OnDestroy {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.unsuspend.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -255,7 +255,7 @@ export class UserDetailDialogComponent implements OnInit, OnDestroy {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.suspend.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });

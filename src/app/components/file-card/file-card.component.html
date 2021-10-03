@@ -70,6 +70,17 @@
     >
       <mat-icon>account_circle</mat-icon>
     </button>
+    <a
+      i18n-matTooltip="@@file.open"
+      matTooltip="Open file"
+      matTooltipPosition="above"
+      *ngIf="file.url !== null"
+      mat-icon-button
+      [href]="file.url"
+      target="_blank"
+    >
+      <mat-icon>open_in_new</mat-icon>
+    </a>
     <button
       mat-icon-button
       i18n-matTooltip="@@file.copy_fileid"

@@ -7,6 +7,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { UserDetailDialogModule } from "../user-detail-dialog/user-detail-dialog.module";
+import { YnDialogModule } from "../yn-dialog/yn-dialog.module";
 
 
 
@@ -21,7 +23,9 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatProgressSpinnerModule,
     MatListModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    UserDetailDialogModule,
+    YnDialogModule,
   ],
   exports: [
     FileDetailDialogComponent
