@@ -4,14 +4,13 @@ import { FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-search-dialog',
-  templateUrl: './search-dialog.component.html',
-  styleUrls: ['./search-dialog.component.scss']
+  templateUrl: './user-search-dialog.component.html',
+  styleUrls: ['./user-search-dialog.component.scss']
 })
-export class SearchDialogComponent {
+export class UserSearchDialogComponent {
   constructor(
-    public ref: MatDialogRef<SearchDialogComponent>,
+    public ref: MatDialogRef<UserSearchDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FormGroup,
-  ) {
-  }
+  ) { }
 
 }

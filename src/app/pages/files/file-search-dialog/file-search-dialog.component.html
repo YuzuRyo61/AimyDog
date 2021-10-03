@@ -1,0 +1,19 @@
+<h2 mat-dialog-title i18n="@@file.search_dialog.title">File search</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="data">
+    <mat-form-field appearance="fill" color="primary">
+      <mat-label i18n="@@common.origin">Origin</mat-label>
+      <mat-select formControlName="origin">
+        <mat-option value="combined" i18n="@@common.origin.combined">Combined</mat-option>
+        <mat-option value="local" i18n="@@common.origin.local">Local</mat-option>
+        <mat-option value="remote" i18n="@@common.origin.remote">Remote</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="ref.close()" i18n="@@common.dialog.close">Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="data.invalid" i18n="@@common.dialog.apply">Apply</button>
+</mat-dialog-actions>

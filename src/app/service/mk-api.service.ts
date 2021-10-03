@@ -103,4 +103,27 @@ export class MkApiService {
       ...searchOption,
     }) as Observable<DriveFile[]>;
   }
+
+  fetchFileById(fileId: string): Observable<DriveFile> {
+    return this.hc.post(`${this.baseUrl}/admin/drive/show-file`, {
+      i: this.aus.token,
+      fileId: fileId,
+    }) as Observable<DriveFile>;
+  }
+
+  fileSensitive(fileId: string, isSensitive: boolean): Observable<DriveFile> {
+    return this.hc.post(`${this.baseUrl}/drive/files/update`, {
+      i: this.aus.token,
+      fileId: fileId,
+      isSensitive: isSensitive,
+    }) as Observable<DriveFile>;
+  }
+
+  fileDelete(fileId: string): Observable<unknown> {
+    return this.hc.post(`${this.baseUrl}/drive/files/delete`, {
+      i: this.aus.token,
+      fileId: fileId,
+    }) as Observable<unknown>;
+  }
+
 }

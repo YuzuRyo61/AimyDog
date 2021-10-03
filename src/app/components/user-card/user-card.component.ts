@@ -23,6 +23,11 @@ export class UserCardComponent {
     return navigator.clipboard !== undefined;
   }
 
+  isModInAdmin(): boolean {
+    if (this.aus.credentials === undefined || this.user === undefined) return true;
+    return this.aus.credentials.isModerator && this.user.isAdmin;
+  }
+
   copyUserId(): void {
     if (this.user === undefined) return;
 

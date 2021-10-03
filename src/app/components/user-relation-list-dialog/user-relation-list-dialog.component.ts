@@ -1,30 +1,39 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
 import { UserRelationListDialogOption } from "../../interface/user-relation-list-dialog-option";
 import { MkApiService } from "../../service/mk-api.service";
 import { UserRelation } from "../../interface/user-relation";
 import { UserDetailDialogComponent } from "../user-detail-dialog/user-detail-dialog.component";
 import { IPageInfo } from "ngx-virtual-scroller";
+import { AuthService } from "../../service/auth.service";
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-user-relation-list-dialog',
   templateUrl: './user-relation-list-dialog.component.html',
   styleUrls: ['./user-relation-list-dialog.component.scss']
 })
-export class UserRelationListDialogComponent implements OnInit {
+export class UserRelationListDialogComponent implements OnInit, OnDestroy {
   items: UserRelation[] = [];
   isFailed = false;
   allLoaded = false;
   loading = true;
+  private errorSnack?: MatSnackBarRef<TextOnlySnackBar>;
 
   constructor(
     private ma: MkApiService,
     private dl: MatDialog,
+    public aus: AuthService,
+    private sb: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: UserRelationListDialogOption,
   ) { }
 
   ngOnInit(): void {
     this.fetchData();
+  }
+
+  ngOnDestroy(): void {
+    if (this.errorSnack !== undefined) this.errorSnack.dismiss();
   }
 
   vsEvent(event: IPageInfo): void {
@@ -47,8 +56,16 @@ export class UserRelationListDialogComponent implements OnInit {
           }
         },
         err => {
-          this.isFailed = true;
           console.error(err);
+          this.isFailed = true;
+          this.errorSnack = this.sb.open($localize`:@@common.fetch_failed:Fetch failed.`, $localize`:@@common.retry:Retry`, {
+            duration: 0,
+          });
+          this.errorSnack.onAction().subscribe(() => {
+            this.isFailed = false;
+            this.fetchData();
+          });
+          this.loading = false;
         },
         () => {
           this.loading = false;
@@ -64,8 +81,9 @@ export class UserRelationListDialogComponent implements OnInit {
           }
         },
         err => {
-          this.isFailed = true;
           console.error(err);
+          this.isFailed = true;
+          this.loading = false;
         },
         () => {
           this.loading = false;

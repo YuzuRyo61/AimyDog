@@ -14,8 +14,11 @@
   <div *ngIf="loading" class="files-scroll-loading">
     <mat-progress-spinner mode="indeterminate" [diameter]="48" class="loading-spinner"></mat-progress-spinner>
   </div>
+  <div *ngIf="!loading && scroll.viewPortItems.length === 0">
+    <h3 i18n="@@file.no_files">No applicable file found.</h3>
+  </div>
 </virtual-scroller>
 
-<button mat-fab color="primary" class="fab-button">
+<button mat-fab color="primary" class="fab-button" (click)="openSearchDialog()">
   <mat-icon>search</mat-icon>
 </button>

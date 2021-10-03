@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MkApiService } from "../../service/mk-api.service";
 import { User } from "../../interface/user";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/service/auth.service';
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
 import { YnDialogComponent } from "../yn-dialog/yn-dialog.component";
@@ -13,10 +13,10 @@ import { UserRelationListDialogComponent } from "../user-relation-list-dialog/us
   templateUrl: './user-detail-dialog.component.html',
   styleUrls: ['./user-detail-dialog.component.scss']
 })
-export class UserDetailDialogComponent implements OnInit {
+export class UserDetailDialogComponent implements OnInit, OnDestroy {
   user?: User;
-  isError = false;
   loading = true;
+  private errorSnack?: MatSnackBarRef<TextOnlySnackBar>;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,19 +24,18 @@ export class UserDetailDialogComponent implements OnInit {
     private sb: MatSnackBar,
     private dl: MatDialog,
     public aus: AuthService,
-    @Inject(MAT_DIALOG_DATA) public userId: string,
+    @Inject(MAT_DIALOG_DATA) private userId: string,
   ) { }
 
   ngOnInit(): void {
     this.fetchData();
   }
 
-  fetchData(): void {
-    if (this.userId === undefined) {
-      this.isError = true;
-      return;
-    }
-    this.isError = false;
+  ngOnDestroy(): void {
+    if (this.errorSnack !== undefined) this.errorSnack.dismiss();
+  }
+
+  private fetchData(): void {
     this.loading = true;
 
     this.ma.fetchUser(this.userId).subscribe(
@@ -44,8 +43,14 @@ export class UserDetailDialogComponent implements OnInit {
         this.user = data;
       },
       error => {
-        console.log(error);
-        this.isError = true;
+        console.error(error);
+        this.errorSnack = this.sb.open($localize`:@@common.fetch_failed:Fetch failed.`, $localize`:@@common.retry:Retry`, {
+          duration: 0,
+        });
+        this.errorSnack.onAction().subscribe(() => {
+          this.fetchData();
+        });
+        this.loading = false;
       },
       () => {
         this.loading = false;
@@ -128,7 +133,7 @@ export class UserDetailDialogComponent implements OnInit {
           },
           err => {
             console.error(err);
-            this.sb.open(`:@@user.detail.demote_mod.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -150,7 +155,7 @@ export class UserDetailDialogComponent implements OnInit {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.promote_mod.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -178,7 +183,7 @@ export class UserDetailDialogComponent implements OnInit {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.un_silence.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -200,7 +205,7 @@ export class UserDetailDialogComponent implements OnInit {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.silence.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -228,7 +233,7 @@ export class UserDetailDialogComponent implements OnInit {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.unsuspend.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });
@@ -250,7 +255,7 @@ export class UserDetailDialogComponent implements OnInit {
           },
           err => {
             console.error(err);
-            this.sb.open($localize`:@@user.detail.suspend.failed:Operation failed.`);
+            this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
           }
         );
       });

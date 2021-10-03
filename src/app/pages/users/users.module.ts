@@ -17,7 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
 import { MatListModule } from "@angular/material/list";
 import { ReactiveFormsModule } from "@angular/forms";
-import { SearchDialogComponent } from './search-dialog/search-dialog.component';
+import { UserSearchDialogComponent } from './user-search-dialog/user-search-dialog.component';
 import { MkApiService } from "../../service/mk-api.service";
 import { UserDetailDialogModule } from "../../components/user-detail-dialog/user-detail-dialog.module";
 import { UserCardModule } from "../../components/user-card/user-card.module";
@@ -27,7 +27,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 @NgModule({
   declarations: [
     UsersComponent,
-    SearchDialogComponent,
+    UserSearchDialogComponent,
   ],
     imports: [
         CommonModule,

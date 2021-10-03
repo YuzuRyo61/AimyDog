@@ -41,6 +41,7 @@ export class IndexComponent {
       this.aus.protocol = formParse.protocol;
     } catch(_) {
       formParse = new URL(`https://${rawValue}`);
+      this.aus.protocol = 'https:';
     }
     const address = formParse.host;
 

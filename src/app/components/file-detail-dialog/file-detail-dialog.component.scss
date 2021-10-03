@@ -1,0 +1,18 @@
+@use "src/responsive-mixin" as rm;
+
+.dialog-content {
+  width: 70vw;
+
+  @include rm.responsive(md) {
+    width: 65vw;
+  }
+
+  @include rm.responsive(lg) {
+    width: 60vw;
+  }
+
+  @include rm.responsive(xl) {
+    width: 55vw;
+  }
+
+}

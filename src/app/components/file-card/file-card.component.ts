@@ -3,6 +3,8 @@ import { DriveFile } from "../../interface/drive-file";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatDialog } from "@angular/material/dialog";
 import { UserDetailDialogComponent } from "../user-detail-dialog/user-detail-dialog.component";
+import { FileDetailDialogComponent } from "../file-detail-dialog/file-detail-dialog.component";
+import { AuthService } from "../../service/auth.service";
 
 @Component({
   selector: 'app-file-card',
@@ -15,6 +17,7 @@ export class FileCardComponent {
   constructor(
     private sb: MatSnackBar,
     private dl: MatDialog,
+    public aus: AuthService,
   ) {}
 
   isAvailableCopy(): boolean {
@@ -38,6 +41,13 @@ export class FileCardComponent {
     if (this.file === undefined || this.file?.userId === null) return;
     this.dl.open(UserDetailDialogComponent, {
       data: this.file.userId,
+    });
+  }
+
+  openFileDetailDialog(): void {
+    if (this.file === undefined) return;
+    this.dl.open(FileDetailDialogComponent, {
+      data: this.file.id,
     });
   }
 }

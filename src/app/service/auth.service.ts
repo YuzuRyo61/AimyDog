@@ -99,6 +99,7 @@ export class AuthService {
   generateMiAuthUrl(address: string): string {
     const authQuery = new URLSearchParams({
       name: 'AimyDog',
+      permission: 'write:drive',
       callback: `${window.location.protocol}//${window.location.host}${this.abh.replace(/\/$/i, '')}` + this.router.createUrlTree(['/callback']),
     });
     const sessionId = uuidv4();
