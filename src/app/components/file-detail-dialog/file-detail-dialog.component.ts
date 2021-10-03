@@ -1,9 +1,8 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MkApiService } from "../../service/mk-api.service";
 import { DriveFile } from "../../interface/drive-file";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatSelectionList } from "@angular/material/list";
 
 @Component({
   selector: 'app-file-detail-dialog',
@@ -14,7 +13,6 @@ export class FileDetailDialogComponent implements OnInit {
   loading = true;
   isError = false;
   file?: DriveFile;
-  @ViewChild('sensitiveSelection') private ss?: MatSelectionList;
 
   constructor(
     private mas: MkApiService,

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IPageInfo } from 'ngx-virtual-scroller';
 
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MkApiService } from "../../service/mk-api.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from "@angular/material/snack-bar";
 import { User } from "../../interface/user";
 import { UserSearchOption } from "../../interface/user-search-option";
 
@@ -14,7 +14,7 @@ import { UserSearchOption } from "../../interface/user-search-option";
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
   items: User[] = [];
   loading = true;
   searchOptionsForm = new FormGroup({
@@ -30,6 +30,7 @@ export class UsersComponent implements OnInit {
   });
   isFailed = false;
   allLoaded = false;
+  private errorSnack?: MatSnackBarRef<TextOnlySnackBar>;
 
   constructor(
     private sb: MatSnackBar,
@@ -39,6 +40,10 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+  }
+
+  ngOnDestroy(): void {
+    if (this.errorSnack !== undefined) this.errorSnack.dismiss();
   }
 
   vsEvent(event: IPageInfo): void {
@@ -60,13 +65,14 @@ export class UsersComponent implements OnInit {
       err => {
         console.error(err);
         this.isFailed = true;
-        const errSnack = this.sb.open('Fetch failed.', 'Retry', {
+        this.errorSnack = this.sb.open($localize`:@@common.fetch_failed:Fetch failed.`, $localize`:@@common.retry:Retry`, {
           duration: 0,
         });
-        errSnack.onAction().subscribe(() => {
+        this.errorSnack.onAction().subscribe(() => {
           this.isFailed = false;
           this.fetchData();
         });
+        this.loading = false;
       },
       () => {
         this.loading = false;

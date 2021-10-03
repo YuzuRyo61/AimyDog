@@ -212,6 +212,7 @@
           </div>
         </mat-list-item>
         <mat-list-item
+          [disabled]="user.isModerator || user.isAdmin"
           (click)="openSuspendDialog()"
         >
           <mat-icon mat-list-icon>

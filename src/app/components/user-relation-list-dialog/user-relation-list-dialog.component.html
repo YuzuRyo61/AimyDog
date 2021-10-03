@@ -20,7 +20,7 @@
     </ng-container>
     <mat-action-list>
       <ng-container *ngIf="data.type === 'following'; else follower">
-        <mat-list-item *ngFor="let item of scroll.viewPortItems" (click)="openUserDetailDialog(item.followeeId)" [disabled]="item.followee?.isAdmin" #container>
+        <mat-list-item *ngFor="let item of scroll.viewPortItems" (click)="openUserDetailDialog(item.followeeId)" [disabled]="aus.credentials?.isModerator && item.followee?.isAdmin">
           <img mat-list-avatar [src]="item.followee?.avatarUrl" [alt]="item.followee?.username">
           <div mat-line>
             <ng-container *ngIf="item.followee?.name !== null; else noName">{{ item.followee?.name }}</ng-container>
@@ -30,7 +30,7 @@
         </mat-list-item>
       </ng-container>
       <ng-template #follower>
-        <mat-list-item *ngFor="let item of scroll.viewPortItems" (click)="openUserDetailDialog(item.followerId)" [disabled]="item.follower?.isAdmin" #container>
+        <mat-list-item *ngFor="let item of scroll.viewPortItems" (click)="openUserDetailDialog(item.followerId)" [disabled]="aus.credentials?.isModerator && item.followee?.isAdmin">
           <img mat-list-avatar [src]="item.follower?.avatarUrl" [alt]="item.follower?.username">
           <div mat-line>
             <ng-container *ngIf="item.follower?.name !== null; else noName">{{ item.follower?.name }}</ng-container>

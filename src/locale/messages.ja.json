@@ -104,6 +104,15 @@
     "user.detail.relation.no_followers": "誰にもフォローされていません。",
     "user.detail.relation.no_following": "誰もフォローしていません。",
     "user.detail.title": "ユーザー情報",
-    "file.detail.title": "ファイル情報"
+    "file.detail.title": "ファイル情報",
+    "file.detail.operation.delete": "削除",
+    "file.detail.id": "ID",
+    "file.detail.md5": "md5",
+    "file.detail.operation": "ファイル操作",
+    "file.detail.operation.sensitive": "閲覧注意にする",
+    "file.detail.operation.un_sensitive": "閲覧注意を解除する",
+    "common.fetch_failed": "取得できませんでした",
+    "common.retry": "再試行",
+    "user.no_users": "該当するユーザーが見つかりません"
   }
 }

@@ -5,6 +5,7 @@ import { MkApiService } from "../../service/mk-api.service";
 import { UserRelation } from "../../interface/user-relation";
 import { UserDetailDialogComponent } from "../user-detail-dialog/user-detail-dialog.component";
 import { IPageInfo } from "ngx-virtual-scroller";
+import { AuthService } from "../../service/auth.service";
 
 @Component({
   selector: 'app-user-relation-list-dialog',
@@ -20,6 +21,7 @@ export class UserRelationListDialogComponent implements OnInit {
   constructor(
     private ma: MkApiService,
     private dl: MatDialog,
+    public aus: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: UserRelationListDialogOption,
   ) { }
 

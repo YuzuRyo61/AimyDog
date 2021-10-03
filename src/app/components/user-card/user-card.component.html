@@ -81,7 +81,7 @@
       i18n-matTooltip="@@common.detail"
       matTooltip="Detail"
       matTooltipPosition="above"
-      [disabled]="aus.credentials?.isModerator && user.isAdmin"
+      [disabled]="isModInAdmin()"
       (click)="openDetailDialog()"
     >
       <mat-icon>info</mat-icon>

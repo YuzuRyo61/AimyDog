@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MkApiService } from "../../service/mk-api.service";
 import { User } from "../../interface/user";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/service/auth.service';
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
 import { YnDialogComponent } from "../yn-dialog/yn-dialog.component";
@@ -13,10 +13,10 @@ import { UserRelationListDialogComponent } from "../user-relation-list-dialog/us
   templateUrl: './user-detail-dialog.component.html',
   styleUrls: ['./user-detail-dialog.component.scss']
 })
-export class UserDetailDialogComponent implements OnInit {
+export class UserDetailDialogComponent implements OnInit, OnDestroy {
   user?: User;
-  isError = false;
   loading = true;
+  private errorSnack?: MatSnackBarRef<TextOnlySnackBar>;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,8 +31,11 @@ export class UserDetailDialogComponent implements OnInit {
     this.fetchData();
   }
 
+  ngOnDestroy(): void {
+    if (this.errorSnack !== undefined) this.errorSnack.dismiss();
+  }
+
   private fetchData(): void {
-    this.isError = false;
     this.loading = true;
 
     this.ma.fetchUser(this.userId).subscribe(
@@ -40,8 +43,14 @@ export class UserDetailDialogComponent implements OnInit {
         this.user = data;
       },
       error => {
-        console.log(error);
-        this.isError = true;
+        console.error(error);
+        this.errorSnack = this.sb.open($localize`:@@common.fetch_failed:Fetch failed.`, $localize`:@@common.retry:Retry`, {
+          duration: 0,
+        });
+        this.errorSnack.onAction().subscribe(() => {
+          this.fetchData();
+        });
+        this.loading = false;
       },
       () => {
         this.loading = false;

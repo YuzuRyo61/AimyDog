@@ -1,25 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IPageInfo } from "ngx-virtual-scroller";
 import { DriveFile } from "../../interface/drive-file";
 import { MkApiService } from "../../service/mk-api.service";
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-files',
   templateUrl: './files.component.html',
   styleUrls: ['./files.component.scss']
 })
-export class FilesComponent implements OnInit {
+export class FilesComponent implements OnInit, OnDestroy {
   items: DriveFile[] = [];
   isFailed = false;
   allLoaded = false;
   loading = true;
+  private errorSnack?: MatSnackBarRef<TextOnlySnackBar>;
 
   constructor(
     private mas: MkApiService,
+    private sb: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
     this.fetchData();
+  }
+
+  ngOnDestroy(): void {
+    if (this.errorSnack !== undefined) this.errorSnack.dismiss();
   }
 
   vsEvent(event: IPageInfo): void {
@@ -40,8 +47,16 @@ export class FilesComponent implements OnInit {
         }
       },
       err => {
-        this.isFailed = true;
         console.error(err);
+        this.isFailed = true;
+        this.errorSnack = this.sb.open($localize`:@@common.fetch_failed:Fetch failed.`, $localize`:@@common.retry:Retry`, {
+          duration: 0,
+        });
+        this.errorSnack.onAction().subscribe(() => {
+          this.isFailed = false;
+          this.fetchData();
+        });
+        this.loading = false;
       },
       () => {
         this.loading = false;
