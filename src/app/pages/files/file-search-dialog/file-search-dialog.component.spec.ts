@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchDialogComponent } from './search-dialog.component';
+import { FileSearchDialogComponent } from './file-search-dialog.component';
 
 describe('SearchDialogComponent', () => {
-  let component: SearchDialogComponent;
-  let fixture: ComponentFixture<SearchDialogComponent>;
+  let component: FileSearchDialogComponent;
+  let fixture: ComponentFixture<FileSearchDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchDialogComponent ]
+      declarations: [ FileSearchDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchDialogComponent);
+    fixture = TestBed.createComponent(FileSearchDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

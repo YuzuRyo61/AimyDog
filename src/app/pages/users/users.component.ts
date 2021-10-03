@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IPageInfo } from 'ngx-virtual-scroller';
 
-import { SearchDialogComponent } from './search-dialog/search-dialog.component';
+import { UserSearchDialogComponent } from './user-search-dialog/user-search-dialog.component';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MkApiService } from "../../service/mk-api.service";
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from "@angular/material/snack-bar";
@@ -81,7 +81,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   openSearchDialog(): void {
-    const dialogRes = this.md.open(SearchDialogComponent, {
+    const dialogRes = this.md.open(UserSearchDialogComponent, {
       data: this.searchOptionsForm,
       disableClose: true,
     });
@@ -90,6 +90,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.searchOptionsForm = result;
         this.items = [];
         this.allLoaded = false;
+        this.isFailed = false;
         this.fetchData();
       }
     });

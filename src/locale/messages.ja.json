@@ -28,10 +28,10 @@
     "user.search_dialog.sort": "ソート",
     "user.search_dialog.sort.created_at_desc": "作成日(降順)",
     "user.search_dialog.sort.created_at_asc": "作成日(昇順)",
-    "user.search_dialog.origin": "起源",
-    "user.search_dialog.origin.combined": "ローカル&リモート",
-    "user.search_dialog.origin.local": "ローカルのみ",
-    "user.search_dialog.origin.remote": "リモートのみ",
+    "common.origin": "起源",
+    "common.origin.combined": "ローカル&リモート",
+    "common.origin.local": "ローカルのみ",
+    "common.origin.remote": "リモートのみ",
     "common.dialog.close": "閉じる",
     "common.dialog.apply": "適用",
     "user.detail.basic_info.none_update": "(なし)",
@@ -122,6 +122,8 @@
     "file.detail.un_sensitive.success": "ファイルの閲覧注意を解除しました",
     "file.detail.delete.title": "ファイルを削除",
     "file.detail.delete.message": "このファイルを削除しますか？",
-    "file.detail.delete.success": "ファイルを削除しました"
+    "file.detail.delete.success": "ファイルを削除しました",
+    "file.search_dialog.title": "ファイル検索",
+    "file.no_files": "該当するファイルが見つかりません"
   }
 }
