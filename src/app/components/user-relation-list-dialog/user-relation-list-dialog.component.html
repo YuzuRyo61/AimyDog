@@ -12,7 +12,7 @@
     class="vs-scroll"
     (vsEnd)="vsEvent($event)"
   >
-    <ng-container *ngIf="items.length === 0 && !loading" #noRelation>
+    <ng-container *ngIf="items.length === 0 && !loading && !isFailed" #noRelation>
       <ng-container *ngIf="data.type === 'following'; else noFollowers" i18n="@@user.detail.relation.no_following">No one is following.</ng-container>
       <ng-template #noFollowers>
         <ng-container i18n="@@user.detail.relation.no_followers">No one is being followed.</ng-container>
