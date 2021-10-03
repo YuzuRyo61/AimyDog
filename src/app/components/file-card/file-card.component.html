@@ -66,6 +66,7 @@
       matTooltipPosition="above"
       *ngIf="file.user"
       (click)="openOwnerUserDialog()"
+      [disabled]="aus.credentials?.isModerator && file.user.isAdmin"
     >
       <mat-icon>account_circle</mat-icon>
     </button>
