@@ -20,11 +20,11 @@ export class FilesComponent implements OnInit, OnDestroy {
   loading = true;
   private errorSnack?: MatSnackBarRef<TextOnlySnackBar>;
   searchOptionsForm = new FormGroup({
-    type: new FormControl(null),
+    type: new FormControl(''),
     origin: new FormControl('local', [
       Validators.required,
     ]),
-    hostname: new FormControl(null),
+    hostname: new FormControl(''),
   }, );
 
   constructor(
@@ -50,7 +50,10 @@ export class FilesComponent implements OnInit, OnDestroy {
   private fetchData(): void {
     this.loading = true;
     const latestId = (this.items.length === 0) ? undefined : this.items.slice(-1)[0].id;
-    this.mas.fetchFileList(latestId, this.searchOptionsForm.value as FileSearchOption).subscribe(
+    const searchOption = this.searchOptionsForm.value as FileSearchOption;
+    if (searchOption.type === '') searchOption.type = null;
+    if (searchOption.hostname === '') searchOption.hostname = null;
+    this.mas.fetchFileList(latestId, searchOption).subscribe(
       val => {
         this.items = this.items.concat(val);
         if (val.length === 0) {

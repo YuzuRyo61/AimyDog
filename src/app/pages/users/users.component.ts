@@ -27,6 +27,8 @@ export class UsersComponent implements OnInit, OnDestroy {
     origin: new FormControl('local', [
       Validators.required,
     ]),
+    username: new FormControl(''),
+    hostname: new FormControl(''),
   });
   isFailed = false;
   allLoaded = false;
@@ -54,7 +56,10 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   private fetchData(): void {
     this.loading = true;
-    this.mas.fetchUserList(this.items.length, this.searchOptionsForm.value as UserSearchOption).subscribe(
+    const searchOption = this.searchOptionsForm.value as UserSearchOption;
+    if (searchOption.username === '') searchOption.username === undefined;
+    if (searchOption.hostname === '') searchOption.hostname === undefined;
+    this.mas.fetchUserList(this.items.length, searchOption).subscribe(
       val => {
         this.items = this.items.concat(val);
         if (val.length === 0) {

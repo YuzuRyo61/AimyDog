@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { FileSearchDialogComponent } from "./file-search-dialog/file-search-dialog.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -33,6 +34,7 @@ import { MatSelectModule } from "@angular/material/select";
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatInputModule,
   ],
   exports: [
     RouterModule,

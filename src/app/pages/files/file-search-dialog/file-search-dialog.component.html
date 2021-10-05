@@ -2,6 +2,10 @@
 
 <mat-dialog-content>
   <form [formGroup]="data">
+    <mat-form-field appearance="fill">
+      <mat-label i18n="@@file.detail.file_type">Type</mat-label>
+      <input matInput formControlName="type">
+    </mat-form-field>
     <mat-form-field appearance="fill" color="primary">
       <mat-label i18n="@@common.origin">Origin</mat-label>
       <mat-select formControlName="origin">
@@ -10,10 +14,15 @@
         <mat-option value="remote" i18n="@@common.origin.remote">Remote</mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label i18n="@@common.hostname">Hostname</mat-label>
+      <input matInput formControlName="hostname">
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<!--suppress HtmlDeprecatedAttribute -->
+<mat-dialog-actions align="end">
   <button mat-button (click)="ref.close()" i18n="@@common.dialog.close">Close</button>
   <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="data.invalid" i18n="@@common.dialog.apply">Apply</button>
 </mat-dialog-actions>

@@ -124,6 +124,8 @@
     "file.detail.delete.message": "このファイルを削除しますか？",
     "file.detail.delete.success": "ファイルを削除しました",
     "file.search_dialog.title": "ファイル検索",
-    "file.no_files": "該当するファイルが見つかりません"
+    "file.no_files": "該当するファイルが見つかりません",
+    "common.hostname": "ホスト名",
+    "common.username": "ユーザー名"
   }
 }
