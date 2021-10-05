@@ -49,6 +49,7 @@ export class FilesComponent implements OnInit, OnDestroy {
 
   private fetchData(): void {
     this.loading = true;
+    if (this.errorSnack !== undefined) this.errorSnack.dismiss();
     const latestId = (this.items.length === 0) ? undefined : this.items.slice(-1)[0].id;
     const searchOption = this.searchOptionsForm.value as FileSearchOption;
     if (searchOption.type === '') searchOption.type = null;

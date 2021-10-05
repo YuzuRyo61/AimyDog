@@ -56,6 +56,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   private fetchData(): void {
     this.loading = true;
+    if (this.errorSnack !== undefined) this.errorSnack.dismiss();
     const searchOption = this.searchOptionsForm.value as UserSearchOption;
     if (searchOption.username === '') searchOption.username = undefined;
     if (searchOption.hostname === '') searchOption.hostname = undefined;

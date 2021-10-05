@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MkApiService } from "../../service/mk-api.service";
 import { Report } from "../../interface/report";
 import { MatDialog } from "@angular/material/dialog";
@@ -6,13 +6,14 @@ import { ReportSearchDialogComponent } from "./report-search-dialog/report-searc
 import { FormControl, FormGroup } from "@angular/forms";
 import { IPageInfo } from "ngx-virtual-scroller";
 import { ReportSearchOption } from "../../interface/report-search-option";
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss']
 })
-export class ReportsComponent implements OnInit {
+export class ReportsComponent implements OnInit, OnDestroy {
   items: Report[] = [];
   allLoaded = false;
   loading = true;
@@ -22,14 +23,20 @@ export class ReportsComponent implements OnInit {
     targetUserOrigin: new FormControl('combined'),
   })
   isFailed = false;
+  private errorSnack?: MatSnackBarRef<TextOnlySnackBar>;
 
   constructor(
     private mas: MkApiService,
     private md: MatDialog,
+    private sb: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
     this.fetchData();
+  }
+
+  ngOnDestroy(): void {
+    if (this.errorSnack !== undefined) this.errorSnack.dismiss();
   }
 
   vsEvent(event: IPageInfo): void {
@@ -40,6 +47,7 @@ export class ReportsComponent implements OnInit {
 
   private fetchData(): void {
     this.loading = true;
+    if (this.errorSnack !== undefined) this.errorSnack.dismiss();
     const latestId = (this.items.length === 0) ? undefined : this.items.slice(-1)[0].id;
     const searchOption = this.searchOptionsForm.value as ReportSearchOption;
     if (searchOption.state === '') searchOption.state = null;
@@ -52,6 +60,13 @@ export class ReportsComponent implements OnInit {
       },
       err => {
         console.error(err);
+        this.errorSnack = this.sb.open($localize`:@@common.fetch_failed:Fetch failed.`, $localize`:@@common.retry:Retry`, {
+          duration: 0,
+        });
+        this.errorSnack.onAction().subscribe(() => {
+          this.isFailed = false;
+          this.fetchData();
+        });
         this.loading = false;
       },
       () => {

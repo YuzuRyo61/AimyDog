@@ -9,6 +9,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { YnDialogModule } from "../yn-dialog/yn-dialog.module";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 
 
@@ -25,6 +26,7 @@ import { YnDialogModule } from "../yn-dialog/yn-dialog.module";
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    MatSnackBarModule,
     YnDialogModule,
   ],
   exports: [

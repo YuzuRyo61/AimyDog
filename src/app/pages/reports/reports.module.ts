@@ -11,6 +11,7 @@ import { ReportSearchDialogComponent } from './report-search-dialog/report-searc
 import { MatDialogModule } from "@angular/material/dialog";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 
 
@@ -33,6 +34,7 @@ import { MatSelectModule } from "@angular/material/select";
     MatDialogModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
   exports: [
     RouterModule,

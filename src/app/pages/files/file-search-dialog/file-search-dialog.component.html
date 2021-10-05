@@ -4,7 +4,7 @@
   <form [formGroup]="data">
     <mat-form-field appearance="fill">
       <mat-label i18n="@@file.detail.file_type">Type</mat-label>
-      <input matInput formControlName="type">
+      <input matInput formControlName="type" [matAutocomplete]="fileType">
     </mat-form-field>
     <mat-form-field appearance="fill" color="primary">
       <mat-label i18n="@@common.origin">Origin</mat-label>
@@ -26,3 +26,7 @@
   <button mat-button (click)="ref.close()" i18n="@@common.dialog.close">Close</button>
   <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="data.invalid" i18n="@@common.dialog.apply">Apply</button>
 </mat-dialog-actions>
+
+<mat-autocomplete #fileType="matAutocomplete">
+  <mat-option *ngFor="let suggest of fileTypeSuggest" [value]="suggest">{{ suggest }}</mat-option>
+</mat-autocomplete>
