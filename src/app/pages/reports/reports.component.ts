@@ -1,43 +1,34 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { IPageInfo } from 'ngx-virtual-scroller';
-
-import { UserSearchDialogComponent } from './user-search-dialog/user-search-dialog.component';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MkApiService } from "../../service/mk-api.service";
+import { Report } from "../../interface/report";
+import { MatDialog } from "@angular/material/dialog";
+import { ReportSearchDialogComponent } from "./report-search-dialog/report-search-dialog.component";
+import { FormControl, FormGroup } from "@angular/forms";
+import { IPageInfo } from "ngx-virtual-scroller";
+import { ReportSearchOption } from "../../interface/report-search-option";
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from "@angular/material/snack-bar";
-import { User } from "../../interface/user";
-import { UserSearchOption } from "../../interface/user-search-option";
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-reports',
+  templateUrl: './reports.component.html',
+  styleUrls: ['./reports.component.scss']
 })
-export class UsersComponent implements OnInit, OnDestroy {
-  items: User[] = [];
+export class ReportsComponent implements OnInit, OnDestroy {
+  items: Report[] = [];
+  allLoaded = false;
   loading = true;
   searchOptionsForm = new FormGroup({
-    sort: new FormControl('+createdAt', [
-      Validators.required,
-    ]),
-    state: new FormControl('all', [
-      Validators.required,
-    ]),
-    origin: new FormControl('local', [
-      Validators.required,
-    ]),
-    username: new FormControl(''),
-    hostname: new FormControl(''),
-  });
+    state: new FormControl('unresolved'),
+    reporterOrigin: new FormControl('combined'),
+    targetUserOrigin: new FormControl('combined'),
+  })
   isFailed = false;
-  allLoaded = false;
   private errorSnack?: MatSnackBarRef<TextOnlySnackBar>;
 
   constructor(
-    private sb: MatSnackBar,
-    private md: MatDialog,
     private mas: MkApiService,
+    private md: MatDialog,
+    private sb: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -57,20 +48,18 @@ export class UsersComponent implements OnInit, OnDestroy {
   private fetchData(): void {
     this.loading = true;
     if (this.errorSnack !== undefined) this.errorSnack.dismiss();
-    const searchOption = this.searchOptionsForm.value as UserSearchOption;
-    if (searchOption.username === '') searchOption.username = undefined;
-    if (searchOption.hostname === '') searchOption.hostname = undefined;
-    this.mas.fetchUserList(this.items.length, searchOption).subscribe(
+    const latestId = (this.items.length === 0) ? undefined : this.items.slice(-1)[0].id;
+    const searchOption = this.searchOptionsForm.value as ReportSearchOption;
+    if (searchOption.state === '') searchOption.state = null;
+    this.mas.fetchReportList(latestId, searchOption).subscribe(
       val => {
         this.items = this.items.concat(val);
         if (val.length === 0) {
           this.allLoaded = true;
-          return;
         }
       },
       err => {
         console.error(err);
-        this.isFailed = true;
         this.errorSnack = this.sb.open($localize`:@@common.fetch_failed:Fetch failed.`, $localize`:@@common.retry:Retry`, {
           duration: 0,
         });
@@ -87,7 +76,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   openSearchDialog(): void {
-    const dialogRes = this.md.open(UserSearchDialogComponent, {
+    const dialogRes = this.md.open(ReportSearchDialogComponent, {
       data: this.searchOptionsForm,
       disableClose: true,
     });

@@ -22,6 +22,7 @@ import { MkApiService } from "../../service/mk-api.service";
 import { UserDetailDialogModule } from "../../components/user-detail-dialog/user-detail-dialog.module";
 import { UserCardModule } from "../../components/user-card/user-card.module";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
         VirtualScrollerModule,
         MatListModule,
         MatProgressSpinnerModule,
+        MatInputModule,
     ],
   providers: [
     MkApiService,

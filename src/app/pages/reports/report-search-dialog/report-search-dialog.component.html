@@ -1,0 +1,34 @@
+<h2 mat-dialog-title i18n="@@report.search_dialog.title">Report search</h2>
+<div mat-dialog-content>
+  <form [formGroup]="data">
+    <mat-form-field appearance="fill">
+      <mat-label i18n="@@report.search_dialog.state">State</mat-label>
+      <mat-select formControlName="state">
+        <mat-option value="" i18n="@@report.search_dialog.state.all">All</mat-option>
+        <mat-option value="unresolved" i18n="@@report.search_dialog.state.unresolved">Unresolved</mat-option>
+        <mat-option value="resolved" i18n="@@report.search_dialog.state.resolved">Resolved</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label i18n="@@report.search_dialog.reporter_origin">Reporter Origin</mat-label>
+      <mat-select formControlName="reporterOrigin">
+        <mat-option value="combined" i18n="@@common.origin.combined">Combined</mat-option>
+        <mat-option value="local" i18n="@@common.origin.local">Local</mat-option>
+        <mat-option value="remote" i18n="@@common.origin.remote">Remote</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label i18n="@@report.search_dialog.target_origin">Target user origin</mat-label>
+      <mat-select formControlName="targetUserOrigin">
+        <mat-option value="combined" i18n="@@common.origin.combined">Combined</mat-option>
+        <mat-option value="local" i18n="@@common.origin.local">Local</mat-option>
+        <mat-option value="remote" i18n="@@common.origin.remote">Remote</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<!--suppress HtmlDeprecatedAttribute -->
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="ref.close()" i18n="@@common.dialog.close">Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="data.invalid" i18n="@@common.dialog.apply">Apply</button>
+</div>

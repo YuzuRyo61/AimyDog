@@ -11,6 +11,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { FileSearchDialogComponent } from "./file-search-dialog/file-search-dialog.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 
 
@@ -19,21 +21,23 @@ import { MatSelectModule } from "@angular/material/select";
     FilesComponent,
     FileSearchDialogComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([{
-      path: '',
-      component: FilesComponent,
-    }]),
-    VirtualScrollerModule,
-    FileCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatProgressSpinnerModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([{
+            path: '',
+            component: FilesComponent,
+        }]),
+        VirtualScrollerModule,
+        FileCardModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatProgressSpinnerModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatInputModule,
+        MatAutocompleteModule,
+    ],
   exports: [
     RouterModule,
   ]

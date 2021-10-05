@@ -22,6 +22,12 @@ const routes: Routes = [
   {
     path: 'files',
     loadChildren: () => import('./pages/files/files.module').then(m => m.FilesModule),
+    canActivate: [NeedLoginGuard],
+  },
+  {
+    path: 'reports',
+    loadChildren: () => import('./pages/reports/reports.module').then(m => m.ReportsModule),
+    canActivate: [NeedLoginGuard],
   },
   {
     path: 'callback',

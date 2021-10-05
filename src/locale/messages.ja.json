@@ -124,6 +124,24 @@
     "file.detail.delete.message": "このファイルを削除しますか？",
     "file.detail.delete.success": "ファイルを削除しました",
     "file.search_dialog.title": "ファイル検索",
-    "file.no_files": "該当するファイルが見つかりません"
+    "file.no_files": "該当するファイルが見つかりません",
+    "common.hostname": "ホスト名",
+    "common.username": "ユーザー名",
+    "report.assignee_by": "担当者",
+    "report.mark_as_resolved": "解決済みにする",
+    "report.report_to": "通報先ユーザー",
+    "report.show_reporter": "通報元のユーザーを表示",
+    "report.mar_dialog.message": "この通報を解決済みにしますか？",
+    "report.mar_dialog.success": "通報を解決済みにしました",
+    "report.mar_dialog.title": "解決済みにする",
+    "report.search_dialog.title": "通報検索",
+    "report.search_dialog.reporter_origin": "通報者ユーザーの起源",
+    "report.search_dialog.state": "状態",
+    "report.search_dialog.state.all": "すべて",
+    "report.search_dialog.state.unresolved": "未解決",
+    "report.search_dialog.state.resolved": "解決済み",
+    "report.search_dialog.target_origin": "対象ユーザーの起源",
+    "report.no_reports": "通報はありません。",
+    "report.created_at": "通報日"
   }
 }

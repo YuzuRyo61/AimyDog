@@ -6,7 +6,6 @@ import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material
 import { AuthService } from 'src/app/service/auth.service';
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
 import { YnDialogComponent } from "../yn-dialog/yn-dialog.component";
-import { UserRelationListDialogComponent } from "../user-relation-list-dialog/user-relation-list-dialog.component";
 
 @Component({
   selector: 'app-user-detail',
@@ -90,26 +89,6 @@ export class UserDetailDialogComponent implements OnInit, OnDestroy {
     } else {
       return `@${this.user.username}@${this.user.host}`;
     }
-  }
-
-  showFollowingRelationDialog(): void {
-    if (this.user === undefined) return;
-    this.dl.open(UserRelationListDialogComponent, {
-      data: {
-        type: 'following',
-        userId: this.user.id,
-      }
-    });
-  }
-
-  showFollowerRelationDialog(): void {
-    if (this.user === undefined) return;
-    this.dl.open(UserRelationListDialogComponent, {
-      data: {
-        type: 'follower',
-        userId: this.user.id,
-      }
-    });
   }
 
   openModeratorDialog(): void {

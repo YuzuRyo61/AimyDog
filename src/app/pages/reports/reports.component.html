@@ -2,20 +2,19 @@
   #scroll
   [enableUnequalChildrenSizes]="true"
   [items]="items"
-  class="users-scroll"
-  (vsEnd)="vsEvent($event)"
+  class="reports-scroll"
 >
   <div
-    class="users-scroll-item"
+    class="reports-scroll-item"
     *ngFor="let item of scroll.viewPortItems"
   >
-    <app-user-card [user]="item"></app-user-card>
+    <app-report-card [data]="item"></app-report-card>
   </div>
   <div *ngIf="loading" class="users-scroll-full-width">
     <mat-progress-spinner mode="indeterminate" [diameter]="48" class="loading-spinner"></mat-progress-spinner>
   </div>
   <div *ngIf="!loading && items.length === 0">
-    <h3 i18n="@@user.no_users">No applicable user found.</h3>
+    <h3 i18n="@@report.no_reports">No reports.</h3>
   </div>
 </virtual-scroller>
 
