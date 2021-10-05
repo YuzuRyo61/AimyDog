@@ -14,7 +14,7 @@
   <div *ngIf="loading" class="users-scroll-full-width">
     <mat-progress-spinner mode="indeterminate" [diameter]="48" class="loading-spinner"></mat-progress-spinner>
   </div>
-  <div *ngIf="!loading && scroll.viewPortItems.length === 0">
+  <div *ngIf="!loading && items.length === 0">
     <h3 i18n="@@user.no_users">No applicable user found.</h3>
   </div>
 </virtual-scroller>
