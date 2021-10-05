@@ -1,0 +1,65 @@
+<mat-card *ngIf="data">
+  <mat-card-header>
+    <img
+      mat-card-avatar
+      [src]="data.reporter.avatarUrl"
+      [alt]="data.reporter.username"
+    >
+    <mat-card-title class="text-overflow">
+      <ng-container *ngIf="data.reporter.name !== null; else noReporterDisplayName">{{ data.reporter.name }}</ng-container>
+      <ng-template #noReporterDisplayName>{{ data.reporter.username }}</ng-template>
+    </mat-card-title>
+    <mat-card-subtitle>@{{ data.reporter.username }}<ng-container *ngIf="data.reporter.host !== null">@{{ data.reporter.host }}</ng-container></mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-action-list>
+      <div mat-subheader i18n="@@report.report_to">Report to</div>
+      <mat-list-item (click)="openUserDialog(data.targetUser.id)" [disabled]="aus.credentials?.isModerator && data.targetUser.isAdmin">
+        <img mat-list-avatar [src]="data.targetUser.avatarUrl" [alt]="data.targetUser.username">
+        <div mat-line>
+          <ng-container *ngIf="data.targetUser.name !== null; else noTargetUserDisplayName">{{ data.targetUser.name }}</ng-container>
+          <ng-template #noTargetUserDisplayName>{{ data.targetUser.username }}</ng-template>
+        </div>
+        <div mat-line>
+          @{{ data.targetUser.username }}<ng-container *ngIf="data.targetUser.host !== null">@{{ data.targetUser.host }}</ng-container>
+        </div>
+      </mat-list-item>
+      <ng-container *ngIf="data.assignee">
+        <div mat-subheader i18n="@@report.assignee_by">Assignee by</div>
+        <mat-list-item (click)="openUserDialog(data.assignee.id)" [disabled]="aus.credentials?.isModerator && data.assignee.isAdmin">
+          <img mat-list-avatar [src]="data.assignee.avatarUrl" [alt]="data.assignee.username">
+          <div mat-line>
+            <ng-container *ngIf="data.assignee.name !== null; else noAssigneeDisplayName">{{ data.assignee.name }}</ng-container>
+            <ng-template #noAssigneeDisplayName>{{ data.assignee.username }}</ng-template>
+          </div>
+          <div mat-line>
+            @{{ data.assignee.username }}<ng-container *ngIf="data.assignee.host !== null">@{{ data.assignee.host }}</ng-container>
+          </div>
+        </mat-list-item>
+      </ng-container>
+    </mat-action-list>
+    <div class="report-comment">{{ data.comment }}</div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-icon-button
+      i18n-matTooltip="@@report.show_reporter"
+      matTooltip="Show reporter detail"
+      matTooltipPosition="above"
+      (click)="openUserDialog(data.reporter.id)"
+      [disabled]="aus.credentials?.isModerator && data.reporter.isAdmin"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      i18n-matTooltip="@@report.mark_as_resolved"
+      matTooltip="Mark as resolved"
+      matTooltipPosition="above"
+      [disabled]="data.assignee !== null"
+      (click)="openMarkAsResolvedDialog()"
+    >
+      <mat-icon>done</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

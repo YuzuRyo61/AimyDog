@@ -126,6 +126,13 @@
     "file.search_dialog.title": "ファイル検索",
     "file.no_files": "該当するファイルが見つかりません",
     "common.hostname": "ホスト名",
-    "common.username": "ユーザー名"
+    "common.username": "ユーザー名",
+    "report.assignee_by": "担当者",
+    "report.mark_as_resolved": "解決済みにする",
+    "report.report_to": "通報先ユーザー",
+    "report.show_reporter": "通報元のユーザーを表示",
+    "report.mar_dialog.message": "この通報を解決済みにしますか？",
+    "report.mar_dialog.success": "通報を解決済みにしました",
+    "report.mar_dialog.title": "解決済みにする"
   }
 }
