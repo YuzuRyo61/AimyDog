@@ -38,6 +38,17 @@
         </mat-list-item>
       </ng-container>
     </mat-action-list>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon
+          mat-list-icon
+          i18n-matTooltip="@@report.created_at"
+          matTooltip="Created at"
+          matTooltipPosition="above"
+        >flag</mat-icon>
+        <time>{{ data.createdAt | date : 'medium' }}</time>
+      </mat-list-item>
+    </mat-list>
     <div class="report-comment">{{ data.comment }}</div>
   </mat-card-content>
   <mat-card-actions>

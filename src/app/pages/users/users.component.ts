@@ -57,8 +57,8 @@ export class UsersComponent implements OnInit, OnDestroy {
   private fetchData(): void {
     this.loading = true;
     const searchOption = this.searchOptionsForm.value as UserSearchOption;
-    if (searchOption.username === '') searchOption.username === undefined;
-    if (searchOption.hostname === '') searchOption.hostname === undefined;
+    if (searchOption.username === '') searchOption.username = undefined;
+    if (searchOption.hostname === '') searchOption.hostname = undefined;
     this.mas.fetchUserList(this.items.length, searchOption).subscribe(
       val => {
         this.items = this.items.concat(val);
@@ -91,13 +91,12 @@ export class UsersComponent implements OnInit, OnDestroy {
       disableClose: true,
     });
     dialogRes.afterClosed().subscribe(result => {
-      if (result !== undefined) {
-        this.searchOptionsForm = result;
-        this.items = [];
-        this.allLoaded = false;
-        this.isFailed = false;
-        this.fetchData();
-      }
+      if (result === undefined) return;
+      this.searchOptionsForm = result;
+      this.items = [];
+      this.allLoaded = false;
+      this.isFailed = false;
+      this.fetchData();
     });
   }
 }

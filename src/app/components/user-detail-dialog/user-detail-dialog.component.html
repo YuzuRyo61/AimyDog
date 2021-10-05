@@ -121,12 +121,6 @@
         <div mat-line>
           {{ user.followingCount }}
         </div>
-        <button
-          mat-icon-button
-          (click)="showFollowingRelationDialog()"
-        >
-          <mat-icon>person_search</mat-icon>
-        </button>
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>people_alt</mat-icon>
@@ -134,12 +128,6 @@
         <div mat-line>
           {{ user.followersCount }}
         </div>
-        <button
-          mat-icon-button
-          (click)="showFollowerRelationDialog()"
-        >
-          <mat-icon>person_search</mat-icon>
-        </button>
       </mat-list-item>
       <ng-container *ngIf="user.host !== null">
         <div mat-subheader i18n="@@user.detail.federation_info">Federation information</div>

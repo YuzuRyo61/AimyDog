@@ -1,5 +1,5 @@
 export interface ReportSearchOption {
-  state: 'resolved' | 'unresolved';
+  state: 'resolved' | 'unresolved' | '' | null;
   reporterOrigin: 'combined' | 'local' | 'remote';
   targetUserOrigin: 'combined' | 'local' | 'remote';
 }

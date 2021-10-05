@@ -3,6 +3,8 @@ mat-card {
 }
 
 .report-comment {
+  display: block;
   margin-top: 8px;
   white-space: pre;
+  word-break: break-all;
 }
