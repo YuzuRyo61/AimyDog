@@ -142,6 +142,11 @@
     "report.search_dialog.state.resolved": "解決済み",
     "report.search_dialog.target_origin": "対象ユーザーの起源",
     "report.no_reports": "通報はありません。",
-    "report.created_at": "通報日"
+    "report.created_at": "通報日",
+    "common.offline_message": "ネットワークがオフラインです。ネットワーク接続を確認してください。",
+    "user.detail.menu.update_remote": "リモート情報を更新",
+    "user.detail.update_remote.message": "リモートユーザーを更新しますか？",
+    "user.detail.update_remote.success": "ユーザー情報を更新しました",
+    "user.detail.update_remote.title": "リモート情報を更新"
   }
 }

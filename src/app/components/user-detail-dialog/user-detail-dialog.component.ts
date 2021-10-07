@@ -241,4 +241,28 @@ export class UserDetailDialogComponent implements OnInit, OnDestroy {
     }
   }
 
+  openUpdateUserDialog(): void {
+    if (this.user === undefined || this.user?.host === null) return;
+
+    const dialog = this.dl.open(YnDialogComponent, {
+      data: {
+        title: $localize`:@@user.detail.update_remote.title:Update remote information`,
+        message: $localize`:@@user.detail.update_remote.message:Are you sure update remote user?`
+      },
+    });
+    dialog.afterClosed().subscribe(res => {
+      if (res === undefined || res !== true || this.user === undefined || this.user?.host === null) return;
+
+      this.ma.updateRemoteUser(this.user.id).subscribe(
+        () => {
+          this.sb.open($localize`:@@user.detail.update_remote.success:User information updated.`);
+          this.fetchData();
+        },
+        err => {
+          console.error(err);
+          this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
+        }
+      );
+    });
+  }
 }

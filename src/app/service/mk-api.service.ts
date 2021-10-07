@@ -49,6 +49,13 @@ export class MkApiService {
     }) as Observable<User[]>;
   }
 
+  updateRemoteUser(userId: string): Observable<unknown> {
+    return this.hc.post(`${this.baseUrl}/federation/update-remote-user`, {
+      i: this.aus.token,
+      userId: userId,
+    }) as Observable<unknown>;
+  }
+
   addModUser(userId: string): Observable<unknown> {
     return this.hc.post(`${this.baseUrl}/admin/moderators/add`, {
       i: this.aus.token,

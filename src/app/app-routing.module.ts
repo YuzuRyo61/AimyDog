@@ -25,6 +25,11 @@ const routes: Routes = [
     canActivate: [NeedLoginGuard],
   },
   {
+    path: 'federation',
+    loadChildren: () => import('./pages/federation/federation.module').then(m => m.FederationModule),
+    canActivate: [NeedLoginGuard],
+  },
+  {
     path: 'reports',
     loadChildren: () => import('./pages/reports/reports.module').then(m => m.ReportsModule),
     canActivate: [NeedLoginGuard],
