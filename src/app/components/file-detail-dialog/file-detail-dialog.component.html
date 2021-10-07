@@ -5,6 +5,30 @@
     <mat-progress-spinner mode="indeterminate" [diameter]="48"></mat-progress-spinner>
   </div>
   <ng-container *ngIf="file">
+    <mat-card>
+      <img mat-card-image
+        class="file-card-image"
+        *ngIf="file.thumbnailUrl !== null"
+        [src]="file.thumbnailUrl"
+        [alt]="file.thumbnailUrl"
+      >
+      <mat-card-header>
+        <mat-card-title>{{ file.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-chip-list>
+          <mat-chip
+            selected
+            color="accent"
+            i18n-matTooltip="@@common.tooltip.sensitive"
+            matTooltip="Sensitive"
+            matTooltipPosition="above"
+            *ngIf="file.isSensitive"
+          ><mat-icon>visibility_off</mat-icon></mat-chip>
+        </mat-chip-list>
+        <div class="file-card-comment">{{ file.comment }}</div>
+      </mat-card-content>
+    </mat-card>
     <mat-list>
       <div mat-subheader i18n="@@common.basic_info">Basic information</div>
       <mat-list-item>

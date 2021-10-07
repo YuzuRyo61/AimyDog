@@ -18,6 +18,17 @@ export class MkApiService {
     private hc: HttpClient,
   ) { }
 
+  private _limit = 100;
+
+  get limit(): number {
+    return this._limit;
+  }
+
+  set limit(val: number) {
+    if (val <= 0 || val > 100) throw Error('limit is must between 1 and 100');
+    this._limit = Math.floor(val);
+  }
+
   get baseUrl(): string {
     return `${this.aus.protocol}//${this.aus.address}/api`;
   }
@@ -32,7 +43,7 @@ export class MkApiService {
   fetchUserList(offset?: number, searchOption?: UserSearchOption): Observable<User[]> {
     return this.hc.post(`${this.baseUrl}/admin/show-users`, {
       i: this.aus.token,
-      limit: 100,
+      limit: this._limit,
       offset,
       ...searchOption,
     }) as Observable<User[]>;
@@ -83,7 +94,7 @@ export class MkApiService {
   fetchFileList(untilId?: string, searchOption?: FileSearchOption): Observable<DriveFile[]> {
     return this.hc.post(`${this.baseUrl}/admin/drive/files`, {
       i: this.aus.token,
-      limit: 100,
+      limit: this._limit,
       untilId,
       ...searchOption,
     }) as Observable<DriveFile[]>;
@@ -114,7 +125,7 @@ export class MkApiService {
   fetchReportList(untilId?: string, searchOption?: ReportSearchOption): Observable<Report[]> {
     return this.hc.post(`${this.baseUrl}/admin/abuse-user-reports`, {
       i: this.aus.token,
-      limit: 100,
+      limit: this._limit,
       untilId: untilId,
       ...searchOption,
     }) as Observable<Report[]>;

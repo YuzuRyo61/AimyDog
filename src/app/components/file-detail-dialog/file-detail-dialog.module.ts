@@ -9,6 +9,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { UserDetailDialogModule } from "../user-detail-dialog/user-detail-dialog.module";
 import { YnDialogModule } from "../yn-dialog/yn-dialog.module";
+import { MatCardModule } from "@angular/material/card";
+import { MatChipsModule } from "@angular/material/chips";
 
 
 
@@ -26,6 +28,8 @@ import { YnDialogModule } from "../yn-dialog/yn-dialog.module";
     MatTooltipModule,
     UserDetailDialogModule,
     YnDialogModule,
+    MatCardModule,
+    MatChipsModule,
   ],
   exports: [
     FileDetailDialogComponent

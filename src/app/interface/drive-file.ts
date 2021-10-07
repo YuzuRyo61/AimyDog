@@ -12,4 +12,5 @@ export interface DriveFile {
   thumbnailUrl: string | null;
   userId: string | null;
   user?: User;
+  comment: string;
 }
