@@ -8,6 +8,8 @@ import { DriveFile } from "../interface/drive-file";
 import { FileSearchOption } from "../interface/file-search-option";
 import { ReportSearchOption } from "../interface/report-search-option";
 import { Report } from "../interface/report";
+import { FederationListSearchOption } from "../interface/federation-list-search-option";
+import { Federation } from "../interface/federation";
 
 @Injectable({
   providedIn: 'root'
@@ -143,6 +145,15 @@ export class MkApiService {
       i: this.aus.token,
       reportId: reportId,
     }) as Observable<unknown>;
+  }
+
+  fetchFederationList(offset?: number, searchOption?: FederationListSearchOption): Observable<Federation[]> {
+    return this.hc.post(`${this.baseUrl}/federation/instances`, {
+      i: this.aus.token,
+      limit: this._limit,
+      offset,
+      ...searchOption,
+    }) as Observable<Federation[]>;
   }
 
 }

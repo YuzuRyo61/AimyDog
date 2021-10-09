@@ -1,0 +1,35 @@
+<mat-card *ngIf="data">
+  <mat-card-header>
+    <img
+      mat-card-avatar
+      *ngIf="data.iconUrl !== null"
+      [src]="data.iconUrl"
+      [alt]="data.iconUrl"
+    >
+    <mat-card-title>
+      <ng-container *ngIf="data.name !== null; else noName">{{ data.name }}</ng-container>
+      <ng-template #noName>{{ data.host }}</ng-template>
+    </mat-card-title>
+    <mat-card-subtitle>{{ data.host }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon matTooltip="Caught at" matTooltipPosition="above" i18n-matTooltipPosition="@@federation.caught_at">travel_explore</mat-icon>
+        <div mat-line>{{ data.caughtAt | date : 'medium' }}</div>
+      </mat-list-item>
+      <mat-list-item *ngIf="data.softwareName !== null">
+        <mat-icon mat-list-icon matTooltip="Software" matTooltipPosition="above" i18n-matTooltip="@@federation.software">settings</mat-icon>
+        <div mat-line>{{ data.softwareName | titlecase }} <ng-container *ngIf="data.softwareVersion">({{ data.softwareVersion }})</ng-container></div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Copy host" matTooltipPosition="above" i18n-matTooltip="@@federation.copy_host">
+      <mat-icon>content_copy</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
