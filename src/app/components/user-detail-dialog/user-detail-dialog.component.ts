@@ -6,6 +6,7 @@ import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material
 import { AuthService } from 'src/app/service/auth.service';
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
 import { YnDialogComponent } from "../yn-dialog/yn-dialog.component";
+import { FederationDetailDialogComponent } from "../federation-detail-dialog/federation-detail-dialog.component";
 
 @Component({
   selector: 'app-user-detail',
@@ -263,6 +264,14 @@ export class UserDetailDialogComponent implements OnInit, OnDestroy {
           this.sb.open($localize`:@@common.operation_failed:Operation failed.`);
         }
       );
+    });
+  }
+
+  openFederationDetailDialog(): void {
+    if (this.user === undefined || this.user.host === null) return;
+
+    this.dl.open(FederationDetailDialogComponent, {
+      data: this.user.host,
     });
   }
 }

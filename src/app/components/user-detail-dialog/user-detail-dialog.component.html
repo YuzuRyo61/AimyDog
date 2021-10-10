@@ -135,6 +135,12 @@
           <mat-icon mat-list-icon>language</mat-icon>
           <div mat-line i18n="@@user.detail.federation_info.host">Host</div>
           <div mat-line>{{ user.host }}</div>
+          <button
+            mat-icon-button
+            (click)="openFederationDetailDialog()"
+          >
+            <mat-icon>travel_explore</mat-icon>
+          </button>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>inbox</mat-icon>

@@ -1,0 +1,120 @@
+<h2 mat-dialog-title i18n="@@federation.detail.title">Instance detail</h2>
+
+<mat-dialog-content>
+  <div *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" [diameter]="48"></mat-progress-spinner>
+  </div>
+  <ng-container *ngIf="data">
+    <mat-card>
+      <mat-card-header>
+        <img
+          mat-card-avatar
+          [src]="data.iconUrl"
+          [alt]="data.iconUrl"
+        >
+        <mat-card-title>
+          <ng-container *ngIf="data.name !== null; else noName">{{ data.name }}</ng-container>
+          <ng-template #noName>{{ data.host }}</ng-template>
+        </mat-card-title>
+        <mat-card-subtitle>{{ data.host }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-chip-list>
+          <mat-chip
+            selected
+            color="warn"
+            i18n-matTooltip="@@common.tooltip.not_responding"
+            matTooltip="Not responding"
+            matTooltipPosition="above" *ngIf="data.isNotResponding"
+          >
+            <mat-icon>sync_problem</mat-icon>
+          </mat-chip>
+          <mat-chip
+            selected
+            color="warn"
+            i18n-matTooltip="@@common.tooltip.suspend"
+            matTooltip="Suspended"
+            matTooltipPosition="above" *ngIf="data.isSuspended"
+          >
+            <mat-icon>ac_unit</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+        <div class="federation-desc">{{ data.description }}</div>
+      </mat-card-content>
+    </mat-card>
+    <mat-list>
+      <div mat-subheader i18n="@@common.basic_info">Basic information</div>
+      <mat-list-item>
+        <mat-icon mat-list-icon>dns</mat-icon>
+        <div mat-line i18n="@@federation.detail.host">Host name</div>
+        <div mat-line>{{ data.host }}</div>
+        <button
+          mat-icon-button
+          *ngIf="isAvailableCopy()"
+          (click)="copyToClipboard(data.host)"
+        >
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>travel_explore</mat-icon>
+        <div mat-line i18n="@@federation.detail.caught_at">Caught at</div>
+        <div mat-line>{{ data.caughtAt | date : 'medium' }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>sync_alt</mat-icon>
+        <div mat-line i18n="@@federation.detail.last_updated_at">Last updated at</div>
+        <div mat-line>{{ data.lastCommunicatedAt | date : 'medium' }}</div>
+      </mat-list-item>
+      <mat-list-item *ngIf="data.softwareName !== null">
+        <mat-icon mat-list-icon>settings</mat-icon>
+        <div mat-line i18n="@@federation.detail.software">Software</div>
+        <div mat-line>{{ data.softwareName | titlecase }} <ng-container *ngIf="data.softwareVersion !== null">({{ data.softwareVersion }})</ng-container></div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>people_alt</mat-icon>
+        <div mat-line i18n="@@federation.detail.users">Users</div>
+        <div mat-line>{{ data.usersCount }}</div>
+      </mat-list-item>
+      <mat-list-item *ngIf="data.maintainerName !== null">
+        <mat-icon mat-list-icon>engineering</mat-icon>
+        <div mat-line i18n="@@federation.detail.maintainer_name">Maintainer name</div>
+        <div mat-line>{{ data.maintainerName }}</div>
+      </mat-list-item>
+      <mat-list-item *ngIf="data.maintainerEmail !== null">
+        <mat-icon mat-list-icon>contact_mail</mat-icon>
+        <div mat-line i18n="@@federation.detail.maintainer_email">Maintainer Email</div>
+        <div mat-line>{{ data.maintainerEmail }}</div>
+        <a
+          mat-icon-button
+          [href]="'mailto:' + data.maintainerEmail"
+        >
+          <mat-icon>mail_outline</mat-icon>
+        </a>
+      </mat-list-item>
+    </mat-list>
+    <mat-divider></mat-divider>
+    <mat-action-list>
+      <div mat-subheader i18n="@@federation.detail.operation">Instance operation</div>
+      <mat-list-item>
+        <mat-icon mat-list-icon>update</mat-icon>
+        <div mat-line i18n="@@federation.detail.operation.update_meta">Update instance meta</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>person_remove</mat-icon>
+        <div mat-line i18n="@@federation.detail.operation.remove_following">Remove all following</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>delete_sweep</mat-icon>
+        <div mat-line i18n="@@federation.detail.operation.remove_files">Remove all files</div>
+      </mat-list-item>
+    </mat-action-list>
+  </ng-container>
+</mat-dialog-content>
+
+<!--suppress HtmlDeprecatedAttribute -->
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close i18n="@@common.close">
+    Close
+  </button>
+</mat-dialog-actions>

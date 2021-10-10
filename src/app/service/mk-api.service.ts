@@ -156,4 +156,11 @@ export class MkApiService {
     }) as Observable<Federation[]>;
   }
 
+  fetchFederation(host: string): Observable<Federation> {
+    return this.hc.post(`${this.baseUrl}/federation/show-instance`, {
+      i: this.aus.token,
+      host: host,
+    }) as Observable<Federation>;
+  }
+
 }
