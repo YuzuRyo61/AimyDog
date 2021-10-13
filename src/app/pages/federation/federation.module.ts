@@ -7,12 +7,17 @@ import { VirtualScrollerModule } from "ngx-virtual-scroller";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
-
+import { FederationSearchDialogComponent } from './federation-search-dialog/federation-search-dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatInputModule } from "@angular/material/input";
 
 
 @NgModule({
   declarations: [
     FederationComponent,
+    FederationSearchDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -25,9 +30,14 @@ import { MatButtonModule } from "@angular/material/button";
     MatProgressSpinnerModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    MatInputModule,
   ],
   exports: [
     RouterModule,
   ]
 })
-export class FederationModule { }
+export class FederationModule {
+}

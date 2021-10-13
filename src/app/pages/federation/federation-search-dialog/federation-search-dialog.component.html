@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Federation search</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="data">
+    <mat-form-field appearance="fill">
+      <mat-label i18n="@@common.hostname">Hostname</mat-label>
+      <input matInput formControlName="host">
+    </mat-form-field>
+    <div class="radio-form">
+      <label i18n="@@federation.search_dialog.block_state">Block state: </label>
+      <mat-radio-group formControlName="blocked">
+        <mat-radio-button [value]="null" i18n="@@common.all">All</mat-radio-button>
+        <mat-radio-button [value]="true" i18n="@@federation.search_dialog.block_state.blocked">Blocked only</mat-radio-button>
+        <mat-radio-button [value]="false" i18n="@@federation.search_dialog.block_state.non_blocked">Non-blocked only</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="radio-form">
+      <label i18n="@@federation.search_dialog.respond_state">Respond state: </label>
+      <mat-radio-group formControlName="notResponding">
+        <mat-radio-button [value]="null" i18n="@@common.all">All</mat-radio-button>
+        <mat-radio-button [value]="false" i18n="@@federation.search_dialog.respond_state.respond">Respond only</mat-radio-button>
+        <mat-radio-button [value]="true" i18n="@@federation.search_dialog.respond_state.non_respond">Non-respond only</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="radio-form">
+      <label i18n="@@federation.search_dialog.suspend_state">Suspend state: </label>
+      <mat-radio-group formControlName="suspended">
+        <mat-radio-button [value]="null" i18n="@@common.all">All</mat-radio-button>
+        <mat-radio-button [value]="true" i18n="@@federation.search_dialog.suspend_state.suspend">Suspend only</mat-radio-button>
+        <mat-radio-button [value]="false" i18n="@@federation.search_dialog.suspend_state.non_suspend">Non-suspend only</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<!--suppress HtmlDeprecatedAttribute -->
+<mat-dialog-actions align="end">
+  <button mat-button (click)="ref.close()" i18n="@@common.dialog.close">Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial i18n="@@common.dialog.apply">Apply</button>
+</mat-dialog-actions>

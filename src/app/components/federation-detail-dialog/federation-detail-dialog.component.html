@@ -96,15 +96,15 @@
     <mat-divider></mat-divider>
     <mat-action-list>
       <div mat-subheader i18n="@@federation.detail.operation">Instance operation</div>
-      <mat-list-item>
+      <mat-list-item (click)="openUpdateMetaDialog()">
         <mat-icon mat-list-icon>update</mat-icon>
         <div mat-line i18n="@@federation.detail.operation.update_meta">Update instance meta</div>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item (click)="openRemoveFollowing()">
         <mat-icon mat-list-icon>person_remove</mat-icon>
         <div mat-line i18n="@@federation.detail.operation.remove_following">Remove all following</div>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item (click)="openRemoveDriveData()">
         <mat-icon mat-list-icon>delete_sweep</mat-icon>
         <div mat-line i18n="@@federation.detail.operation.remove_files">Remove all files</div>
       </mat-list-item>

@@ -163,4 +163,24 @@ export class MkApiService {
     }) as Observable<Federation>;
   }
 
+  updateFederation(host: string): Observable<unknown> {
+    return this.hc.post(`${this.baseUrl}/admin/federation/refresh-remote-instance-metadata`, {
+      i: this.aus.token,
+      host: host,
+    }) as Observable<unknown>;
+  }
+
+  removeAllFollowingFederation(host: string): Observable<unknown> {
+    return this.hc.post(`${this.baseUrl}/admin/federation/remove-all-following`, {
+      i: this.aus.token,
+      host: host,
+    }) as Observable<unknown>;
+  }
+
+  removeAllFilesFederation(host: string): Observable<unknown> {
+    return this.hc.post(`${this.baseUrl}/admin/federation/delete-all-files`, {
+      i: this.aus.token,
+      host: host,
+    }) as Observable<unknown>;
+  }
 }

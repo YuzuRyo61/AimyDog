@@ -10,6 +10,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { YnDialogModule } from "../yn-dialog/yn-dialog.module";
 
 
 
@@ -28,6 +29,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatIconModule,
     MatChipsModule,
     MatTooltipModule,
+    YnDialogModule,
   ],
   exports: [
     FederationDetailDialogComponent,
