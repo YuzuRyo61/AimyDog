@@ -12,6 +12,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 
 
 @NgModule({
@@ -19,22 +20,23 @@ import { MatInputModule } from "@angular/material/input";
     FederationComponent,
     FederationSearchDialogComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([{
-      path: '',
-      component: FederationComponent,
-    }]),
-    FederationCardModule,
-    VirtualScrollerModule,
-    MatProgressSpinnerModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatRadioModule,
-    MatInputModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([{
+            path: '',
+            component: FederationComponent,
+        }]),
+        FederationCardModule,
+        VirtualScrollerModule,
+        MatProgressSpinnerModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatRadioModule,
+        MatInputModule,
+        MatSelectModule,
+    ],
   exports: [
     RouterModule,
   ]

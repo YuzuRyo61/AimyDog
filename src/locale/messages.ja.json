@@ -25,7 +25,7 @@
     "user.search_dialog.state.admin_or_mod": "管理者もしくはモデレーター",
     "user.search_dialog.state.silence": "サイレンス",
     "user.search_dialog.state.suspend": "凍結",
-    "user.search_dialog.sort": "ソート",
+    "common.sort": "ソート",
     "user.search_dialog.sort.created_at_desc": "作成日(降順)",
     "user.search_dialog.sort.created_at_asc": "作成日(昇順)",
     "common.origin": "起源",
@@ -183,6 +183,12 @@
     "federation.search_dialog.deliver_state.deliver": "配送中のみ",
     "federation.search_dialog.respond_state": "応答状態: ",
     "federation.search_dialog.respond_state.non_respond": "応答なしのみ",
-    "federation.search_dialog.respond_state.respond": "応答中のみ"
+    "federation.search_dialog.respond_state.respond": "応答中のみ",
+    "federation.search_dialog.sort.caught_at_asc": "発見日(昇順)",
+    "federation.search_dialog.sort.caught_at_desc": "発見日(降順)",
+    "federation.search_dialog.sort.last_com_at_asc": "最終更新日(昇順)",
+    "federation.search_dialog.sort.last_com_at_desc": "最終更新日(降順)",
+    "federation.search_dialog.sort.users_asc": "ユーザー数(昇順)",
+    "federation.search_dialog.sort.users_desc": "ユーザー数(降順)"
   }
 }

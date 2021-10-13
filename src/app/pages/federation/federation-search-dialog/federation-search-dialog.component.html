@@ -30,6 +30,17 @@
         <mat-radio-button [value]="true" i18n="@@federation.search_dialog.deliver_state.non_deliver">Not-deliver only</mat-radio-button>
       </mat-radio-group>
     </div>
+    <mat-form-field appearance="fill">
+      <mat-label i18n="@@common.sort">Sort</mat-label>
+      <mat-select formControlName="sort">
+        <mat-option value="-caughtAt" i18n="@@federation.search_dialog.sort.caught_at_asc">Caught at (asc)</mat-option>
+        <mat-option value="+caughtAt" i18n="@@federation.search_dialog.sort.caught_at_desc">Caught at (desc)</mat-option>
+        <mat-option value="-lastCommunicatedAt" i18n="@@federation.search_dialog.sort.last_com_at_asc">Last communicated at (asc)</mat-option>
+        <mat-option value="+lastCommunicatedAt" i18n="@@federation.search_dialog.sort.last_com_at_desc">Last communicated at (desc)</mat-option>
+        <mat-option value="-users" i18n="@@federation.search_dialog.sort.users_asc">Users (asc)</mat-option>
+        <mat-option value="+users" i18n="@@federation.search_dialog.sort.users_desc">Users (desc)</mat-option>
+      </mat-select>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 
