@@ -131,4 +131,10 @@ export class FederationDetailDialogComponent implements OnInit {
       );
     });
   }
+
+  isCompatibleEmailValue(): boolean {
+    if (this.data === undefined || this.data.maintainerEmail === null) return false;
+    const emailRegex = /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/i;
+    return emailRegex.test(this.data.maintainerEmail);
+  }
 }

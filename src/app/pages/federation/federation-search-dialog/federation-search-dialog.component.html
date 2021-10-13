@@ -23,11 +23,11 @@
       </mat-radio-group>
     </div>
     <div class="radio-form">
-      <label i18n="@@federation.search_dialog.suspend_state">Suspend state: </label>
+      <label i18n="@@federation.search_dialog.deliver_state">Deliver state: </label>
       <mat-radio-group formControlName="suspended">
         <mat-radio-button [value]="null" i18n="@@common.all">All</mat-radio-button>
-        <mat-radio-button [value]="true" i18n="@@federation.search_dialog.suspend_state.suspend">Suspend only</mat-radio-button>
-        <mat-radio-button [value]="false" i18n="@@federation.search_dialog.suspend_state.non_suspend">Non-suspend only</mat-radio-button>
+        <mat-radio-button [value]="false" i18n="@@federation.search_dialog.deliver_state.deliver">Delivering only</mat-radio-button>
+        <mat-radio-button [value]="true" i18n="@@federation.search_dialog.deliver_state.non_deliver">Not-deliver only</mat-radio-button>
       </mat-radio-group>
     </div>
   </form>

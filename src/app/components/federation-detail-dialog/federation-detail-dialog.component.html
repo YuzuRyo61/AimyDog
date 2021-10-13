@@ -9,8 +9,9 @@
       <mat-card-header>
         <img
           mat-card-avatar
+          *ngIf="data.iconUrl !== null"
           [src]="data.iconUrl"
-          [alt]="data.iconUrl"
+          [alt]="data.host"
         >
         <mat-card-title>
           <ng-container *ngIf="data.name !== null; else noName">{{ data.name }}</ng-container>
@@ -32,11 +33,11 @@
           <mat-chip
             selected
             color="warn"
-            i18n-matTooltip="@@common.tooltip.suspend"
-            matTooltip="Suspended"
+            i18n-matTooltip="@@common.tooltip.not_delivered"
+            matTooltip="Not delivered"
             matTooltipPosition="above" *ngIf="data.isSuspended"
           >
-            <mat-icon>ac_unit</mat-icon>
+            <mat-icon>cancel_schedule_send</mat-icon>
           </mat-chip>
         </mat-chip-list>
         <div class="federation-desc">{{ data.description }}</div>
@@ -87,6 +88,7 @@
         <div mat-line>{{ data.maintainerEmail }}</div>
         <a
           mat-icon-button
+          *ngIf="isCompatibleEmailValue()"
           [href]="'mailto:' + data.maintainerEmail"
         >
           <mat-icon>mail_outline</mat-icon>

@@ -163,6 +163,26 @@
     "federation.detail.operation.update_meta": "インスタンス情報を更新",
     "federation.detail.title": "インスタンス情報",
     "federation.detail.users": "ユーザー数",
-    "federation.no_instance": "該当するインスタンスが見つかりません"
+    "federation.no_instance": "該当するインスタンスが見つかりません",
+    "common.tooltip.not_delivered": "配送停止",
+    "federation.detail.dialog.remove_files.message": "このインスタンスのファイルをすべて削除しますか？",
+    "federation.detail.dialog.remove_files.success": "インスタンスのすべてのファイルを削除しました",
+    "federation.detail.dialog.remove_files.title": "全ファイルを削除",
+    "federation.detail.dialog.remove_following.message": "このインスタンスの全フォロー情報を削除しますか？",
+    "federation.detail.dialog.remove_following.success": "インスタンスの全フォロー情報を削除しました",
+    "federation.detail.dialog.remove_following.title": "全フォロー情報を削除",
+    "federation.detail.dialog.update_meta.message": "インスタンス情報を更新しますか？",
+    "federation.detail.dialog.update_meta.success": "インスタンス情報を更新しました",
+    "federation.detail.dialog.update_meta.title": "インスタンス情報更新",
+    "common.all": "すべて",
+    "federation.search_dialog.block_state": "ブロック状態: ",
+    "federation.search_dialog.block_state.blocked": "ブロックのみ",
+    "federation.search_dialog.block_state.non_blocked": "非ブロックのみ",
+    "federation.search_dialog.deliver_state": "配送状態: ",
+    "federation.search_dialog.deliver_state.non_deliver": "配送停止のみ",
+    "federation.search_dialog.deliver_state.deliver": "配送中のみ",
+    "federation.search_dialog.respond_state": "応答状態: ",
+    "federation.search_dialog.respond_state.non_respond": "応答なしのみ",
+    "federation.search_dialog.respond_state.respond": "応答中のみ"
   }
 }
