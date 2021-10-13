@@ -16,3 +16,14 @@
   }
 
 }
+
+.file-card-image {
+  max-height: 20vh;
+  object-fit: cover;
+}
+
+.file-card-comment {
+  margin-top: 8px;
+  white-space: pre;
+  word-break: break-all;
+}

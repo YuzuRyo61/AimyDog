@@ -135,6 +135,12 @@
           <mat-icon mat-list-icon>language</mat-icon>
           <div mat-line i18n="@@user.detail.federation_info.host">Host</div>
           <div mat-line>{{ user.host }}</div>
+          <button
+            mat-icon-button
+            (click)="openFederationDetailDialog()"
+          >
+            <mat-icon>travel_explore</mat-icon>
+          </button>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>inbox</mat-icon>
@@ -159,9 +165,15 @@
 
     <ng-container *ngIf="aus.credentials?.id !== user.id && !(aus.credentials?.isModerator && (user.isModerator || user.isAdmin))">
       <mat-divider></mat-divider>
-
       <mat-action-list>
         <div mat-subheader i18n="@@user.detail.operation">User operation</div>
+        <mat-list-item
+          *ngIf="user.host !== null"
+          (click)="openUpdateUserDialog()"
+        >
+          <mat-icon mat-list-icon>update</mat-icon>
+          <div mat-line i18n="@@user.detail.menu.update_remote">Update remote information</div>
+        </mat-list-item>
         <mat-list-item
           *ngIf="aus.credentials?.isAdmin && !user.isAdmin && user.host === null"
           (click)="openModeratorDialog()"

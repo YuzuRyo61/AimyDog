@@ -1,0 +1,21 @@
+<virtual-scroller
+  #scroll
+  [enableUnequalChildrenSizes]="true"
+  [items]="items"
+  class="federation-scroll"
+  (vsEnd)="vsEvent($event)"
+>
+  <div *ngFor="let item of scroll.viewPortItems" class="federation-scroll-item">
+    <app-federation-card [data]="item"></app-federation-card>
+  </div>
+  <div *ngIf="loading" class="federation-scroll-full-width">
+    <mat-progress-spinner mode="indeterminate" [diameter]="48" class="loading-spinner"></mat-progress-spinner>
+  </div>
+  <div *ngIf="!loading && items.length === 0">
+    <h3 i18n="@@federation.no_instance">No applicable instance found.</h3>
+  </div>
+</virtual-scroller>
+
+<button mat-fab color="primary" class="fab-button" (click)="openSearchDialog()">
+  <mat-icon>search</mat-icon>
+</button>

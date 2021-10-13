@@ -46,8 +46,12 @@ export class FileCardComponent {
 
   openFileDetailDialog(): void {
     if (this.file === undefined) return;
-    this.dl.open(FileDetailDialogComponent, {
+    const detailDialog = this.dl.open(FileDetailDialogComponent, {
       data: this.file.id,
+    });
+    detailDialog.afterClosed().subscribe(res => {
+      if (res === undefined || this.file === undefined || this.file?.id !== res) return;
+      this.file = undefined;
     });
   }
 }

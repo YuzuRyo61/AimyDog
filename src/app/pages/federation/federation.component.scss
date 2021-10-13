@@ -1,0 +1,56 @@
+@use "src/responsive-mixin" as rm;
+
+.federation-scroll {
+  width: 100vm;
+  height: 90vh;
+}
+
+.federation-scroll-item {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+
+  @include rm.responsive(md) {
+    width: 50%;
+  }
+
+  @include rm.responsive(lg) {
+    width: 33.3%;
+  }
+
+  @include rm.responsive(xl) {
+    width: 25%;
+  }
+}
+
+.federation-scroll-full-width {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+  display: inline-block;
+  vertical-align: central;
+  overflow: hidden;
+}
+
+.loading-spinner {
+  position: absolute;
+  left: 50%;
+}
+
+.fab-button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: auto;
+
+  @include rm.responsive(lg) {
+    bottom: 48px;
+    right: 48px;
+  }
+
+  @include rm.responsive(xl) {
+    bottom: 48px;
+    right: 48px;
+  }
+}

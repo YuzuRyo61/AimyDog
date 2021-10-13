@@ -10,6 +10,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatButtonModule } from "@angular/material/button";
 import { YnDialogModule } from "../yn-dialog/yn-dialog.module";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { FederationDetailDialogModule } from "../federation-detail-dialog/federation-detail-dialog.module";
 
 
 
@@ -28,6 +29,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatButtonModule,
     YnDialogModule,
     MatProgressSpinnerModule,
+    FederationDetailDialogModule,
   ],
   exports: [
     UserDetailDialogComponent,

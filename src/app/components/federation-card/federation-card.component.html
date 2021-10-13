@@ -1,0 +1,55 @@
+<mat-card *ngIf="data">
+  <mat-card-header>
+    <img
+      mat-card-avatar
+      *ngIf="data.iconUrl !== null"
+      [src]="data.iconUrl"
+      [alt]="data.host"
+    >
+    <mat-card-title>
+      <ng-container *ngIf="data.name !== null; else noName">{{ data.name }}</ng-container>
+      <ng-template #noName>{{ data.host }}</ng-template>
+    </mat-card-title>
+    <mat-card-subtitle>{{ data.host }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-chip-list>
+      <mat-chip
+        selected
+        color="warn"
+        i18n-matTooltip="@@common.tooltip.not_responding"
+        matTooltip="Not responding"
+        matTooltipPosition="above" *ngIf="data.isNotResponding"
+      >
+        <mat-icon>sync_problem</mat-icon>
+      </mat-chip>
+      <mat-chip
+        selected
+        color="warn"
+        i18n-matTooltip="@@common.tooltip.not_delivered"
+        matTooltip="Not delivered"
+        matTooltipPosition="above" *ngIf="data.isSuspended"
+      >
+        <mat-icon>cancel_schedule_send</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon matTooltip="Caught at" matTooltipPosition="above" i18n-matTooltip="@@federation.detail.caught_at">travel_explore</mat-icon>
+        <div mat-line>{{ data.caughtAt | date : 'medium' }}</div>
+      </mat-list-item>
+      <mat-list-item *ngIf="data.softwareName !== null">
+        <mat-icon mat-list-icon matTooltip="Software" matTooltipPosition="above" i18n-matTooltip="@@federation.detail.software">settings</mat-icon>
+        <div mat-line>{{ data.softwareName | titlecase }} <ng-container *ngIf="data.softwareVersion">({{ data.softwareVersion }})</ng-container></div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button matTooltip="Show detail" matTooltipPosition="above" i18n-matTooltip="@@federation.show_info" (click)="openDetailDialog()">
+      <mat-icon>info</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Copy host" matTooltipPosition="above" i18n-matTooltip="@@federation.copy_host" *ngIf="isAvailableCopy()" (click)="copyHost()">
+      <mat-icon>content_copy</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
