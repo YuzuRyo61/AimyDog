@@ -189,6 +189,7 @@
     "federation.search_dialog.sort.last_com_at_asc": "最終更新日(昇順)",
     "federation.search_dialog.sort.last_com_at_desc": "最終更新日(降順)",
     "federation.search_dialog.sort.users_asc": "ユーザー数(昇順)",
-    "federation.search_dialog.sort.users_desc": "ユーザー数(降順)"
+    "federation.search_dialog.sort.users_desc": "ユーザー数(降順)",
+    "federation.search_dialog.title": "連合検索"
   }
 }
