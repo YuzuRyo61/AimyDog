@@ -1,0 +1,25 @@
+<h2 mat-dialog-title i18n="@@emoji.edit_dialog.title">Edit emoji</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label i18n="@@common.name">Name</mat-label>
+    <input matInput [(ngModel)]="targetEmoji.name" required>
+    <mat-error *ngIf="targetEmoji.name.length <= 0">Required.</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label i18n="@@common.category">Category</mat-label>
+    <input matInput [(ngModel)]="targetEmoji.category">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label i18n="@@emoji.edit_dialog.aliases">Aliases</mat-label>
+    <input matInput [(ngModel)]="aliasesValue">
+    <mat-hint i18n="@@emoji.edit_dialog.aliases_hint">You can specify multiple spaces</mat-hint>
+  </mat-form-field>
+</mat-dialog-content>
+
+<!--suppress HtmlDeprecatedAttribute -->
+<mat-dialog-actions align="end">
+  <button mat-button color="warn" i18n="@@common.dialog.delete" [disabled]="loading" (click)="deleteEmojiDialog()">Delete</button>
+  <button mat-button (click)="ref.close()" i18n="@@common.dialog.close" [disabled]="loading">Close</button>
+  <button mat-button (click)="editApply()" i18n="@@common.dialog.save" cdkFocusInitial [disabled]="loading">Save</button>
+</mat-dialog-actions>

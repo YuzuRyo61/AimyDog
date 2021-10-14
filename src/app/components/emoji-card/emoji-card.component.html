@@ -1,0 +1,23 @@
+<mat-card *ngIf="data">
+  <mat-card-header>
+    <img mat-card-avatar [src]="data.url" [alt]="data.name">
+    <mat-card-title>{{ data.name }}</mat-card-title>
+    <mat-card-subtitle *ngIf="data.category !== null">{{ data.category }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content *ngIf="data.host !== null">
+    <mat-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon matTooltip="Origin" matTooltipPosition="above" i18n-matTooltip="@@common.origin">language</mat-icon>
+        <div mat-line>{{ data.host }}</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions *ngIf="data.host === null">
+    <button mat-icon-button matTooltip="Edit emoji" matTooltipPosition="above" i18n-matTooltip="@@emoji.edit" (click)="openEmojiEditDialog()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Copy emoji name" matTooltipPosition="above" i18n-matTooltip="@@emoji.copy_name" *ngIf="isAvailableCopy()" (click)="copyEmojiName()">
+      <mat-icon>content_copy</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

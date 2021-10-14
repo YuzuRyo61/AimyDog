@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
-
+import { EmojiEditDialogModule } from "../../components/emoji-edit-dialog/emoji-edit-dialog.module";
 
 
 @NgModule({
@@ -21,25 +21,27 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     FilesComponent,
     FileSearchDialogComponent,
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild([{
-            path: '',
-            component: FilesComponent,
-        }]),
-        VirtualScrollerModule,
-        FileCardModule,
-        MatIconModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatProgressSpinnerModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatInputModule,
-        MatAutocompleteModule,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([{
+      path: '',
+      component: FilesComponent,
+    }]),
+    VirtualScrollerModule,
+    FileCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    EmojiEditDialogModule,
+  ],
   exports: [
     RouterModule,
   ]
 })
-export class FilesModule { }
+export class FilesModule {
+}
