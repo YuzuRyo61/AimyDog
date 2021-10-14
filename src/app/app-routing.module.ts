@@ -35,6 +35,11 @@ const routes: Routes = [
     canActivate: [NeedLoginGuard],
   },
   {
+    path: 'emoji',
+    loadChildren: () => import('./pages/emoji/emoji.module').then(m => m.EmojiModule),
+    canActivate: [NeedLoginGuard],
+  },
+  {
     path: 'callback',
     loadChildren: () => import('./pages/callback/callback.module').then(m => m.CallbackModule),
     canActivate: [NotLoginGuard],

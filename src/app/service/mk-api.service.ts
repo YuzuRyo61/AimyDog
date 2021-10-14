@@ -10,6 +10,7 @@ import { ReportSearchOption } from "../interface/report-search-option";
 import { Report } from "../interface/report";
 import { FederationListSearchOption } from "../interface/federation-list-search-option";
 import { Federation } from "../interface/federation";
+import { Emoji } from "../interface/emoji";
 
 @Injectable({
   providedIn: 'root'
@@ -181,6 +182,42 @@ export class MkApiService {
     return this.hc.post(`${this.baseUrl}/admin/federation/delete-all-files`, {
       i: this.aus.token,
       host: host,
+    }) as Observable<unknown>;
+  }
+
+  fetchLocalEmojiList(untilId?: string, query?: string): Observable<Emoji[]> {
+    return this.hc.post(`${this.baseUrl}/admin/emoji/list`, {
+      i: this.aus.token,
+      limit: this._limit,
+      untilId,
+      query,
+    }) as Observable<Emoji[]>;
+  }
+
+  fetchRemoteEmojiList(untilId?: string, query?: string, host?: string): Observable<Emoji[]> {
+    return this.hc.post(`${this.baseUrl}/admin/emoji/list-remote`, {
+      i: this.aus.token,
+      limit: this._limit,
+      untilId,
+      query,
+      host,
+    }) as Observable<Emoji[]>;
+  }
+
+  editEmoji(emoji: Emoji): Observable<unknown> {
+    return this.hc.post(`${this.baseUrl}/admin/emoji/update`, {
+      i: this.aus.token,
+      id: emoji.id,
+      name: emoji.name,
+      category: emoji.category,
+      aliases: emoji.aliases,
+    }) as Observable<unknown>;
+  }
+
+  removeEmoji(emojiId: string): Observable<unknown> {
+    return this.hc.post(`${this.baseUrl}/admin/emoji/remove`, {
+      i: this.aus.token,
+      id: emojiId,
     }) as Observable<unknown>;
   }
 }

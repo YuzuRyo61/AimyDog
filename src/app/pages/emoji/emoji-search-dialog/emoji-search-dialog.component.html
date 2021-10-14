@@ -1,0 +1,31 @@
+<h2 mat-dialog-title i18n="@@emoji.search_dialog.title">Emoji search</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="data">
+    <div class="radio-form">
+      <label i18n="@@emoji.search_dialog.origin">Emoji origin: </label>
+      <mat-radio-group formControlName="isRemote">
+        <mat-radio-button [value]="false" i18n="@@emoji.search_dialog.origin.local">Local only</mat-radio-button>
+        <mat-radio-button [value]="true" i18n="@@emoji.search_dialog.origin.remote">Remote only</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label i18n="@@emoji.search_dialog.query">Query</mat-label>
+      <input matInput formControlName="query">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<!--suppress HtmlDeprecatedAttribute -->
+<mat-dialog-actions align="end">
+  <button
+    mat-button
+    i18n="@@common.dialog.close"
+    (click)="ref.close()"
+  >Close</button>
+  <button
+    mat-button
+    i18n="@@common.dialog.apply"
+    [mat-dialog-close]="data"
+  >Apply</button>
+</mat-dialog-actions>

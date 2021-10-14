@@ -1,0 +1,24 @@
+<virtual-scroller
+  #scroll
+  [enableUnequalChildrenSizes]="true"
+  [items]="items"
+  class="emoji-scroll"
+  (vsEnd)="vsEvent($event)"
+>
+  <div
+    class="emoji-scroll-item"
+    *ngFor="let item of scroll.viewPortItems"
+  >
+    <app-emoji-card [data]="item"></app-emoji-card>
+  </div>
+  <div *ngIf="loading" class="emoji-scroll-full-width">
+    <mat-progress-spinner mode="indeterminate" [diameter]="48" class="loading-spinner"></mat-progress-spinner>
+  </div>
+  <div *ngIf="!loading && items.length === 0">
+    <h3 i18n="@@emoji.no_emojis">No applicable emoji found.</h3>
+  </div>
+</virtual-scroller>
+
+<button mat-fab color="primary" class="fab-button" (click)="openSearchDialog()">
+  <mat-icon>search</mat-icon>
+</button>

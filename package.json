@@ -1,6 +1,6 @@
 {
   "name": "aimy-dog",
-  "version": "0.5.0-alpha",
+  "version": "0.6.0-alpha",
   "description": "Administration tool for Misskey instance",
   "private": true,
   "author": {
@@ -36,6 +36,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@angular/service-worker": "~12.2.0",
+    "clone": "^2.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -51,6 +52,7 @@
     "@angular/compiler-cli": "~12.2.0",
     "@angular/flex-layout": "^12.0.0-beta.35",
     "@angular/localize": "^12.2.7",
+    "@types/clone": "^2.1.1",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "@types/semver": "^7.3.8",
