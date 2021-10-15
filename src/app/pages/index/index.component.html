@@ -1,4 +1,4 @@
-<form (submit)="$event.preventDefault(); submitForm()" *ngIf="isCookieEnabled(); else requiredCookie">
+<form (submit)="$event.preventDefault(); submitForm()">
   <mat-card>
     <mat-card-header>
       <mat-card-title i18n="@@landing.login">Login</mat-card-title>
@@ -11,7 +11,7 @@
         <ng-template #normalHint>
           <mat-hint i18n="@@landing.support_hint">Supported Misskey version is more than 12.39.1</mat-hint>
         </ng-template>
-        <mat-error *ngIf="loginAddressForm.hasError('required')" i18n="@@landing.required">Required.</mat-error>
+        <mat-error *ngIf="loginAddressForm.hasError('required')" i18n="@@common.required">Required.</mat-error>
         <mat-error *ngIf="loginAddressForm.hasError('invalidProtocol')" i18n="@@landing.error_protocol">Illegal protocol.</mat-error>
         <mat-error *ngIf="loginAddressForm.hasError('parse')" i18n="@@landing.error_parse">Could not parse URL.</mat-error>
         <mat-error *ngIf="loginAddressForm.hasError('fetch')" i18n="@@landing.error_fetch">Unable to connect to the specified instance or not supported Misskey version</mat-error>
@@ -24,7 +24,3 @@
     </mat-card-actions>
   </mat-card>
 </form>
-
-<ng-template #requiredCookie>
-  <p i18n="@@landing.required_cookie">This web application is required using Cookie. Please enable Cookie.</p>
-</ng-template>

@@ -15,6 +15,7 @@ import { APP_BASE_HREF } from "@angular/common";
 })
 export class AuthService {
   private _credentials?: User;
+  private _notifyPerm = false;
 
   constructor(
     private hc: HttpClient,
@@ -69,8 +70,24 @@ export class AuthService {
     return this._credentials;
   }
 
+  initNotification(): void {
+    if (!('Notification' in window)) return;
+    Notification.requestPermission().then(perm => {
+      if (perm === 'granted') {
+        this._notifyPerm = true;
+      }
+    });
+  }
+
+  get notifyPerm(): boolean {
+    return this._notifyPerm;
+  }
+
   onInit(): void {
-    if (this.token !== undefined) this.getCredentials();
+    if (this.token !== undefined) {
+      this.getCredentials();
+      this.initNotification();
+    }
   }
 
   private getCredentials(): void {

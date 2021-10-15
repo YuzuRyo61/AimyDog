@@ -83,7 +83,7 @@
     "landing.instance_address": "インスタンスアドレス",
     "landing.loading": "読み込み中 ...",
     "landing.login": "ログイン",
-    "landing.required": "必須項目です",
+    "common.required": "必須項目です",
     "landing.error_protocol": "不正なプロトコルです",
     "landing.error_parse": "URLをパースできませんでした",
     "landing.required_cookie": "このWebアプリケーションを使用するにはCookieを有効にする必要があります。Cookieを有効にしてください。",
