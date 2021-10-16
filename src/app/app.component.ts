@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NetworkService } from './service/network.service';
 import { AuthService } from "./service/auth.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { environment } from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,9 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  appVer = environment.appVersion;
+  appRepository = environment.repositoryUrl;
+
   constructor(
     private ns: NetworkService,
     public aus: AuthService,
