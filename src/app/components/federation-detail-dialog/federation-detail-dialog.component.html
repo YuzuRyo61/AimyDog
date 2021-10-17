@@ -75,7 +75,7 @@
       <mat-list-item>
         <mat-icon mat-list-icon>people_alt</mat-icon>
         <div mat-line i18n="@@federation.detail.users">Users</div>
-        <div mat-line>{{ data.usersCount }}</div>
+        <div mat-line>{{ data.usersCount | number }}</div>
       </mat-list-item>
       <mat-list-item *ngIf="data.maintainerName !== null">
         <mat-icon mat-list-icon>engineering</mat-icon>
@@ -116,7 +116,7 @@
 
 <!--suppress HtmlDeprecatedAttribute -->
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close i18n="@@common.dialog.close">
+  <button mat-button mat-dialog-close i18n="@@common.dialog.close" cdkFocusInitial>
     Close
   </button>
 </mat-dialog-actions>

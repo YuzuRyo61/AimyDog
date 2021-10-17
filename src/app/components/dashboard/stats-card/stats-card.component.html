@@ -1,0 +1,21 @@
+<mat-card *ngIf="stats">
+  <mat-card-header>
+    <mat-card-title i18n="@@dashboard.status.title">Status</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+      <button mat-button fxLayout="column" fxLayoutAlign="space-evenly center" routerLink="/users">
+        <h1>{{ stats.originalUsersCount | number }}</h1>
+        <h3 i18n="@@dashboard.status.users">Users (Local)</h3>
+      </button>
+      <div fxLayout="column" fxLayoutAlign="space-evenly center">
+        <h1>{{ stats.originalNotesCount | number }}</h1>
+        <h3 i18n="@@dashboard.status.notes">Notes (Local)</h3>
+      </div>
+      <button mat-button fxLayout="column" fxLayoutAlign="space-evenly center" routerLink="/federation">
+        <h1>{{ stats.instances | number }}</h1>
+        <h3 i18n="@@dashboard.status.instances">Instances</h3>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

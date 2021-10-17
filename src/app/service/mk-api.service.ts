@@ -11,6 +11,9 @@ import { Report } from "../interface/report";
 import { FederationListSearchOption } from "../interface/federation-list-search-option";
 import { Federation } from "../interface/federation";
 import { Emoji } from "../interface/emoji";
+import { MkStats } from "../interface/mk-stats";
+import { ModerationLog } from "../interface/moderation-log";
+import { ServerInfo } from "../interface/server-info";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +37,26 @@ export class MkApiService {
 
   get baseUrl(): string {
     return `${this.aus.protocol}//${this.aus.address}/api`;
+  }
+
+  fetchMeta(): Observable<MkStats> {
+    return this.hc.post(`${this.baseUrl}/stats`, {
+      i: this.aus.token,
+    }) as Observable<MkStats>;
+  }
+
+  fetchAuditLog(untilId?: string): Observable<ModerationLog[]> {
+    return this.hc.post(`${this.baseUrl}/admin/show-moderation-logs`, {
+      i: this.aus.token,
+      limit: this._limit,
+      untilId,
+    }) as Observable<ModerationLog[]>;
+  }
+
+  fetchServerInfo(): Observable<ServerInfo> {
+    return this.hc.post(`${this.baseUrl}/server-info`, {
+      i: this.aus.token,
+    }) as Observable<ServerInfo>;
   }
 
   fetchUser(userId: string): Observable<User> {

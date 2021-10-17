@@ -1,1 +1,10 @@
-<p>dashboard works!</p>
+<div fxLayout="row wrap" fxLayoutAlign="center none">
+  <app-stats-card fxFill [stats]="stats" class="dashboard-card"></app-stats-card>
+  <app-mod-log-card fxFill class="dashboard-card"></app-mod-log-card>
+  <app-srv-info-card fxFill class="dashboard-card"></app-srv-info-card>
+</div>
+
+<mat-divider class="divider"></mat-divider>
+<div fxLayout="row" fxLayoutAlign="center start" class="dashboard-footer">
+  <small>Powered by AimyDog</small>
+</div>

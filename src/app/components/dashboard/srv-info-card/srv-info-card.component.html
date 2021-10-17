@@ -1,0 +1,22 @@
+<mat-card *ngIf="info">
+  <mat-card-header>
+    <mat-card-title i18n="@@dashboard.srv_info.title">Server information</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon>mode</mat-icon>
+        <div mat-line>{{ info.machine }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>dns</mat-icon>
+        <div mat-line>{{ info.cpu.model }}</div>
+        <div mat-line><ng-container i18n="@@dashboard.srv_info.cores">Cores: </ng-container>{{ info.cpu.cores }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>memory</mat-icon>
+        <div mat-line>{{ info.mem.total | number }} byte</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

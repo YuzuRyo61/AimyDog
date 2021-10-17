@@ -38,6 +38,11 @@
           <div i18n="@@nav.emojis">Emojis</div>
         </mat-list-item>
       </mat-nav-list>
+      <mat-divider></mat-divider>
+      <div class="nav-footer-meta">
+        <p><ng-container i18n="@@nav.version">Version: </ng-container>{{ appVer }}</p>
+        <p><a [href]="appRepository" target="_blank" i18n="@@nav.repository">Repository</a></p>
+      </div>
     </mat-drawer>
     <div>
       <div class="toolbar">

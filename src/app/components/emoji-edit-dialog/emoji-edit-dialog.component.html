@@ -4,7 +4,7 @@
   <mat-form-field appearance="fill">
     <mat-label i18n="@@common.name">Name</mat-label>
     <input matInput [(ngModel)]="targetEmoji.name" required>
-    <mat-error *ngIf="targetEmoji.name.length <= 0">Required.</mat-error>
+    <mat-error *ngIf="targetEmoji.name.length <= 0" i18n="@@common.required">Required.</mat-error>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label i18n="@@common.category">Category</mat-label>
