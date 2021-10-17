@@ -217,6 +217,15 @@
     "dashboard.mod_log.type.silence": "サイレンスしました",
     "dashboard.mod_log.type.un_silence": "サイレンスを解除しました",
     "dashboard.mod_log.type.clear_queue": "キューをクリアしました",
-    "dashboard.mod_log.type.unknown": "不明"
+    "dashboard.mod_log.type.unknown": "不明",
+    "nav.repository": "リポジトリ",
+    "nav.version": "バージョン: ",
+    "dashboard.srv_info.cores": "コア数: ",
+    "dashboard.srv_info.title": "サーバー情報",
+    "dashboard.status.instances": "インスタンス数",
+    "dashboard.status.notes": "ノート数(ローカル)",
+    "dashboard.status.title": "ステータス",
+    "dashboard.status.users": "ユーザー数(ローカル)",
+    "dashboard.mod_log.title": "変更ログ"
   }
 }
