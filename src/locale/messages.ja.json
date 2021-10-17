@@ -208,6 +208,15 @@
     "emoji.search_dialog.origin.remote": "リモートのみ",
     "emoji.search_dialog.query": "検索",
     "emoji.search_dialog.title": "絵文字検索",
-    "emoji.no_emojis": "該当する絵文字が見つかりません"
+    "emoji.no_emojis": "該当する絵文字が見つかりません",
+    "dashboard.mod_log.type.update_meta": "インスタンス情報が更新されました",
+    "dashboard.mod_log.type.add_emoji": "絵文字が追加されました",
+    "dashboard.mod_log.type.remove_emoji": "絵文字が削除されました",
+    "dashboard.mod_log.type.suspend": "凍結しました",
+    "dashboard.mod_log.type.unsuspend": "凍結を解除しました",
+    "dashboard.mod_log.type.silence": "サイレンスしました",
+    "dashboard.mod_log.type.un_silence": "サイレンスを解除しました",
+    "dashboard.mod_log.type.clear_queue": "キューをクリアしました",
+    "dashboard.mod_log.type.unknown": "不明"
   }
 }

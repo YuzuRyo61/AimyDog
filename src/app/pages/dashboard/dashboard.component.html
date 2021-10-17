@@ -1,69 +1,10 @@
-<div fxLayout="row" fxLayoutAlign="space-around start">
-  <mat-card fxFlex.lt-lg="100%" fxFlex.gt-md="50%" *ngIf="stats">
-    <mat-card-header>
-      <mat-card-title i18n="@@dashboard.status.title">Status</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
-        <button mat-button fxLayout="column" fxLayoutAlign="space-evenly center" routerLink="/users">
-          <h1>{{ stats.originalUsersCount | number }}</h1>
-          <h3 i18n="@@dashboard.status.users">Users (Local)</h3>
-        </button>
-        <div fxLayout="column" fxLayoutAlign="space-evenly center">
-          <h1>{{ stats.originalNotesCount | number }}</h1>
-          <h3 i18n="@@dashboard.status.notes">Notes (Local)</h3>
-        </div>
-        <button mat-button fxLayout="column" fxLayoutAlign="space-evenly center" routerLink="/federation">
-          <h1>{{ stats.instances | number }}</h1>
-          <h3 i18n="@@dashboard.status.instances">Instances</h3>
-        </button>
-      </div>
-    </mat-card-content>
-  </mat-card>
+<div fxLayout="row wrap" fxLayoutAlign="center none">
+  <app-stats-card fxFill [stats]="stats" class="dashboard-card"></app-stats-card>
+  <app-mod-log-card fxFill class="dashboard-card"></app-mod-log-card>
+  <app-srv-info-card fxFill class="dashboard-card"></app-srv-info-card>
+</div>
 
-  <mat-card fxFlex.lt-lg="100%" fxFlex.gt-md="50%" *ngIf="moderationLogs">
-    <mat-card-header>
-      <mat-card-title i18n="@@dashboard.mod_log.title">Moderation log</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="mod-log-table-container">
-        <table mat-table [dataSource]="moderationLogs" class="mod-log-table">
-          <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef i18n="@@dashboard.mod_log.type">Type</th>
-            <td mat-cell *matCellDef="let elem">
-              <ng-container [ngSwitch]="elem.type">
-                <ng-container *ngSwitchCase="'updateMeta'" i18n="@@dashboard.mod_log.type.update_meta">Updated meta</ng-container>
-                <ng-container *ngSwitchCase="'addEmoji'" i18n="@@dashboard.mod_log.type.add_emoji">Added Emoji</ng-container>
-                <ng-container *ngSwitchCase="'removeEmoji'" i18n="@@dashboard.mod_log.type.remove_emoji">Removed Emoji</ng-container>
-                <ng-container *ngSwitchCase="'suspend'" i18n="@@dashboard.mod_log.type.suspend">Suspended</ng-container>
-                <ng-container *ngSwitchCase="'unsuspend'" i18n="@@dashboard.mod_log.type.unsuspend">Unsuspended</ng-container>
-                <ng-container *ngSwitchCase="'silence'" i18n="@@dashboard.mod_log.type.silence">Silenced</ng-container>
-                <ng-container *ngSwitchCase="'unsilence'" i18n="@@dashboard.mod_log.type.un_silence">Un-silenced</ng-container>
-                <ng-container *ngSwitchCase="'clearQueue'" i18n="@@dashboard.mod_log.type.clear_queue">Cleared queue</ng-container>
-                <ng-container *ngSwitchDefault i18n="@@dashboard.mod_log.type.unknown">Unknown</ng-container>
-              </ng-container>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="user">
-            <th mat-header-cell *matHeaderCellDef i18n="@@dashboard.mod_log.user">User</th>
-            <td mat-cell *matCellDef="let elem">@{{ elem.user.username }}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="moderatedAt">
-            <th mat-header-cell *matHeaderCellDef i18n="@@dashboard.mod_log.moderated_at">Moderated at</th>
-            <td mat-cell *matCellDef="let elem">{{ elem.createdAt | date : 'medium' //noinspection UnresolvedVariable }}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="meta">
-            <th mat-header-cell *matHeaderCellDef i18n="@@dashboard.mod_log.meta">Meta</th>
-            <td mat-cell *matCellDef="let elem">{{ elem.info | json }}</td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="['type', 'user', 'moderatedAt', 'meta']; sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: ['type', 'user', 'moderatedAt', 'meta'];"></tr>
-        </table>
-      </div>
-    </mat-card-content>
-  </mat-card>
+<mat-divider class="divider"></mat-divider>
+<div fxLayout="row" fxLayoutAlign="center start" class="dashboard-footer">
+  <small>Powered by AimyDog</small>
 </div>

@@ -13,6 +13,7 @@ import { Federation } from "../interface/federation";
 import { Emoji } from "../interface/emoji";
 import { MkStats } from "../interface/mk-stats";
 import { ModerationLog } from "../interface/moderation-log";
+import { ServerInfo } from "../interface/server-info";
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,12 @@ export class MkApiService {
       limit: this._limit,
       untilId,
     }) as Observable<ModerationLog[]>;
+  }
+
+  fetchServerInfo(): Observable<ServerInfo> {
+    return this.hc.post(`${this.baseUrl}/server-info`, {
+      i: this.aus.token,
+    }) as Observable<ServerInfo>;
   }
 
   fetchUser(userId: string): Observable<User> {

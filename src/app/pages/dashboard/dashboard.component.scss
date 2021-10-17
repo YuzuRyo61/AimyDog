@@ -1,12 +1,11 @@
-mat-card {
+.dashboard-card {
   margin: 4px;
 }
 
-.mod-log-table-container {
-  overflow: auto;
-  max-height: 40vh;
+.divider {
+  margin: 8px 0;
 }
 
-.mod-log-table {
-  width: 100%;
+.dashboard-footer {
+  margin-bottom: 8px;
 }

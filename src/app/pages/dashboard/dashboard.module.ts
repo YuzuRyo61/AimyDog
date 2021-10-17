@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { DashboardComponent } from "./dashboard.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatCardModule } from "@angular/material/card";
-import { MatButtonModule } from "@angular/material/button";
-import { MatTableModule } from "@angular/material/table";
+import { StatsCardModule } from "../../components/dashboard/stats-card/stats-card.module";
+import { ModLogCardModule } from "../../components/dashboard/mod-log-card/mod-log-card.module";
+import { MatDividerModule } from "@angular/material/divider";
+import { SrvInfoCardModule } from "../../components/dashboard/srv-info-card/srv-info-card.module";
 
 
 
@@ -20,9 +21,10 @@ import { MatTableModule } from "@angular/material/table";
       component: DashboardComponent,
     }]),
     FlexLayoutModule,
-    MatCardModule,
-    MatButtonModule,
-    MatTableModule,
+    StatsCardModule,
+    ModLogCardModule,
+    MatDividerModule,
+    SrvInfoCardModule,
   ],
   exports: [
     RouterModule,

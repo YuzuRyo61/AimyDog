@@ -1,0 +1,43 @@
+<mat-card *ngIf="moderationLogs">
+  <mat-card-header>
+    <mat-card-title i18n="@@dashboard.mod_log.title">Moderation log</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <virtual-scroller class="mod-log-container" [enableUnequalChildrenSizes]="true" [items]="moderationLogs" #scroll (vsEnd)="scrollEvent($event)">
+      <mat-accordion class="mod-log-accordion">
+        <!--suppress JSUnusedGlobalSymbols -->
+        <mat-expansion-panel *ngFor="let item of scroll.viewPortItems" #container>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <ng-container [ngSwitch]="item.type">
+                <ng-container *ngSwitchCase="'updateMeta'" i18n="@@dashboard.mod_log.type.update_meta">Updated meta</ng-container>
+                <ng-container *ngSwitchCase="'addEmoji'" i18n="@@dashboard.mod_log.type.add_emoji">Added Emoji</ng-container>
+                <ng-container *ngSwitchCase="'removeEmoji'" i18n="@@dashboard.mod_log.type.remove_emoji">Removed Emoji</ng-container>
+                <ng-container *ngSwitchCase="'suspend'" i18n="@@dashboard.mod_log.type.suspend">Suspended</ng-container>
+                <ng-container *ngSwitchCase="'unsuspend'" i18n="@@dashboard.mod_log.type.unsuspend">Unsuspended</ng-container>
+                <ng-container *ngSwitchCase="'silence'" i18n="@@dashboard.mod_log.type.silence">Silenced</ng-container>
+                <ng-container *ngSwitchCase="'unsilence'" i18n="@@dashboard.mod_log.type.un_silence">Un-silenced</ng-container>
+                <ng-container *ngSwitchCase="'clearQueue'" i18n="@@dashboard.mod_log.type.clear_queue">Cleared queue</ng-container>
+                <ng-container *ngSwitchDefault i18n="@@dashboard.mod_log.type.unknown">Unknown</ng-container>
+              </ng-container>
+            </mat-panel-title>
+            <mat-panel-description>
+              @{{ item.user.username }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-list>
+              <mat-list-item>
+                <mat-icon mat-list-icon>schedule</mat-icon>
+                <div mat-line>{{ item.createdAt | date : 'medium' //noinspection UnresolvedVariable }}</div>
+              </mat-list-item>
+            </mat-list>
+            <div>
+              {{ item.info | json }}
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </virtual-scroller>
+  </mat-card-content>
+</mat-card>
