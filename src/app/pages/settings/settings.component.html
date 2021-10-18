@@ -1,0 +1,26 @@
+<mat-accordion multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title i18n="@@settings.meta.title">Meta settings</mat-panel-title>
+      <mat-panel-description i18n="@@settings.meta.description">Set the instance name etc.</mat-panel-description>
+    </mat-expansion-panel-header>
+    <div>
+      <mat-form-field>
+        <mat-label i18n="@@settings.meta.instance_name">Instance name</mat-label>
+        <input matInput type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label i18n="@@settings.meta.instance_description">Instance description</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label i18n="@@settings.meta.maintainer_name">Maintainer name</mat-label>
+        <input matInput type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label i18n="@@settings.meta.maintainer_email">Maintainer email</mat-label>
+        <input matInput type="email">
+      </mat-form-field>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

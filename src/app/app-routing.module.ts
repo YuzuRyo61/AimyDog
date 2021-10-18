@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NeedLoginGuard } from "./guard/need-login.guard";
 import { NotLoginGuard } from "./guard/not-login.guard";
+import { NeedAdminGuard } from "./guard/need-admin.guard";
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [NeedLoginGuard],
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsModule),
+    canActivate: [NeedLoginGuard, NeedAdminGuard],
   },
   {
     path: 'users',

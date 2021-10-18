@@ -12,7 +12,7 @@
           <mat-icon mat-list-icon>dashboard</mat-icon>
           <div i18n="@@nav.dashboard">Dashboard</div>
         </mat-list-item>
-        <mat-list-item routerLink="/core" (click)="drawer.close()" *ngIf="aus.credentials?.isAdmin">
+        <mat-list-item routerLink="/settings" (click)="drawer.close()" *ngIf="aus.credentials?.isAdmin">
           <mat-icon mat-list-icon>settings</mat-icon>
           <div i18n="@@nav.meta">Meta</div>
         </mat-list-item>
