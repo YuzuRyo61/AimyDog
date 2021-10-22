@@ -1,26 +1,67 @@
-<mat-accordion multi>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title i18n="@@settings.meta.title">Meta settings</mat-panel-title>
-      <mat-panel-description i18n="@@settings.meta.description">Set the instance name etc.</mat-panel-description>
-    </mat-expansion-panel-header>
-    <div>
-      <mat-form-field>
-        <mat-label i18n="@@settings.meta.instance_name">Instance name</mat-label>
-        <input matInput type="text">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label i18n="@@settings.meta.instance_description">Instance description</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label i18n="@@settings.meta.maintainer_name">Maintainer name</mat-label>
-        <input matInput type="text">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label i18n="@@settings.meta.maintainer_email">Maintainer email</mat-label>
-        <input matInput type="email">
-      </mat-form-field>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
+<div class="container">
+  <div class="expansion-control" *ngIf="accordion">
+    <button mat-button i18n="@@settings.expand_all" (click)="accordion.openAll()">Expand all</button>
+    <button mat-button i18n="@@settings.collapse_all" (click)="accordion.closeAll()">Collapse all</button>
+  </div>
+  <form [formGroup]="settingsForm">
+    <mat-accordion multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title i18n="@@settings.meta.title">Meta settings</mat-panel-title>
+          <mat-panel-description>
+            <ng-container i18n="@@settings.meta.description">Set the instance name etc.</ng-container>
+            <mat-icon>settings_applications</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+          <mat-form-field>
+            <mat-label i18n="@@settings.meta.instance_name">Instance name</mat-label>
+            <input matInput type="text" formControlName="name">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n="@@settings.meta.instance_description">Instance description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n="@@settings.meta.maintainer_name">Maintainer name</mat-label>
+            <input matInput type="text" formControlName="maintainerName">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n="@@settings.meta.maintainer_email">Maintainer email</mat-label>
+            <input matInput type="email" formControlName="maintainerEmail">
+            <mat-error i18n="@@settings.meta.maintainer_email.form_error">Please input email format</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n="@@settings.meta.tos_url">Term of Service URL</mat-label>
+            <input matInput type="url" formControlName="tosUrl">
+            <mat-error i18n="@@settings.meta.tos_url.form_error">Invalid URL format.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n="@@settings.meta.repository_url">Repository URL</mat-label>
+            <input matInput type="url" formControlName="repositoryUrl">
+            <mat-error i18n="@@settings.meta.repository_url.form_error">Invalid URL format.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n="@@settings.meta.feedback_url">Feedback URL</mat-label>
+            <input matInput type="url" formControlName="feedbackUrl">
+            <mat-error i18n="@@settings.meta.feedback_url.form_error">Invalid URL format.</mat-error>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title i18n="@@settings.user_reg.title">User registration</mat-panel-title>
+          <mat-panel-description>
+            <ng-container i18n="@@settings.user_reg.description">Set the user registration method</ng-container>
+            <mat-icon>person_add</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
+
+  <button mat-fab color="primary" class="fab-button" (click)="save()" [disabled]="settingsForm.invalid">
+    <mat-icon>save</mat-icon>
+  </button>
+</div>

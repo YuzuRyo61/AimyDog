@@ -4,6 +4,9 @@ import { SettingsComponent } from "./settings.component";
 import { RouterModule } from "@angular/router";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatInputModule } from "@angular/material/input";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
 
 
 
@@ -19,6 +22,9 @@ import { MatInputModule } from "@angular/material/input";
     }]),
     MatExpansionModule,
     MatInputModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   exports: [
     RouterModule,

@@ -1,3 +1,35 @@
+@use "src/responsive-mixin" as rm;
+
 mat-form-field {
   width: 100%;
+}
+
+.fab-button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: auto;
+
+  @include rm.responsive(lg) {
+    bottom: 48px;
+    right: 48px;
+  }
+
+  @include rm.responsive(xl) {
+    bottom: 48px;
+    right: 48px;
+  }
+}
+
+mat-accordion .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  margin: 8px 0;
+}
+
+.expansion-control {
+  margin-bottom: 8px;
 }
