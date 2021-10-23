@@ -21,6 +21,9 @@ import { NotLoginGuard } from "./guard/not-login.guard";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { APP_BASE_HREF, PlatformLocation } from "@angular/common";
+import { YnDialogModule } from "./components/yn-dialog/yn-dialog.module";
+import { MatDialogModule } from "@angular/material/dialog";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { APP_BASE_HREF, PlatformLocation } from "@angular/common";
     MatSnackBarModule,
     MatMenuModule,
     MatProgressBarModule,
+    MatDialogModule,
+    YnDialogModule,
+    FlexLayoutModule,
   ],
   providers: [
     AuthService,
