@@ -33,7 +33,27 @@
               </mat-list-item>
             </mat-list>
             <div>
-              {{ item.info | json }}
+              <ng-container [ngSwitch]="item.type">
+                <ng-container *ngSwitchCase="'addEmoji'">
+                  <pre>{{ item.info | json }}</pre>
+                </ng-container>
+                <ng-container *ngSwitchCase="'removeEmoji'">
+                  <pre>{{ item.info | json }}</pre>
+                </ng-container>
+                <ng-container *ngSwitchCase="'suspend'">
+                  <pre>{{ item.info | json }}</pre>
+                </ng-container>
+                <ng-container *ngSwitchCase="'unsuspend'">
+                  <pre>{{ item.info | json }}</pre>
+                </ng-container>
+                <ng-container *ngSwitchCase="'silence'">
+                  <pre>{{ item.info | json }}</pre>
+                </ng-container>
+                <ng-container *ngSwitchCase="'unsilence'">
+                  <pre>{{ item.info | json }}</pre>
+                </ng-container>
+              </ng-container>
+
             </div>
           </div>
         </mat-expansion-panel>
