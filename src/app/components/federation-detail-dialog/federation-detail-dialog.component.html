@@ -7,12 +7,6 @@
   <ng-container *ngIf="data">
     <mat-card>
       <mat-card-header>
-        <img
-          mat-card-avatar
-          *ngIf="data.iconUrl !== null"
-          [src]="data.iconUrl"
-          [alt]="data.host"
-        >
         <mat-card-title>
           <ng-container *ngIf="data.name !== null; else noName">{{ data.name }}</ng-container>
           <ng-template #noName>{{ data.host }}</ng-template>
