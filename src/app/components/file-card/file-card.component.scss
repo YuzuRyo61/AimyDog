@@ -6,3 +6,9 @@
   max-height: 15vh;
   object-fit: cover;
 }
+
+.file-sensitive {
+  -webkit-filter: blur(12px);
+  -ms-filter: blur(12px);
+  filter: blur(12px);
+}

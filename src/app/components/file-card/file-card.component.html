@@ -1,6 +1,7 @@
 <mat-card class="file-card" *ngIf="file">
   <img mat-card-image
      class="file-card-image"
+     [class.file-sensitive]="file.isSensitive"
      *ngIf="file.thumbnailUrl !== null"
      [src]="file.thumbnailUrl"
      [alt]="file.thumbnailUrl"
