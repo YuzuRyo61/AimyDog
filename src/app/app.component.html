@@ -12,7 +12,7 @@
           <mat-icon mat-list-icon>dashboard</mat-icon>
           <div i18n="@@nav.dashboard">Dashboard</div>
         </mat-list-item>
-        <mat-list-item routerLink="/core" (click)="drawer.close()" *ngIf="aus.credentials?.isAdmin">
+        <mat-list-item routerLink="/settings" (click)="drawer.close()" *ngIf="aus.credentials?.isAdmin">
           <mat-icon mat-list-icon>settings</mat-icon>
           <div i18n="@@nav.meta">Meta</div>
         </mat-list-item>
@@ -79,5 +79,9 @@
   </div>
   <div class="landing-container">
     <router-outlet></router-outlet>
+  </div>
+  <mat-divider class="divider"></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="center start" class="landing-footer">
+    <small>Powered by AimyDog ({{ appVer }})</small>
   </div>
 </ng-template>

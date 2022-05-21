@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mas.fetchMeta().subscribe(
+    this.mas.fetchStats().subscribe(
       val => {
         this.stats = val;
       },

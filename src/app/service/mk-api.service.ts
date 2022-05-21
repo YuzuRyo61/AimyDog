@@ -14,6 +14,7 @@ import { Emoji } from "../interface/emoji";
 import { MkStats } from "../interface/mk-stats";
 import { ModerationLog } from "../interface/moderation-log";
 import { ServerInfo } from "../interface/server-info";
+import { MkMeta } from "../interface/mk-meta";
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,14 @@ export class MkApiService {
     return `${this.aus.protocol}//${this.aus.address}/api`;
   }
 
-  fetchMeta(): Observable<MkStats> {
+  fetchMeta(): Observable<MkMeta> {
+    return this.hc.post(`${this.baseUrl}/meta`, {
+      i: this.aus.token,
+      detail: true,
+    }) as Observable<MkMeta>;
+  }
+
+  fetchStats(): Observable<MkStats> {
     return this.hc.post(`${this.baseUrl}/stats`, {
       i: this.aus.token,
     }) as Observable<MkStats>;

@@ -226,6 +226,8 @@
     "dashboard.status.notes": "ノート数(ローカル)",
     "dashboard.status.title": "ステータス",
     "dashboard.status.users": "ユーザー数(ローカル)",
-    "dashboard.mod_log.title": "変更ログ"
+    "dashboard.mod_log.title": "変更ログ",
+    "update.available.message": "AimyDogにアップデートがあります。更新しますか？",
+    "update.available.title": "アップデート可能"
   }
 }

@@ -6,3 +6,16 @@
   max-height: 15vh;
   object-fit: cover;
 }
+
+.file-sensitive {
+  -webkit-filter: blur(12px);
+  -ms-filter: blur(12px);
+  filter: blur(12px);
+  transition: 0.5s;
+}
+
+.file-sensitive:hover {
+  -webkit-filter: blur(0px);
+  -ms-filter: blur(0px);
+  filter: blur(0px);
+}
